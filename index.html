@@ -495,9 +495,16 @@ footer{background:var(--ink);padding:56px 0 28px}
   .galeria-grid{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr}
   .nl-form{flex-direction:column}.nl-in{border-right:1px solid var(--beige3)}
-  .sf-panel-2{right:0;left:0;top:auto;bottom:3.5rem;transform:none!important;width:100%}
-  .sf-panel-2.visible{transform:none!important}
-  .p2-card{border-radius:0;padding:1.6rem}
+  /* En móvil: ocultar panel 2 superpuesto al video */
+  .sf-panel-2{display:none!important}
+  /* Video ocupa altura fija, no toda la pantalla */
+  #intro{height:auto;min-height:0}
+  #sf-video{position:relative;height:62vw;min-height:240px;max-height:400px;width:100%;object-fit:cover}
+  .sf-overlay{display:none}
+  .sf-progress{position:absolute;bottom:0;left:0;right:0}
+  #replay-btn{bottom:1rem}
+  /* Mostrar tarjeta debajo del video */
+  #intro-mobile-card{display:block}
   .p1-title{font-size:clamp(1.8rem,9vw,3.2rem)}
   #lang-btn{top:auto;bottom:72px;right:16px}
   .william-ring-outer{width:236px;height:236px}
@@ -506,6 +513,238 @@ footer{background:var(--ink);padding:56px 0 28px}
   #wa-float span{display:none}
   #wa-float{padding:14px;border-radius:50%}
 }
+
+/* Tarjeta móvil debajo del video — oculta en desktop */
+#intro-mobile-card{
+  display:none;
+  background:var(--beige);
+  padding:1.8rem 1.2rem;
+  border-bottom:1px solid var(--beige3);
+}
+#intro-mobile-card .imc-tag{display:inline-block;background:var(--g-deep);color:var(--white);font-family:var(--body);font-weight:500;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:4px 14px;border-radius:50px;margin-bottom:1rem}
+#intro-mobile-card .imc-title{font-family:var(--title);font-size:1.4rem;color:var(--ink);line-height:1.1;letter-spacing:.06em;margin-bottom:.3rem}
+#intro-mobile-card .imc-sub{font-family:var(--serif);font-size:.95rem;font-style:italic;color:var(--g-deep);margin-bottom:1.1rem;line-height:1.45}
+#intro-mobile-card .imc-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+#intro-mobile-card .imc-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--muted);line-height:1.5}
+#intro-mobile-card .imc-list li::before{content:'';display:block;width:6px;height:6px;background:var(--g-soft);border-radius:50%;margin-top:5px;flex-shrink:0}
+#intro-mobile-card .imc-btns{display:flex;gap:.6rem;flex-wrap:wrap}
+#intro-mobile-card .imc-btn-p{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.72rem 1.5rem;font-family:var(--body);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;flex:1;text-align:center;text-decoration:none;display:inline-block}
+#intro-mobile-card .imc-btn-o{background:transparent;color:var(--ink);border:1.5px solid var(--beige3);cursor:pointer;padding:.68rem 1.1rem;font-family:var(--body);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;display:inline-block;text-align:center}
+#intro-mobile-card .imc-badges{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--beige3)}
+#intro-mobile-card .imc-badge{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+#intro-mobile-card .imc-badge::before{content:'';width:5px;height:5px;background:var(--g-soft);border-radius:50%;display:block}
+
+/* ══════════════════════════════════════════════════════
+   SISTEMA DE CARRITO / AUTH / PAGO
+══════════════════════════════════════════════════════ */
+
+/* URL del backend — cambiar cuando despliegues en Railway */
+/* Se define en JS: window.API = '...' */
+
+/* ── OVERLAY FONDO MODALES ── */
+.pv-backdrop{
+  position:fixed;inset:0;z-index:4000;
+  background:rgba(20,30,22,.55);backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.pv-backdrop.open{opacity:1;pointer-events:auto}
+
+/* ── MODAL BASE ── */
+.pv-modal{
+  position:fixed;z-index:4001;
+  background:var(--white);border-radius:var(--radius);
+  box-shadow:0 32px 80px rgba(0,0,0,.22);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+}
+.pv-modal.open{opacity:1;pointer-events:auto}
+
+/* ── MODAL AUTH — centrado ── */
+#modal-auth{
+  top:50%;left:50%;
+  transform:translate(-50%,-44%);
+  width:min(440px,94vw);padding:2.8rem 2.4rem;
+}
+#modal-auth.open{transform:translate(-50%,-50%)}
+
+.auth-logo{text-align:center;margin-bottom:1.8rem}
+.auth-logo img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto .7rem;border:2px solid var(--beige3)}
+.auth-logo span{font-family:var(--title);font-size:.9rem;color:var(--g-deep);letter-spacing:.22em;display:block}
+.auth-tabs{display:flex;border-bottom:1px solid var(--beige3);margin-bottom:1.8rem}
+.auth-tab{flex:1;padding:.7rem;text-align:center;font-family:var(--body);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+.auth-tab.active{color:var(--g-deep);border-bottom-color:var(--g-deep)}
+.auth-form{display:none;flex-direction:column;gap:1rem}
+.auth-form.active{display:flex}
+.pv-input{
+  width:100%;padding:.85rem 1rem;
+  border:1px solid var(--beige3);border-radius:8px;
+  font-family:var(--body);font-size:.88rem;color:var(--ink);
+  background:var(--beige);outline:none;
+  transition:border-color .2s;
+}
+.pv-input:focus{border-color:var(--g-mid)}
+.pv-input::placeholder{color:var(--muted);opacity:.6}
+.auth-submit{
+  background:var(--g-deep);color:var(--white);border:none;
+  padding:1rem;border-radius:8px;font-family:var(--body);
+  font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;margin-top:.4rem;
+}
+.auth-submit:hover{background:var(--g-mid)}
+.auth-submit:disabled{opacity:.6;cursor:not-allowed}
+.auth-error{font-size:.78rem;color:#c0392b;text-align:center;min-height:1rem}
+.auth-close{
+  position:absolute;top:.9rem;right:1rem;
+  background:none;border:none;cursor:pointer;
+  font-size:1.3rem;color:var(--muted);line-height:1;
+  padding:.3rem;
+}
+.auth-close:hover{color:var(--ink)}
+
+/* ── CARRITO LATERAL ── */
+#panel-carrito{
+  top:0;right:0;bottom:0;
+  width:min(480px,100vw);
+  transform:translateX(110%);
+  border-radius:0;
+  display:flex;flex-direction:column;
+}
+#panel-carrito.open{transform:translateX(0)}
+
+.cart-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.6rem 1.8rem;border-bottom:1px solid var(--beige3);
+  flex-shrink:0;
+}
+.cart-head h3{font-family:var(--title);font-size:1rem;letter-spacing:.18em;color:var(--ink)}
+.cart-close{background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--muted)}
+.cart-close:hover{color:var(--ink)}
+
+.cart-items{flex:1;overflow-y:auto;padding:1.4rem 1.8rem;display:flex;flex-direction:column;gap:1rem}
+
+.cart-item{
+  display:grid;grid-template-columns:72px 1fr auto;
+  gap:1rem;align-items:center;
+  background:var(--beige);border:1px solid var(--beige3);
+  border-radius:10px;padding:.9rem;
+}
+.cart-item-img{width:72px;height:72px;object-fit:cover;border-radius:8px}
+.cart-item-name{font-family:var(--serif);font-size:.95rem;color:var(--ink);margin-bottom:.2rem}
+.cart-item-mat{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.cart-item-price{font-family:var(--title);font-size:.95rem;color:var(--g-deep);margin-top:.4rem}
+.cart-item-del{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;padding:.3rem;transition:color .2s}
+.cart-item-del:hover{color:#c0392b}
+
+.cart-empty{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:1rem;color:var(--muted);
+  font-family:var(--serif);font-size:1.05rem;font-style:italic;
+  padding:2rem;text-align:center;
+}
+.cart-empty svg{opacity:.3}
+
+.cart-footer{
+  padding:1.4rem 1.8rem;border-top:1px solid var(--beige3);
+  flex-shrink:0;background:var(--white);
+}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
+.cart-total-lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.cart-total-val{font-family:var(--title);font-size:1.5rem;color:var(--ink)}
+.cart-checkout-btn{
+  width:100%;background:var(--g-deep);color:var(--white);
+  border:none;padding:1rem;border-radius:8px;
+  font-family:var(--body);font-size:.8rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+  transition:background .2s;
+}
+.cart-checkout-btn:hover{background:var(--g-mid)}
+.cart-checkout-btn:disabled{opacity:.6;cursor:not-allowed}
+
+/* ── MODAL CHECKOUT ── */
+#modal-checkout{
+  top:50%;left:50%;
+  transform:translate(-50%,-44%);
+  width:min(560px,96vw);
+  max-height:92vh;overflow-y:auto;
+  padding:2.4rem;
+}
+#modal-checkout.open{transform:translate(-50%,-50%)}
+
+.checkout-title{font-family:var(--title);font-size:1.1rem;letter-spacing:.14em;color:var(--ink);margin-bottom:1.6rem;display:flex;align-items:center;gap:.8rem}
+.checkout-title svg{opacity:.5}
+
+.checkout-items{background:var(--beige);border-radius:10px;padding:1.2rem;margin-bottom:1.6rem}
+.checkout-item-row{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);padding:.35rem 0;border-bottom:1px solid var(--beige3)}
+.checkout-item-row:last-child{border-bottom:none}
+.checkout-item-row strong{color:var(--ink)}
+
+.moneda-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;margin-top:1.2rem;display:block}
+.moneda-select{
+  width:100%;padding:.8rem 1rem;
+  border:1px solid var(--beige3);border-radius:8px;
+  font-family:var(--body);font-size:.88rem;color:var(--ink);
+  background:var(--beige);outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7568' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+}
+
+.total-convertido{
+  background:var(--g-xs);border:1px solid rgba(27,77,53,.15);
+  border-radius:10px;padding:1.2rem 1.4rem;margin:1.2rem 0;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.total-convertido .lbl{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.total-convertido .val{font-family:var(--title);font-size:1.6rem;color:var(--g-deep)}
+.total-convertido .usd{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+
+.pagar-btn{
+  width:100%;background:var(--g-deep);color:var(--white);
+  border:none;padding:1.1rem;border-radius:8px;
+  font-family:var(--body);font-size:.82rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+  transition:background .2s,transform .15s;margin-top:.8rem;
+  display:flex;align-items:center;justify-content:center;gap:.8rem;
+}
+.pagar-btn:hover{background:var(--g-mid);transform:translateY(-1px)}
+.pagar-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+.mp-logo-note{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  font-size:.68rem;color:var(--muted);margin-top:.8rem;
+  opacity:.7;
+}
+
+/* ── BADGE CONTADOR CARRITO ── */
+.cart-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#c0392b;color:#fff;
+  border-radius:50%;width:18px;height:18px;
+  font-size:.6rem;font-weight:700;
+  position:absolute;top:-6px;right:-6px;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.cart-badge.show{opacity:1}
+.nav-cart-wrap{position:relative;display:inline-block}
+
+/* ── TOAST ── */
+#pv-toast{
+  position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
+  z-index:5000;background:var(--ink);color:var(--white);
+  padding:.7rem 1.4rem;border-radius:50px;
+  font-family:var(--body);font-size:.78rem;letter-spacing:.06em;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+  white-space:nowrap;
+}
+#pv-toast.show{opacity:1}
+
+/* ── SPINNER ── */
+.pv-spin{
+  width:18px;height:18px;border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .7s linear infinite;display:inline-block;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -537,9 +776,123 @@ footer{background:var(--ink);padding:56px 0 28px}
       <li><a href="#faq" data-es="Preguntas" data-en="FAQ">Preguntas</a></li>
       <li><a href="#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
     </ul>
-    <button class="nav-cta" id="cart-btn" data-es="Carrito (0)" data-en="Cart (0)">Carrito (0)</button>
+    <div class="nav-cart-wrap">
+      <button class="nav-cta" id="cart-btn" onclick="abrirCarrito()">
+        Carrito <span id="cart-count-badge" class="cart-badge">0</span>
+      </button>
+    </div>
   </div>
 </nav>
+
+<!-- ════════════════════════════════════════════════
+     MODALES DEL SISTEMA DE CARRITO
+════════════════════════════════════════════════ -->
+
+<!-- BACKDROP -->
+<div class="pv-backdrop" id="pv-backdrop" onclick="cerrarTodo()"></div>
+
+<!-- MODAL AUTH: Registro / Login -->
+<div class="pv-modal" id="modal-auth">
+  <button class="auth-close" onclick="cerrarAuth()">✕</button>
+  <div class="auth-logo">
+    <img src="Paloverde.jpeg" alt="Palo Verde">
+    <span>PALO VERDE</span>
+  </div>
+  <div class="auth-tabs">
+    <div class="auth-tab active" onclick="authTab('login')">Iniciar sesión</div>
+    <div class="auth-tab" onclick="authTab('registro')">Registrarse</div>
+  </div>
+
+  <!-- LOGIN -->
+  <form class="auth-form active" id="form-login" onsubmit="hacerLogin(event)">
+    <input class="pv-input" type="email" id="login-correo" placeholder="tu@correo.com" required autocomplete="email">
+    <input class="pv-input" type="password" id="login-pass" placeholder="Contraseña" required autocomplete="current-password">
+    <div class="auth-error" id="login-error"></div>
+    <button class="auth-submit" type="submit" id="btn-login">Iniciar sesión</button>
+  </form>
+
+  <!-- REGISTRO -->
+  <form class="auth-form" id="form-registro" onsubmit="hacerRegistro(event)">
+    <input class="pv-input" type="text" id="reg-nombre" placeholder="Tu nombre (opcional)" autocomplete="name">
+    <input class="pv-input" type="email" id="reg-correo" placeholder="tu@correo.com" required autocomplete="email">
+    <input class="pv-input" type="password" id="reg-pass" placeholder="Contraseña (mín. 6 caracteres)" required autocomplete="new-password" minlength="6">
+    <div class="auth-error" id="reg-error"></div>
+    <button class="auth-submit" type="submit" id="btn-registro">Crear cuenta</button>
+  </form>
+</div>
+
+<!-- PANEL CARRITO (lateral derecho) -->
+<div class="pv-modal" id="panel-carrito">
+  <div class="cart-head">
+    <h3>Mi carrito</h3>
+    <button class="cart-close" onclick="cerrarCarrito()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-list">
+    <div class="cart-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>Tu carrito está vacío</span>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-lbl">Total</span>
+      <span class="cart-total-val" id="cart-total-val">$0 USD</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="abrirCheckout()">
+      Proceder al pago →
+    </button>
+  </div>
+</div>
+
+<!-- MODAL CHECKOUT -->
+<div class="pv-modal" id="modal-checkout">
+  <button class="auth-close" onclick="cerrarCheckout()">✕</button>
+  <div class="checkout-title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    Resumen de pago
+  </div>
+
+  <div class="checkout-items" id="checkout-items-list"></div>
+
+  <span class="moneda-label">Selecciona tu moneda de pago</span>
+  <select class="moneda-select" id="moneda-select" onchange="actualizarConversion()">
+    <option value="USD">🇺🇸 USD — Dólar estadounidense</option>
+    <option value="COP" selected>🇨🇴 COP — Peso colombiano</option>
+    <option value="EUR">🇪🇺 EUR — Euro</option>
+    <option value="BRL">🇧🇷 BRL — Real brasileño</option>
+    <option value="MXN">🇲🇽 MXN — Peso mexicano</option>
+    <option value="PEN">🇵🇪 PEN — Sol peruano</option>
+    <option value="CLP">🇨🇱 CLP — Peso chileno</option>
+    <option value="ARS">🇦🇷 ARS — Peso argentino</option>
+    <option value="PAB">🇵🇦 PAB — Balboa panameño</option>
+    <option value="CRC">🇨🇷 CRC — Colón costarricense</option>
+    <option value="GTQ">🇬🇹 GTQ — Quetzal guatemalteco</option>
+    <option value="HNL">🇭🇳 HNL — Lempira hondureño</option>
+    <option value="BOB">🇧🇴 BOB — Boliviano</option>
+    <option value="DOP">🇩🇴 DOP — Peso dominicano</option>
+  </select>
+
+  <div class="total-convertido">
+    <div>
+      <div class="lbl">Total a pagar</div>
+      <div class="usd" id="co-usd">$0.00 USD</div>
+    </div>
+    <div class="val" id="co-total">$0</div>
+  </div>
+
+  <button class="pagar-btn" id="btn-pagar" onclick="procesarPago()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    Pagar con tarjeta
+  </button>
+  <div class="mp-logo-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Pago seguro vía Mercado Pago
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="pv-toast"></div>
+
 
 <!-- ════════════════════════════════════════
      INTRO DE VIDEO — 100vh, se reproduce solo
@@ -611,6 +964,28 @@ footer{background:var(--ink);padding:56px 0 28px}
   </button>
 
 </section>
+
+<!-- TARJETA MÓVIL — solo visible en pantallas pequeñas, debajo del video -->
+<div id="intro-mobile-card">
+  <span class="imc-tag" data-es="Alta Joyería · Desde 1998" data-en="Fine Jewelry · Since 1998">Alta Joyería · Desde 1998</span>
+  <h3 class="imc-title">PALO VERDE</h3>
+  <p class="imc-sub" data-es="La joyería de las montañas<br>de Villavicencio, Meta" data-en="The jewelry of the mountains<br>of Villavicencio, Meta">La joyería de las montañas de Villavicencio, Meta</p>
+  <ul class="imc-list">
+    <li data-es="Esmeraldas 100% colombianas con trazabilidad completa desde la mina" data-en="100% Colombian emeralds with full traceability from the mine">Esmeraldas 100% colombianas con trazabilidad completa desde la mina</li>
+    <li data-es="Certificado GIA o Gübelin en todas las piezas mayores a 1 quilate" data-en="GIA or Gübelin certificate on all pieces over 1 carat">Certificado GIA o Gübelin en todas las piezas mayores a 1 quilate</li>
+    <li data-es="Piezas únicas elaboradas a mano por orfebres artesanales en Villavicencio, Meta" data-en="Unique pieces handcrafted by artisan goldsmiths in Villavicencio, Meta">Piezas únicas elaboradas a mano por orfebres artesanales en Villavicencio, Meta</li>
+    <li data-es="Envío internacional asegurado · Garantía de por vida en el engaste" data-en="Insured international shipping · Lifetime warranty on the setting">Envío internacional asegurado · Garantía de por vida en el engaste</li>
+  </ul>
+  <div class="imc-btns">
+    <a class="imc-btn-p" href="#catalogo" data-es="Ver colección" data-en="View collection">Ver colección</a>
+    <a class="imc-btn-o" href="#origen" data-es="El origen" data-en="The origin">El origen</a>
+  </div>
+  <div class="imc-badges">
+    <span class="imc-badge" data-es="Certificado GIA" data-en="GIA Certified">Certificado GIA</span>
+    <span class="imc-badge" data-es="Hecho a mano" data-en="Handcrafted">Hecho a mano</span>
+    <span class="imc-badge" data-es="42 países" data-en="42 countries">42 países</span>
+  </div>
+</div>
 
 <!-- ════════════════════════════════════════════════
      RESTO DE LA PÁGINA
@@ -739,7 +1114,7 @@ footer{background:var(--ink);padding:56px 0 28px}
           <span class="pc-tag t-g">Más Deseada</span>
           <div class="pc-name">Esmeralda Muzo<br>Hexagonal Bruta</div>
           <div class="pc-mat">Oro 18k · 2.8 quilates · Certificado GIA</div>
-          <div class="pc-foot"><span class="pc-price">$2.850 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir al carrito</button></div>
+          <div class="pc-foot"><span class="pc-price">$2.850 USD</span><button class="pc-btn" onclick="pvAddToCart(1,'Esmeralda Muzo Hexagonal Bruta',2850,this)">Añadir al carrito</button></div>
         </div>
       </div>
       <div class="pc tall">
@@ -749,7 +1124,7 @@ footer{background:var(--ink);padding:56px 0 28px}
           <span class="pc-tag t-go">Exclusivo</span>
           <div class="pc-name">Anillo Selva Imperial</div>
           <div class="pc-mat">Oro blanco 18k · Esmeralda oval</div>
-          <div class="pc-foot"><span class="pc-price">$3.200 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+          <div class="pc-foot"><span class="pc-price">$3.200 USD</span><button class="pc-btn" onclick="pvAddToCart(2,'Anillo Selva Imperial',3200,this)">Añadir</button></div>
         </div>
       </div>
       <div class="pc">
@@ -759,7 +1134,7 @@ footer{background:var(--ink);padding:56px 0 28px}
           <span class="pc-tag t-gh">Nuevo</span>
           <div class="pc-name">Collar Bosque Eterno</div>
           <div class="pc-mat">Cadena oro · Colgante esmeralda</div>
-          <div class="pc-foot"><span class="pc-price">$2.100 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+          <div class="pc-foot"><span class="pc-price">$2.100 USD</span><button class="pc-btn" onclick="pvAddToCart(3,'Collar Bosque Eterno',2100,this)">Añadir</button></div>
         </div>
       </div>
       <div class="pc">
@@ -769,7 +1144,7 @@ footer{background:var(--ink);padding:56px 0 28px}
           <span class="pc-tag t-g">Tendencia</span>
           <div class="pc-name">Pulsera Raíces Doradas</div>
           <div class="pc-mat">Oro 18k · 3 esmeraldas baguette</div>
-          <div class="pc-foot"><span class="pc-price">$1.480 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+          <div class="pc-foot"><span class="pc-price">$1.480 USD</span><button class="pc-btn" onclick="pvAddToCart(4,'Pulsera Raíces Doradas',1480,this)">Añadir</button></div>
         </div>
       </div>
       <div class="pc">
@@ -779,7 +1154,7 @@ footer{background:var(--ink);padding:56px 0 28px}
           <span class="pc-tag t-go">Premium</span>
           <div class="pc-name">Arete Gota Muzo</div>
           <div class="pc-mat">Oro 18k · Esmeralda lágrima</div>
-          <div class="pc-foot"><span class="pc-price">$1.950 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+          <div class="pc-foot"><span class="pc-price">$1.950 USD</span><button class="pc-btn" onclick="pvAddToCart(5,'Arete Gota Muzo',1950,this)">Añadir</button></div>
         </div>
       </div>
     </div>
@@ -1147,6 +1522,432 @@ document.querySelectorAll('.cat-card,.stat-box,.review-bubble,.gal-item,details,
   el.style.transition='opacity .45s ease, transform .45s ease';
   obs.observe(el);
 });
+
+/* ══════════════════════════════════════════════════════════
+   SISTEMA DE CARRITO — PALO VERDE ESMERALDA
+   ─────────────────────────────────────────────────────────
+   ⚠️  CONFIGURACIÓN: Cambia esta URL cuando despliegues
+       tu backend en Railway.
+══════════════════════════════════════════════════════════ */
+const API = window.PV_API || 'https://paloverde-backend2.onrender.com'
+
+/* ── ESTADO LOCAL ── */
+let pvUser      = JSON.parse(localStorage.getItem('pv_user') || 'null');
+let pvToken     = localStorage.getItem('pv_token') || null;
+let pvCarrito   = [];        /* cache local del carrito */
+let pvPedidoId  = null;      /* pedido en proceso */
+let pvPendingId = null;      /* producto que esperaba auth */
+let pvPendingNm = null;
+let pvPendingPr = null;
+
+/* ── HELPERS ── */
+function pvFetch(path, opts = {}) {
+  const headers = { 'Content-Type': 'application/json', ...(opts.headers||{}) };
+  if (pvToken) headers['Authorization'] = 'Bearer ' + pvToken;
+  return fetch(API + path, { ...opts, headers });
+}
+
+function toast(msg, ms = 2800) {
+  const t = document.getElementById('pv-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), ms);
+}
+
+function backdrop(open) {
+  document.getElementById('pv-backdrop').classList.toggle('open', open);
+}
+
+function cerrarTodo() {
+  ['modal-auth','panel-carrito','modal-checkout'].forEach(id => {
+    document.getElementById(id)?.classList.remove('open');
+  });
+  backdrop(false);
+}
+
+/* ── ACTUALIZAR BADGE DEL NAV ── */
+function actualizarBadge() {
+  const total = pvCarrito.reduce((s, i) => s + i.cantidad, 0);
+  const badge = document.getElementById('cart-count-badge');
+  if (badge) {
+    badge.textContent = total;
+    badge.classList.toggle('show', total > 0);
+  }
+}
+
+/* ── CARGAR CARRITO DESDE API ── */
+async function cargarCarrito() {
+  if (!pvToken) { pvCarrito = []; actualizarBadge(); return; }
+  try {
+    const r = await pvFetch('/api/carrito');
+    if (r.ok) {
+      const d = await r.json();
+      pvCarrito = d.items || [];
+      actualizarBadge();
+    }
+  } catch { /* sin conexión */ }
+}
+
+/* ── RENDERIZAR PANEL CARRITO ── */
+function renderCarrito() {
+  const list   = document.getElementById('cart-items-list');
+  const footer = document.getElementById('cart-footer');
+  const totEl  = document.getElementById('cart-total-val');
+
+  if (!pvCarrito.length) {
+    list.innerHTML = `<div class="cart-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>Tu carrito está vacío</span>
+    </div>`;
+    footer.style.display = 'none';
+    return;
+  }
+
+  const total = pvCarrito.reduce((s, i) => s + parseFloat(i.precio_usd) * i.cantidad, 0);
+  list.innerHTML = pvCarrito.map(item => `
+    <div class="cart-item" id="ci-${item.id}">
+      <img class="cart-item-img"
+        src="${item.imagen_url || 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=60'}"
+        alt="${item.nombre}"
+        onerror="this.src='https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=60'">
+      <div>
+        <div class="cart-item-name">${item.nombre}</div>
+        <div class="cart-item-mat">${item.material || ''}</div>
+        <div class="cart-item-price">$${parseFloat(item.precio_usd).toFixed(2)} USD × ${item.cantidad}</div>
+      </div>
+      <button class="cart-item-del" onclick="eliminarDelCarrito(${item.id})" title="Eliminar">✕</button>
+    </div>
+  `).join('');
+
+  totEl.textContent = '$' + total.toFixed(2) + ' USD';
+  footer.style.display = '';
+  actualizarBadge();
+}
+
+/* ── AÑADIR AL CARRITO ── */
+async function pvAddToCart(productoId, nombre, precio, btn) {
+  /* Si no está logueado → guardar intención y abrir auth */
+  if (!pvToken) {
+    pvPendingId = productoId;
+    pvPendingNm = nombre;
+    pvPendingPr = precio;
+    toast('Inicia sesión para añadir al carrito');
+    abrirAuth();
+    return;
+  }
+
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="pv-spin"></span>'; }
+
+  try {
+    const r = await pvFetch('/api/carrito/add', {
+      method: 'POST',
+      body: JSON.stringify({ producto_id: productoId, cantidad: 1 })
+    });
+    const d = await r.json();
+    if (r.ok) {
+      toast('✓ ' + nombre + ' añadido al carrito');
+      await cargarCarrito();
+      if (btn) { btn.textContent = '✓ Añadido'; btn.style.background='var(--white)'; btn.style.color='var(--g-deep)'; }
+      setTimeout(() => { if(btn){btn.textContent=orig;btn.style.background='';btn.style.color='';btn.disabled=false;} }, 2200);
+    } else {
+      toast('Error: ' + (d.error || 'No se pudo añadir'));
+      if (btn) { btn.textContent = orig; btn.disabled = false; }
+    }
+  } catch {
+    toast('Sin conexión con el servidor');
+    if (btn) { btn.textContent = orig; btn.disabled = false; }
+  }
+}
+
+/* ── ELIMINAR DEL CARRITO ── */
+async function eliminarDelCarrito(itemId) {
+  try {
+    const r = await pvFetch('/api/carrito/item/' + itemId, { method: 'DELETE' });
+    if (r.ok) {
+      pvCarrito = pvCarrito.filter(i => i.id !== itemId);
+      renderCarrito();
+      toast('Producto eliminado del carrito');
+    }
+  } catch { toast('Error al eliminar'); }
+}
+
+/* ── ABRIR / CERRAR CARRITO ── */
+function abrirCarrito() {
+  if (!pvToken) { abrirAuth(); return; }
+  cargarCarrito().then(() => {
+    renderCarrito();
+    cerrarTodo();
+    document.getElementById('panel-carrito').classList.add('open');
+    backdrop(true);
+  });
+}
+function cerrarCarrito() {
+  document.getElementById('panel-carrito').classList.remove('open');
+  backdrop(false);
+}
+
+/* ── MODAL AUTH ── */
+function abrirAuth() {
+  cerrarTodo();
+  document.getElementById('modal-auth').classList.add('open');
+  backdrop(true);
+}
+function cerrarAuth() {
+  document.getElementById('modal-auth').classList.remove('open');
+  backdrop(false);
+}
+function authTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) =>
+    t.classList.toggle('active', (i===0 && tab==='login') || (i===1 && tab==='registro'))
+  );
+  document.getElementById('form-login').classList.toggle('active', tab==='login');
+  document.getElementById('form-registro').classList.toggle('active', tab==='registro');
+  document.getElementById('login-error').textContent = '';
+  document.getElementById('reg-error').textContent = '';
+}
+
+/* ── LOGIN ── */
+async function hacerLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btn-login');
+  const errEl = document.getElementById('login-error');
+  errEl.textContent = '';
+  btn.disabled = true; btn.innerHTML = '<span class="pv-spin"></span> Entrando...';
+
+  try {
+    const r = await fetch(API + '/api/auth/login', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        correo:   document.getElementById('login-correo').value.trim(),
+        password: document.getElementById('login-pass').value
+      })
+    });
+    const d = await r.json();
+    if (r.ok) {
+      onAuthSuccess(d);
+    } else {
+      errEl.textContent = d.error || 'Error al iniciar sesión';
+      btn.disabled = false; btn.textContent = 'Iniciar sesión';
+    }
+  } catch {
+    errEl.textContent = 'Sin conexión con el servidor';
+    btn.disabled = false; btn.textContent = 'Iniciar sesión';
+  }
+}
+
+/* ── REGISTRO ── */
+async function hacerRegistro(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btn-registro');
+  const errEl = document.getElementById('reg-error');
+  errEl.textContent = '';
+  btn.disabled = true; btn.innerHTML = '<span class="pv-spin"></span> Creando cuenta...';
+
+  try {
+    const r = await fetch(API + '/api/auth/register', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        nombre:   document.getElementById('reg-nombre').value.trim(),
+        correo:   document.getElementById('reg-correo').value.trim(),
+        password: document.getElementById('reg-pass').value
+      })
+    });
+    const d = await r.json();
+    if (r.ok) {
+      onAuthSuccess(d);
+    } else {
+      errEl.textContent = d.error || 'Error al registrarse';
+      btn.disabled = false; btn.textContent = 'Crear cuenta';
+    }
+  } catch {
+    errEl.textContent = 'Sin conexión con el servidor';
+    btn.disabled = false; btn.textContent = 'Crear cuenta';
+  }
+}
+
+/* ── DESPUÉS DE LOGIN / REGISTRO EXITOSO ── */
+async function onAuthSuccess(data) {
+  pvToken = data.token;
+  pvUser  = data.user;
+  localStorage.setItem('pv_token', pvToken);
+  localStorage.setItem('pv_user', JSON.stringify(pvUser));
+
+  cerrarAuth();
+  toast('¡Bienvenido' + (pvUser.nombre ? ', ' + pvUser.nombre : '') + '!');
+
+  await cargarCarrito();
+
+  /* Si había un producto pendiente, añadirlo automáticamente */
+  if (pvPendingId !== null) {
+    const id = pvPendingId; const nm = pvPendingNm; const pr = pvPendingPr;
+    pvPendingId = pvPendingNm = pvPendingPr = null;
+    await pvAddToCart(id, nm, pr, null);
+    abrirCarrito();
+  }
+}
+
+/* ── CHECKOUT ── */
+function abrirCheckout() {
+  if (!pvCarrito.length) return;
+  cerrarCarrito();
+
+  /* Renderizar items en el checkout */
+  const list = document.getElementById('checkout-items-list');
+  const total = pvCarrito.reduce((s,i)=>s+parseFloat(i.precio_usd)*i.cantidad,0);
+  list.innerHTML = pvCarrito.map(i => `
+    <div class="checkout-item-row">
+      <span>${i.nombre} <small style="opacity:.6">×${i.cantidad}</small></span>
+      <strong>$${(parseFloat(i.precio_usd)*i.cantidad).toFixed(2)}</strong>
+    </div>
+  `).join('') + `
+    <div class="checkout-item-row" style="margin-top:.5rem;font-weight:600">
+      <span style="color:var(--ink)">Total USD</span>
+      <strong style="color:var(--g-deep)">$${total.toFixed(2)}</strong>
+    </div>`;
+
+  document.getElementById('co-usd').textContent = '$' + total.toFixed(2) + ' USD';
+  actualizarConversion();
+
+  document.getElementById('modal-checkout').classList.add('open');
+  backdrop(true);
+}
+
+function cerrarCheckout() {
+  document.getElementById('modal-checkout').classList.remove('open');
+  backdrop(false);
+}
+
+/* ── CONVERSIÓN DE MONEDA (tasas locales, sin API externa) ── */
+const PV_TASAS = {
+  USD:1, COP:4150, EUR:0.92, BRL:5.05, MXN:17.15,
+  PEN:3.73, CLP:945, ARS:870, PAB:1, CRC:520,
+  GTQ:7.79, HNL:24.75, BOB:6.91, DOP:59.5
+};
+const PV_SIMBOLOS = {
+  USD:'$',COP:'$',EUR:'€',BRL:'R$',MXN:'$',PEN:'S/',
+  CLP:'$',ARS:'$',PAB:'B/.',CRC:'₡',GTQ:'Q',HNL:'L',BOB:'Bs.',DOP:'RD$'
+};
+
+function actualizarConversion() {
+  const moneda = document.getElementById('moneda-select').value;
+  const totalUSD = pvCarrito.reduce((s,i)=>s+parseFloat(i.precio_usd)*i.cantidad, 0);
+  const tasa = PV_TASAS[moneda] || 1;
+  const convertido = (totalUSD * tasa).toFixed(moneda==='CLP'||moneda==='COP'||moneda==='ARS'?0:2);
+  const simbolo = PV_SIMBOLOS[moneda] || moneda;
+  document.getElementById('co-total').textContent =
+    simbolo + ' ' + parseFloat(convertido).toLocaleString('es-CO');
+  document.getElementById('co-usd').textContent = '$' + totalUSD.toFixed(2) + ' USD';
+}
+
+/* ── PROCESAR PAGO ── */
+async function procesarPago() {
+  const btn = document.getElementById('btn-pagar');
+  const moneda = document.getElementById('moneda-select').value;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="pv-spin"></span> Procesando...';
+
+  try {
+    /* Crear pedido en el backend */
+    const r = await pvFetch('/api/pagos/crear-pedido', {
+      method: 'POST',
+      body: JSON.stringify({ moneda })
+    });
+    const d = await r.json();
+
+    if (!r.ok) {
+      toast('Error: ' + (d.error || 'No se pudo crear el pedido'));
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar con tarjeta';
+      return;
+    }
+
+    pvPedidoId = d.pedido_id;
+
+    /* Abrir link de pago en nueva pestaña */
+    const linkPago = d.link_pago;
+    window.open(linkPago, '_blank');
+
+    /* Si es link fijo (sin API de MP), mostrar botón de confirmar */
+    if (d.modo === 'link_fijo') {
+      btn.disabled = false;
+      btn.innerHTML = '✓ Ya pagué — Confirmar';
+      btn.onclick = confirmarPagoManual;
+      toast('Completa el pago y luego haz clic en "Ya pagué"', 6000);
+    } else {
+      /* Con API de MP, el webhook redirige automáticamente */
+      btn.innerHTML = 'Esperando confirmación...';
+      toast('Redirigiendo al pago...', 4000);
+    }
+
+  } catch {
+    toast('Sin conexión con el servidor');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar con tarjeta';
+  }
+}
+
+/* ── CONFIRMAR PAGO MANUAL (link fijo) ── */
+async function confirmarPagoManual() {
+  if (!pvPedidoId) return;
+  const btn = document.getElementById('btn-pagar');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="pv-spin"></span> Confirmando...';
+
+  try {
+    const r = await pvFetch('/api/pagos/confirmar-manual', {
+      method: 'POST',
+      body: JSON.stringify({ pedido_id: pvPedidoId })
+    });
+    const d = await r.json();
+
+    if (r.ok && d.whatsapp_url) {
+      cerrarTodo();
+      pvCarrito = [];
+      actualizarBadge();
+      toast('¡Pago confirmado! Redirigiendo a WhatsApp...', 3000);
+      /* Pequeño delay para que el usuario vea el toast y luego redirige */
+      setTimeout(() => { window.location.href = d.whatsapp_url; }, 1800);
+    } else {
+      toast('Error al confirmar: ' + (d.error || 'Intenta de nuevo'));
+      btn.disabled = false;
+      btn.innerHTML = '✓ Ya pagué — Confirmar';
+    }
+  } catch {
+    toast('Sin conexión');
+    btn.disabled = false;
+    btn.innerHTML = '✓ Ya pagué — Confirmar';
+  }
+}
+
+/* ── DETECTAR RETORNO DE MERCADOPAGO ── */
+(function detectarRetornoMP() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('pago') || params.get('status');
+  if (!status) return;
+
+  /* Limpiar URL */
+  window.history.replaceState({}, '', window.location.pathname);
+
+  if (status === 'approved') {
+    toast('¡Pago aprobado! Redirigiendo a WhatsApp...', 3000);
+    /* El webhook del backend ya habrá manejado esto,
+       pero si llega aquí confirmar manualmente */
+    if (pvPedidoId) {
+      setTimeout(confirmarPagoManual, 800);
+    }
+  } else if (status === 'fallido' || status === 'failure') {
+    toast('El pago no fue aprobado. Puedes intentarlo de nuevo.', 4000);
+  } else if (status === 'pendiente' || status === 'pending') {
+    toast('Tu pago está pendiente de confirmación.', 4000);
+  }
+})();
+
+/* ── INICIALIZACIÓN ── */
+(function init() {
+  if (pvToken) cargarCarrito();
+})();
 </script>
 </body>
 </html>
