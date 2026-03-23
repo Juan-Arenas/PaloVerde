@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Palo Verde — Alta Joyería de Esmeraldas Colombianas | Villavicencio, Meta</title>
+<meta name="description" content="Palo Verde ofrece joyería de alta gama con esmeraldas colombianas certificadas, provenientes de las minas de Villavicencio, Meta."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g-deep:  #1b4d35;
+  --g-mid:   #2e6e4e;
+  --g-soft:  #4a9068;
+  --g-pale:  #c8ddd2;
+  --g-xs:    rgba(27,77,53,0.08);
+  --gold:    #a07840;
+  --gold-l:  #c4a265;
+  --gold-xs: rgba(160,120,64,0.12);
+  --beige:   #f5f0e8;
+  --beige2:  #ede7db;
+  --beige3:  #e4dcd0;
+  --ink:     #1c2119;
+  --muted:   #6b7568;
+  --white:   #fdfcfa;
+  --radius:  14px;
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --title:   'Cinzel', serif;
+  --body:    'Jost', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{background:var(--beige);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{max-width:1160px;margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+.tag{display:inline-block;background:var(--g-deep);color:var(--white);font-family:var(--body);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 16px;border-radius:50px;margin-bottom:14px}
+.tag.gold{background:var(--gold)}
+.section-title{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.1;color:var(--ink)}
+.section-title em{font-style:italic;color:var(--g-deep)}
+.section-sub{font-size:.9rem;color:var(--muted);line-height:1.85;max-width:500px;font-weight:300;margin-top:.9rem}
+.rule{display:block;width:44px;height:2px;background:var(--gold);opacity:.55;margin:1.4rem 0}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--g-deep);color:var(--white);font-family:var(--body);font-weight:500;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.btn-p:hover{background:var(--g-mid);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--body);font-weight:400;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:13px 28px;border:1.5px solid var(--beige3);cursor:pointer;transition:border-color .2s,color .2s}
+.btn-o:hover{border-color:var(--g-deep);color:var(--g-deep)}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--white);font-family:var(--body);font-weight:500;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;transition:background .2s}
+.btn-gold:hover{background:var(--gold-l)}
+.pill-divider{display:flex;justify-content:center;padding:16px 0}
+.pill-divider div{width:56px;height:3px;background:var(--g-pale);border-radius:50px}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(245,240,232,.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--beige3);padding:12px 0;
+  box-shadow:0 2px 24px rgba(27,77,53,.07);
+  transition:opacity .4s,transform .4s;
+}
+nav.hidden{opacity:0;pointer-events:none;transform:translateY(-100%)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:var(--title);font-size:1.15rem;color:var(--g-deep);letter-spacing:.28em;font-weight:600}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--g-deep)}
+.nav-cta{background:var(--g-deep);color:var(--white);font-family:var(--body);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:none;cursor:pointer;transition:background .2s}
+.nav-cta:hover{background:var(--g-mid)}
+
+/* ══════════════════════════════════════
+   BOTÓN IDIOMA — fijo esquina sup derecha
+══════════════════════════════════════ */
+#lang-btn{
+  position:fixed;top:18px;right:24px;z-index:2000;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(245,240,232,.95);
+  border:1px solid var(--beige3);
+  border-radius:50px;padding:7px 16px;
+  cursor:pointer;font-family:var(--body);
+  font-size:.68rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--g-deep);
+  box-shadow:0 2px 12px rgba(27,77,53,.1);
+  transition:background .2s,box-shadow .2s;
+  user-select:none;
+}
+#lang-btn:hover{background:var(--white);box-shadow:0 4px 20px rgba(27,77,53,.15)}
+#lang-icon{font-size:.85rem}
+
+/* ══════════════════════════════════════
+   INTRO — VIDEO FULLSCREEN
+══════════════════════════════════════ */
+#intro{
+  position:relative;
+  width:100%;height:100vh;
+  overflow:hidden;
+  background:#060e08;
+}
+#sf-video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  z-index:0;
+}
+.sf-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to bottom,
+    rgba(8,18,12,.3) 0%,
+    rgba(8,18,12,.08) 45%,
+    rgba(8,18,12,.55) 100%
+  );
+  pointer-events:none;
+}
+.sf-logo{
+  position:absolute;top:2rem;left:50%;transform:translateX(-50%);
+  z-index:10;font-family:var(--title);font-size:1.1rem;
+  color:rgba(253,252,250,.88);letter-spacing:.38em;font-weight:600;
+  text-shadow:0 2px 14px rgba(0,0,0,.45);white-space:nowrap;
+}
+.sf-progress{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  height:2px;background:rgba(253,252,250,.15);
+}
+.sf-progress-fill{
+  height:100%;background:var(--gold-l);width:0%;
+  transition:width .15s linear;
+}
+
+/* BOTÓN REPETIR */
+#replay-btn{
+  position:absolute;bottom:2.5rem;left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  display:flex;align-items:center;gap:8px;
+  background:rgba(245,240,232,.92);
+  border:1px solid var(--beige3);
+  border-radius:50px;padding:10px 22px;
+  cursor:pointer;font-family:var(--body);
+  font-size:.72rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--g-deep);
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
+  transition:background .2s,transform .2s,opacity .5s;
+  opacity:0;pointer-events:none;
+}
+#replay-btn:hover{background:var(--white);transform:translateX(-50%) translateY(-2px)}
+#replay-btn.show{opacity:1;pointer-events:auto}
+#replay-btn.hidden{opacity:0;pointer-events:none}
+
+/* ── PANELES ── */
+.sf-panel{
+  position:absolute;z-index:5;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .65s ease,transform .65s ease;
+  pointer-events:none;
+}
+.sf-panel.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+
+/* Panel 1 — centro */
+.sf-panel-1{
+  left:50%;top:50%;
+  transform:translate(-50%,-46%);
+  width:min(660px,88vw);text-align:center;
+}
+.sf-panel-1.visible{transform:translate(-50%,-50%)}
+.p1-kicker{
+  font-family:var(--body);font-size:.68rem;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--gold-l);margin-bottom:1.4rem;
+  display:flex;align-items:center;justify-content:center;gap:.8rem;
+}
+.p1-kicker::before,.p1-kicker::after{content:'';display:block;width:28px;height:1px;background:var(--gold-l);opacity:.6}
+.p1-title{
+  font-family:var(--title);
+  font-size:clamp(2.2rem,6.5vw,5.2rem);
+  line-height:.94;color:var(--white);
+  letter-spacing:.06em;
+  text-shadow:0 4px 32px rgba(0,0,0,.5);
+  margin-bottom:1.6rem;
+}
+.p1-title em{
+  font-family:var(--serif);font-style:italic;
+  color:rgba(196,162,101,.95);font-size:1.06em;
+  letter-spacing:.02em;display:block;
+}
+.p1-line{width:48px;height:1.5px;background:var(--gold-l);opacity:.5;margin:0 auto 1.4rem}
+.p1-sub{
+  font-family:var(--serif);font-size:1.15rem;font-style:italic;
+  color:rgba(253,252,250,.82);line-height:1.7;
+  text-shadow:0 2px 12px rgba(0,0,0,.4);
+}
+
+/* Panel 2 — derecha */
+.sf-panel-2{
+  right:5vw;top:50%;
+  transform:translateY(calc(-50% + 18px));
+  width:min(420px,40vw);
+}
+.sf-panel-2.visible{transform:translateY(-50%)}
+.p2-card{
+  background:rgba(245,240,232,.95);backdrop-filter:blur(18px);
+  border:1px solid rgba(228,220,208,.7);border-radius:var(--radius);
+  padding:2.4rem 2.2rem;
+  box-shadow:0 24px 64px rgba(0,0,0,.22),0 4px 16px rgba(0,0,0,.1);
+}
+.p2-tag{display:inline-block;background:var(--g-deep);color:var(--white);font-family:var(--body);font-weight:500;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:4px 14px;border-radius:50px;margin-bottom:1.2rem}
+.p2-title{font-family:var(--title);font-size:1.5rem;color:var(--ink);line-height:1.1;letter-spacing:.06em;margin-bottom:.4rem}
+.p2-sub{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--g-deep);margin-bottom:1.2rem;line-height:1.45}
+.p2-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.6rem}
+.p2-list li{display:flex;align-items:flex-start;gap:.72rem;font-size:.81rem;color:var(--muted);line-height:1.5}
+.p2-list li::before{content:'';display:block;width:6px;height:6px;background:var(--g-soft);border-radius:50%;margin-top:5px;flex-shrink:0}
+.p2-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+.p2-btn-p{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.72rem 1.5rem;font-family:var(--body);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:background .2s;flex:1;text-align:center;text-decoration:none;display:inline-block}
+.p2-btn-p:hover{background:var(--g-mid)}
+.p2-btn-o{background:transparent;color:var(--ink);border:1.5px solid var(--beige3);cursor:pointer;padding:.68rem 1.1rem;font-family:var(--body);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;transition:border-color .2s,color .2s;text-decoration:none;display:inline-block;text-align:center}
+.p2-btn-o:hover{border-color:var(--g-deep);color:var(--g-deep)}
+.p2-badges{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--beige3)}
+.p2-badge{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+.p2-badge::before{content:'';width:5px;height:5px;background:var(--g-soft);border-radius:50%;display:block}
+
+/* ══════════════════════════════════════
+   RESTO DE LA PÁGINA — igual que antes
+══════════════════════════════════════ */
+#hero{
+  min-height:100vh;padding-top:80px;position:relative;
+  display:flex;align-items:center;overflow:hidden;background:var(--beige);
+}
+.hero-botanical{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;padding:80px 0}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1.5px;background:var(--gold)}
+.hero-eyebrow span{font-family:var(--body);font-weight:500;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.hero-h1{font-family:var(--title);font-size:clamp(2.6rem,5.5vw,4.8rem);line-height:.97;letter-spacing:.05em;color:var(--ink);margin-bottom:22px}
+.hero-h1 em{font-family:var(--serif);font-style:italic;color:var(--g-deep);display:block;font-size:1.06em;letter-spacing:.02em;font-weight:300}
+.hero-sub{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:34px;max-width:460px;font-weight:300}
+.hero-sub strong{color:var(--ink);font-weight:500}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero-badges{display:flex;gap:22px;margin-top:32px;flex-wrap:wrap}
+.hbadge{display:flex;align-items:center;gap:8px;font-family:var(--body);font-size:.82rem;color:var(--muted)}
+.hbadge-dot{width:7px;height:7px;background:var(--g-soft);border-radius:50%;flex-shrink:0}
+.hero-visual{position:relative}
+.hero-img-wrap{border-radius:var(--radius);overflow:hidden;width:100%;aspect-ratio:4/5;border:1px solid var(--beige3);box-shadow:0 24px 64px rgba(27,77,53,.18)}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover}
+.hero-float-card{position:absolute;bottom:-18px;left:-28px;background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);padding:18px 24px;box-shadow:0 8px 32px rgba(27,77,53,.12);min-width:170px}
+.hero-float-card .num{font-family:var(--title);font-size:2rem;color:var(--g-deep);line-height:1}
+.hero-float-card .lbl{font-family:var(--body);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:3px}
+.hero-float-card2{position:absolute;top:2rem;right:-2rem;background:var(--g-deep);border-radius:var(--radius);padding:14px 20px;box-shadow:0 8px 32px rgba(27,77,53,.25);min-width:140px;text-align:center}
+.hero-float-card2 .num2{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--gold-l);line-height:1.1}
+.hero-float-card2 .lbl2{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(253,252,250,.55);margin-top:4px}
+
+#trust{background:var(--beige2);padding:52px 0;border-top:1px solid var(--beige3);border-bottom:1px solid var(--beige3)}
+.trust-inner{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center}
+.trust-label{font-family:var(--body);font-weight:500;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.trust-sep{width:1px;height:28px;background:var(--beige3)}
+.stars-row{display:flex;gap:4px}
+.star{color:var(--gold);font-size:1rem}
+.review-bubble{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);padding:18px 22px;max-width:250px;box-shadow:0 4px 16px rgba(27,77,53,.06);transition:border-color .2s,box-shadow .2s}
+.review-bubble:hover{border-color:var(--g-pale);box-shadow:0 4px 24px rgba(27,77,53,.12)}
+.review-text{font-family:var(--serif);font-size:.9rem;color:var(--ink);line-height:1.55;font-style:italic;opacity:.9}
+.review-author{font-family:var(--body);font-weight:500;font-size:.72rem;color:var(--g-deep);margin-top:8px;letter-spacing:.08em;text-transform:uppercase}
+
+#origen{background:var(--beige)}
+.origen-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:56px}
+.origen-visual{position:relative;border-radius:var(--radius);overflow:visible}
+.origen-img-main{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);box-shadow:0 20px 56px rgba(27,77,53,.16)}
+.origen-img-accent{position:absolute;bottom:-2.2rem;right:-2.2rem;width:52%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius);border:5px solid var(--beige);box-shadow:0 12px 36px rgba(0,0,0,.13)}
+.origen-tag-muzo{position:absolute;top:2rem;left:-1.6rem;background:var(--g-deep);color:var(--white);padding:.9rem 1.1rem;font-family:var(--title);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;writing-mode:vertical-lr;transform:rotate(180deg);border-radius:4px}
+.origen-quote{font-family:var(--serif);font-size:1.12rem;font-style:italic;color:var(--g-deep);line-height:1.7;padding:1.4rem 1.6rem;border-left:2px solid var(--gold);background:var(--gold-xs);margin:1.8rem 0;border-radius:0 8px 8px 0}
+.origen-bullets{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:1.2rem}
+.origen-bullets li{display:flex;align-items:flex-start;gap:.8rem;font-size:.85rem;color:var(--muted);line-height:1.6}
+.origen-bullets li::before{content:'';display:block;width:6px;height:6px;background:var(--g-soft);border-radius:50%;margin-top:6px;flex-shrink:0}
+
+#catalogo{background:var(--beige2)}
+.catalogo-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;flex-wrap:wrap;gap:16px}
+.v-all{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g-deep);border-bottom:1px solid rgba(27,77,53,.3);padding-bottom:2px;transition:opacity .2s}
+.v-all:hover{opacity:.6}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:36px}
+.fp{background:transparent;border:1px solid var(--beige3);color:var(--muted);padding:.36rem 1.1rem;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:var(--body);border-radius:50px}
+.fp:hover,.fp.on{background:var(--g-deep);color:var(--white);border-color:var(--g-deep)}
+.bento{display:grid;grid-template-columns:1.45fr 1fr 1fr;grid-template-rows:300px 300px;gap:4px}
+.pc{position:relative;overflow:hidden;background:var(--beige3);transition:transform .45s cubic-bezier(.22,1,.36,1);border-radius:2px}
+.pc:hover{transform:scale(1.015);z-index:3}
+.pc.big{grid-column:1;grid-row:1/3}
+.pc.tall{grid-row:span 2}
+.pc img.pc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s ease}
+.pc:hover img.pc-img{transform:scale(1.07)}
+.pc-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,36,28,.9) 0%,rgba(20,36,28,.3) 50%,transparent 100%)}
+.pc::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color .3s;pointer-events:none}
+.pc:hover::after{border-color:rgba(196,162,101,.45)}
+.pc-wish{position:absolute;top:1.1rem;right:1.1rem;z-index:3;background:rgba(245,240,232,.88);border:1px solid var(--beige3);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(27,77,53,.4);font-size:.85rem;transition:all .2s;border-radius:50%}
+.pc-wish:hover,.pc-wish.on{color:var(--g-deep);background:var(--white)}
+.pc-info{position:absolute;bottom:0;left:0;right:0;padding:1.8rem;z-index:2}
+.pc.big .pc-info{padding:2.4rem}
+.pc-tag{display:inline-block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;padding:.28rem .75rem;margin-bottom:.75rem;font-weight:500;border-radius:50px}
+.pc-tag.t-g{background:var(--g-deep);color:var(--white)}
+.pc-tag.t-go{background:var(--gold);color:var(--white)}
+.pc-tag.t-gh{background:transparent;border:1px solid rgba(253,252,250,.4);color:var(--white)}
+.pc-name{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:.3rem}
+.pc.big .pc-name{font-size:1.85rem}
+.pc-mat{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(253,252,250,.5);margin-bottom:.9rem}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.pc-price{font-family:var(--title);font-size:1.2rem;color:var(--white);letter-spacing:.04em}
+.pc.big .pc-price{font-size:1.7rem}
+.pc-btn{background:transparent;border:1px solid rgba(253,252,250,.4);color:var(--white);cursor:pointer;padding:.46rem 1.1rem;font-family:var(--body);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;transition:all .25s;border-radius:2px}
+.pc-btn:hover{background:var(--white);color:var(--g-deep)}
+.stats-bar{background:var(--g-deep);padding:0}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:2.8rem 2rem;border-right:1px solid rgba(253,252,250,.1);text-align:center}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--title);font-size:2.4rem;color:var(--gold-l);line-height:1}
+.stat-l{font-family:var(--body);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(253,252,250,.5);margin-top:.5rem}
+#nosotros{background:var(--beige)}
+.nosotros-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center;margin-top:56px}
+.photos-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mosaic-tall{grid-row:span 2;border-radius:var(--radius);overflow:hidden;aspect-ratio:2/3}
+.mosaic-sq{border-radius:var(--radius);overflow:hidden;aspect-ratio:1}
+.mosaic-tall img,.mosaic-sq img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.mosaic-tall:hover img,.mosaic-sq:hover img{transform:scale(1.04)}
+.nosotros-body{font-size:.87rem;line-height:1.9;color:var(--muted);font-weight:300;margin-top:.5rem;margin-bottom:.9rem}
+#categorias{background:var(--beige2)}
+.cats-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:16px}
+.cats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat-card{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);padding:32px 28px;position:relative;overflow:hidden;transition:transform .18s,border-color .18s,box-shadow .18s}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g-soft);transform:scaleX(0);transition:transform .2s}
+.cat-card:hover{transform:translateY(-5px);border-color:var(--g-pale);box-shadow:0 12px 40px rgba(27,77,53,.1)}
+.cat-card:hover::before{transform:scaleX(1)}
+.cat-card.featured{background:var(--g-deep);border-color:var(--g-mid)}
+.cat-card.featured h3,.cat-card.featured p{color:var(--white)}
+.cat-card.featured p{opacity:.7}
+.cat-card.featured .cat-icon{background:rgba(253,252,250,.1)}
+.cat-icon{width:50px;height:50px;border-radius:12px;background:var(--g-xs);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.cat-card h3{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--ink);margin-bottom:9px}
+.cat-card p{font-size:.84rem;color:var(--muted);line-height:1.65}
+.cat-count{font-family:var(--body);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:12px;font-weight:500}
+#galeria{background:var(--beige)}
+.galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.gal-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--beige3);position:relative;cursor:pointer}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .22s}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-overlay{position:absolute;inset:0;background:rgba(27,77,53,0);transition:background .15s;display:flex;align-items:flex-end;padding:16px}
+.gal-item:hover .gal-overlay{background:rgba(27,77,53,.22)}
+.gal-label{font-family:var(--body);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--white);opacity:0;transform:translateY(8px);transition:opacity .18s,transform .18s}
+.gal-item:hover .gal-label{opacity:1;transform:translateY(0)}
+#diferencial{background:var(--beige2);border-top:1px solid var(--beige3);border-bottom:1px solid var(--beige3)}
+.dif-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:64px;align-items:center;margin-top:56px}
+.dif-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;background:var(--beige3);position:relative;box-shadow:0 20px 56px rgba(27,77,53,.14)}
+.dif-img img{width:100%;height:100%;object-fit:cover}
+.dif-img .name-card{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(245,240,232,.95);backdrop-filter:blur(10px);border:1px solid var(--beige3);border-radius:var(--radius);padding:18px 22px;box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.name-card .owner-name{font-family:var(--title);font-weight:600;font-size:1.1rem;letter-spacing:.08em;color:var(--ink)}
+.name-card .owner-role{font-size:.72rem;color:var(--g-deep);font-family:var(--body);font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.name-card .owner-loc{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:.8rem;color:var(--muted)}
+.dif-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.stat-box{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);padding:20px;text-align:center;transition:border-color .2s,box-shadow .2s}
+.stat-box:hover{border-color:var(--g-pale);box-shadow:0 4px 20px rgba(27,77,53,.08)}
+.stat-box .s-num{font-family:var(--title);font-size:2.2rem;color:var(--g-deep);line-height:1}
+.stat-box .s-lbl{font-family:var(--body);font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:5px}
+#faq{background:var(--beige)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:48px}
+details{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+details:hover{border-color:var(--g-pale);box-shadow:0 4px 16px rgba(27,77,53,.07)}
+details[open]{border-color:var(--g-pale)}
+summary{padding:20px 24px;cursor:pointer;font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--ink);line-height:1.4;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font-family:var(--body);font-style:normal;font-size:1.2rem;color:var(--g-soft);flex-shrink:0;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+.faq-body{padding:0 24px 20px;font-size:.85rem;line-height:1.8;color:var(--muted);font-weight:300}
+.faq-body strong{color:var(--ink);font-weight:500}
+#cta{background:var(--g-deep);padding:96px 0;text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&auto=format&fit=crop&q=60') center/cover no-repeat;opacity:.08}
+.cta-inner{position:relative;z-index:1}
+.cta-title{font-family:var(--title);font-size:clamp(2.2rem,6vw,5rem);line-height:.95;color:var(--white);margin-bottom:1.4rem}
+.cta-title span{font-family:var(--serif);font-style:italic;color:var(--gold-l);font-weight:300;font-size:1.05em}
+.cta-sub{font-size:.9rem;color:rgba(253,252,250,.6);line-height:1.85;margin-bottom:2.8rem;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-beige{display:inline-flex;align-items:center;gap:8px;background:var(--beige);color:var(--g-deep);font-family:var(--body);font-weight:600;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;transition:background .2s}
+.btn-beige:hover{background:var(--white)}
+.btn-outline-w{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--body);font-weight:400;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:13px 28px;border:1.5px solid rgba(253,252,250,.3);cursor:pointer;transition:border-color .2s}
+.btn-outline-w:hover{border-color:var(--gold-l);color:var(--gold-l)}
+#newsletter{background:var(--beige2);border-top:1px solid var(--beige3);border-bottom:1px solid var(--beige3);padding:52px 0}
+.nl-inner{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;max-width:740px;margin:0 auto}
+.nl-left{flex:1;min-width:200px}
+.nl-kicker{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.4rem}
+.nl-title{font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--ink)}
+.nl-form{flex:1;min-width:280px;display:flex}
+.nl-in{flex:1;padding:.88rem 1.1rem;background:var(--white);border:1px solid var(--beige3);border-right:none;color:var(--ink);font-family:var(--body);font-size:.85rem;outline:none}
+.nl-in:focus{border-color:var(--g-soft)}
+.nl-in::placeholder{color:var(--muted);opacity:.6}
+.nl-sub{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.88rem 1.5rem;font-family:var(--body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:background .2s}
+.nl-sub:hover{background:var(--g-mid)}
+footer{background:var(--ink);padding:56px 0 28px}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3.5rem}
+.f-logo{font-family:var(--title);font-size:1.2rem;color:var(--beige);letter-spacing:.28em;display:block;margin-bottom:.9rem}
+.f-tag-txt{font-size:.8rem;line-height:1.8;color:rgba(245,240,232,.38);max-width:220px}
+.f-cert{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.1rem;padding:.38rem .85rem;border:1px solid rgba(160,120,64,.3);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);border-radius:50px}
+.f-dot{width:5px;height:5px;background:var(--g-soft);border-radius:50%}
+.f-soc{display:flex;gap:.55rem;margin-top:1.3rem}
+.soc{width:34px;height:34px;border:1px solid rgba(245,240,232,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(245,240,232,.35);font-size:.68rem;font-weight:500;text-decoration:none;transition:all .2s}
+.soc:hover{color:var(--white);border-color:rgba(245,240,232,.5)}
+.f-col h4{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-l);margin-bottom:1.1rem;font-weight:500}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:.6rem}
+.f-col a{color:rgba(245,240,232,.38);font-size:.82rem;transition:color .2s}
+.f-col a:hover{color:var(--beige)}
+.f-bot{border-top:1px solid rgba(245,240,232,.08);padding-top:1.6rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.f-copy{font-size:.72rem;color:rgba(245,240,232,.25)}
+.f-leg{display:flex;gap:1.4rem}
+.f-leg a{color:rgba(245,240,232,.2);font-size:.68rem;transition:color .2s}
+.f-leg a:hover{color:rgba(245,240,232,.5)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .4s ease both}
+.delay-1{animation-delay:.06s}.delay-2{animation-delay:.12s}.delay-3{animation-delay:.18s}
+
+/* ══════════════════════════════════════
+   NAV — logo imagen
+══════════════════════════════════════ */
+.nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{height:46px;width:46px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(27,77,53,.2)}
+
+/* Logo sobre el video con imagen */
+.sf-logo{display:flex;align-items:center;gap:12px}
+.sf-logo-img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid rgba(196,162,101,.55);flex-shrink:0}
+
+/* ══════════════════════════════════════
+   WHATSAPP FLOTANTE
+══════════════════════════════════════ */
+#wa-float{
+  position:fixed;bottom:28px;left:24px;z-index:3000;
+  display:flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;
+  border-radius:50px;padding:13px 20px 13px 16px;
+  text-decoration:none;font-family:var(--body);
+  font-size:.75rem;font-weight:600;letter-spacing:.06em;
+  box-shadow:0 4px 24px rgba(37,211,102,.45);
+  transition:transform .2s,box-shadow .2s;
+}
+#wa-float:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(37,211,102,.55)}
+#wa-float svg{width:22px;height:22px;flex-shrink:0}
+
+/* ══════════════════════════════════════
+   SECCIÓN WILLIAM
+══════════════════════════════════════ */
+.william-section{background:var(--beige2);position:relative;overflow:hidden}
+.william-bg-decor{position:absolute;inset:0;pointer-events:none}
+.william-inner{display:grid;grid-template-columns:320px 1fr;gap:6rem;align-items:center;position:relative;z-index:1}
+.william-photo-col{display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+.william-ring-outer{width:292px;height:292px;border-radius:50%;border:1px solid rgba(27,77,53,.17);display:flex;align-items:center;justify-content:center;animation:ringPulse 4s ease-in-out infinite}
+.william-ring-mid{width:262px;height:262px;border-radius:50%;border:1px solid rgba(160,120,64,.2);display:flex;align-items:center;justify-content:center}
+.william-photo-wrap{width:232px;height:232px;border-radius:50%;overflow:hidden;border:4px solid var(--white);box-shadow:0 16px 56px rgba(27,77,53,.22),0 4px 16px rgba(0,0,0,.1)}
+.william-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.03);opacity:.75}}
+.william-gem-badge{display:flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--beige3);border-radius:50px;padding:7px 16px;font-family:var(--body);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--g-deep);box-shadow:0 2px 12px rgba(27,77,53,.07)}
+.william-name{font-family:var(--title);font-size:clamp(2rem,4vw,3rem);line-height:1.05;letter-spacing:.05em;color:var(--ink);margin:.8rem 0 .4rem}
+.william-name em{font-family:var(--serif);font-style:italic;color:var(--g-deep);font-size:1.05em;letter-spacing:.02em}
+.william-title-line{font-family:var(--body);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;display:flex;align-items:center;gap:.8rem}
+.william-title-line::after{content:'';display:block;flex:1;height:1px;background:linear-gradient(to right,rgba(160,120,64,.4),transparent)}
+.william-quote-wrap{position:relative;background:var(--white);border:1px solid var(--beige3);border-left:3px solid var(--g-deep);border-radius:0 var(--radius) var(--radius) 0;padding:1.6rem 1.8rem 1.6rem 2.2rem;margin-bottom:1.4rem;box-shadow:0 4px 20px rgba(27,77,53,.07)}
+.william-quote-mark{position:absolute;top:-.5rem;left:1rem;font-family:var(--serif);font-size:5rem;color:var(--g-pale);line-height:1;pointer-events:none}
+.william-quote{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--ink);line-height:1.75;position:relative}
+.william-bio{font-size:.85rem;line-height:1.88;color:var(--muted);font-weight:300;margin-bottom:2rem}
+.william-socials{display:flex;gap:.8rem;flex-wrap:wrap}
+.w-social-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:50px;padding:.7rem 1.4rem;font-family:var(--body);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(37,211,102,.3)}
+.w-social-wa:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,211,102,.4)}
+.w-social-tt{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:50px;padding:.7rem 1.4rem;font-family:var(--body);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-decoration:none;transition:transform .2s,opacity .2s}
+.w-social-tt:hover{transform:translateY(-2px);opacity:.85}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:960px){
+  .hero-grid,.origen-grid,.nosotros-grid,.dif-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{order:-1}.hero-img-wrap{aspect-ratio:16/9}.hero-float-card{display:none}.hero-float-card2{display:none}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}.pc.big{grid-column:1/3;grid-row:auto}.pc.tall{grid-row:auto}
+  .cats-grid{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .galeria-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:2rem}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat{border-right:none;border-bottom:1px solid rgba(253,252,250,.1)}
+  .nav-links{display:none}
+  .sf-panel-2{right:3vw;width:min(360px,48vw)}
+  .origen-img-accent{bottom:-1.5rem;right:-1rem;width:45%}
+  .william-inner{grid-template-columns:1fr;gap:3rem;text-align:center}
+  .william-photo-col{margin:0 auto}
+  .william-title-line::after{display:none}
+  .william-socials{justify-content:center}
+}
+@media(max-width:640px){
+  .bento{grid-template-columns:1fr}.pc.big{grid-column:1}
+  .cats-grid{grid-template-columns:1fr}
+  .galeria-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .nl-form{flex-direction:column}.nl-in{border-right:1px solid var(--beige3)}
+  .sf-panel-2{right:0;left:0;top:auto;bottom:3.5rem;transform:none!important;width:100%}
+  .sf-panel-2.visible{transform:none!important}
+  .p2-card{border-radius:0;padding:1.6rem}
+  .p1-title{font-size:clamp(1.8rem,9vw,3.2rem)}
+  #lang-btn{top:auto;bottom:72px;right:16px}
+  .william-ring-outer{width:236px;height:236px}
+  .william-ring-mid{width:210px;height:210px}
+  .william-photo-wrap{width:184px;height:184px}
+  #wa-float span{display:none}
+  #wa-float{padding:14px;border-radius:50%}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ WHATSAPP FLOTANTE — siempre visible ════ -->
+<a id="wa-float" href="https://wa.me/573183177682?text=Hola%20William%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20Palo%20Verde%20Esmeralda%20%F0%9F%92%9A" target="_blank" rel="noopener" aria-label="WhatsApp Palo Verde">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>+57 318 3177682</span>
+</a>
+
+<!-- ════ BOTÓN IDIOMA — fijo en pantalla siempre ════ -->
+<div id="lang-btn" onclick="toggleLang()" title="Traducir página">
+  <span id="lang-icon">🌐</span>
+  <span id="lang-label">EN</span>
+</div>
+
+<!-- ════ NAV — aparece al terminar el video ════ -->
+<nav id="main-nav" class="hidden">
+  <div class="container nav-inner">
+    <a class="nav-logo-wrap" href="#">
+      <img class="nav-logo-img" src="Paloverde.jpeg" alt="Palo Verde Esmeralda">
+      <span class="nav-logo" data-es="PALO VERDE" data-en="PALO VERDE">PALO VERDE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#origen" data-es="Origen" data-en="Origin">Origen</a></li>
+      <li><a href="#catalogo" data-es="Colección" data-en="Collection">Colección</a></li>
+      <li><a href="#nosotros" data-es="Nosotros" data-en="About">Nosotros</a></li>
+      <li><a href="#william" data-es="William" data-en="William">William</a></li>
+      <li><a href="#faq" data-es="Preguntas" data-en="FAQ">Preguntas</a></li>
+      <li><a href="#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+    <button class="nav-cta" id="cart-btn" data-es="Carrito (0)" data-en="Cart (0)">Carrito (0)</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     INTRO DE VIDEO — 100vh, se reproduce solo
+════════════════════════════════════════ -->
+<section id="intro">
+
+  <!-- VIDEO -->
+  <video
+    id="sf-video"
+    src="Intro.mp4"
+    muted
+    playsinline
+    preload="auto"
+  ></video>
+
+  <!-- overlay oscuro suave -->
+  <div class="sf-overlay"></div>
+
+  <!-- Logo sobre el video -->
+  <div class="sf-logo">
+    <img class="sf-logo-img" src="Paloverde.jpeg" alt="Palo Verde">
+    <span style="font-family:var(--title);font-size:1rem;color:rgba(253,252,250,.88);letter-spacing:.32em;font-weight:600;text-shadow:0 2px 14px rgba(0,0,0,.45)">PALO VERDE</span>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="sf-progress"><div class="sf-progress-fill" id="sf-progress"></div></div>
+
+  <!-- PANEL 1 — centro, seg 1–2.5 -->
+  <div class="sf-panel sf-panel-1" id="sf-panel-1">
+    <div class="p1-kicker">Villavicencio · Meta · Colombia</div>
+    <h2 class="p1-title" data-es="TU PRÓXIMA<br>JOYA TE ESTÁ<br><em>Esperando</em>" data-en="YOUR NEXT<br>JEWEL IS<br><em>Waiting</em>">
+      TU PRÓXIMA<br>JOYA TE ESTÁ<br><em>Esperando</em>
+    </h2>
+    <div class="p1-line"></div>
+    <p class="p1-sub" data-es="Esmeraldas nacidas en el corazón de las montañas colombianas.<br>Joyas únicas, hechas a mano, certificadas." data-en="Emeralds born in the heart of the Colombian mountains.<br>Unique pieces, handcrafted, certified.">
+      Esmeraldas nacidas en el corazón de las montañas colombianas.<br>
+      Joyas únicas, hechas a mano, certificadas.
+    </p>
+  </div>
+
+  <!-- PANEL 2 — derecha, seg 3–5 -->
+  <div class="sf-panel sf-panel-2" id="sf-panel-2">
+    <div class="p2-card">
+      <span class="p2-tag" data-es="Alta Joyería · Desde 1998" data-en="Fine Jewelry · Since 1998">Alta Joyería · Desde 1998</span>
+      <h3 class="p2-title">PALO VERDE</h3>
+      <p class="p2-sub" data-es="La joyería de las montañas<br>de Villavicencio, Meta" data-en="The jewelry of the mountains<br>of Villavicencio, Meta">La joyería de las montañas<br>de Villavicencio, Meta</p>
+      <ul class="p2-list">
+        <li data-es="Esmeraldas 100% colombianas con trazabilidad completa desde la mina" data-en="100% Colombian emeralds with full traceability from the mine">Esmeraldas 100% colombianas con trazabilidad completa desde la mina</li>
+        <li data-es="Certificado GIA o Gübelin en todas las piezas mayores a 1 quilate" data-en="GIA or Gübelin certificate on all pieces over 1 carat">Certificado GIA o Gübelin en todas las piezas mayores a 1 quilate</li>
+        <li data-es="Piezas únicas elaboradas a mano por orfebres artesanales en Villavicencio, Meta" data-en="Unique pieces handcrafted by artisan goldsmiths in Villavicencio, Meta">Piezas únicas elaboradas a mano por orfebres artesanales en Villavicencio, Meta</li>
+        <li data-es="Envío internacional asegurado · Garantía de por vida en el engaste" data-en="Insured international shipping · Lifetime warranty on the setting">Envío internacional asegurado · Garantía de por vida en el engaste</li>
+      </ul>
+      <div class="p2-btns">
+        <a class="p2-btn-p" href="#catalogo" data-es="Ver colección" data-en="View collection">Ver colección</a>
+        <a class="p2-btn-o" href="#origen" data-es="El origen" data-en="The origin">El origen</a>
+      </div>
+      <div class="p2-badges">
+        <span class="p2-badge" data-es="Certificado GIA" data-en="GIA Certified">Certificado GIA</span>
+        <span class="p2-badge" data-es="Hecho a mano" data-en="Handcrafted">Hecho a mano</span>
+        <span class="p2-badge" data-es="42 países" data-en="42 countries">42 países</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÓN REPETIR — aparece al terminar el video -->
+  <button id="replay-btn" onclick="replayVideo()" class="hidden">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+    <span data-es="Repetir intro" data-en="Replay intro">Repetir intro</span>
+  </button>
+
+</section>
+
+<!-- ════════════════════════════════════════════════
+     RESTO DE LA PÁGINA
+════════════════════════════════════════════════ -->
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="hero-botanical" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <polygon points="920,900 1110,440 1300,900" fill="rgba(27,77,53,0.04)" stroke="rgba(27,77,53,0.06)" stroke-width="1"/>
+    <polygon points="1080,900 1240,380 1440,700 1440,900" fill="rgba(27,77,53,0.05)" stroke="rgba(27,77,53,0.07)" stroke-width="1"/>
+    <path d="M1400,900 Q1340,760 1315,630 Q1285,510 1330,415 Q1365,340 1340,250" fill="none" stroke="rgba(27,77,53,0.14)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M1315,630 Q1255,595 1195,555" fill="none" stroke="rgba(27,77,53,0.1)" stroke-width="1.3" stroke-linecap="round"/>
+    <polygon points="1315,630 1321,623 1328,630 1321,637" fill="rgba(27,77,53,0.5)" stroke="rgba(27,77,53,0.7)" stroke-width="0.7"/>
+    <polygon points="1340,250 1348,240 1357,250 1348,260" fill="rgba(27,77,53,0.55)" stroke="rgba(27,77,53,0.75)" stroke-width="0.8"/>
+  </svg>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy fade-up">
+        <div class="hero-eyebrow"><span>Villavicencio · Meta · Colombia</span></div>
+        <h1 class="hero-h1" data-es="ALTA<br>JOYERÍA<br><em>de Esmeraldas</em>" data-en="FINE<br>JEWELRY<br><em>of Emeralds</em>">ALTA<br>JOYERÍA<br><em>de Esmeraldas</em></h1>
+        <p class="hero-sub" data-es="Piedras nacidas en las montañas colombianas. Joyas creadas por manos que conocen la tierra, el tiempo y la luz.<br><strong>Esmeraldas certificadas, piezas únicas, legado artesanal.</strong>" data-en="Stones born in the Colombian mountains. Jewels created by hands that know the earth, time and light.<br><strong>Certified emeralds, unique pieces, artisan legacy.</strong>">Piedras nacidas en las montañas colombianas. Joyas creadas por manos que conocen la tierra, el tiempo y la luz.<br><strong>Esmeraldas certificadas, piezas únicas, legado artesanal.</strong></p>
+        <div class="hero-cta-row">
+          <a class="btn-p" href="#catalogo" data-es="Explorar colección" data-en="Explore collection">Explorar colección</a>
+          <a class="btn-o" href="#origen" data-es="Conocer el origen" data-en="Discover the origin">Conocer el origen</a>
+        </div>
+        <div class="hero-badges">
+          <span class="hbadge"><span class="hbadge-dot"></span><span data-es="Certificado GIA" data-en="GIA Certified">Certificado GIA</span></span>
+          <span class="hbadge"><span class="hbadge-dot"></span><span data-es="Hecho a mano" data-en="Handcrafted">Hecho a mano</span></span>
+          <span class="hbadge"><span class="hbadge-dot"></span><span data-es="Envío internacional" data-en="International shipping">Envío internacional</span></span>
+        </div>
+      </div>
+      <div class="hero-visual fade-up delay-2">
+        <div class="hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=900&auto=format&fit=crop&q=85" alt="Joya con esmeralda Palo Verde">
+        </div>
+        <div class="hero-float-card">
+          <div class="num">25+</div>
+          <div class="lbl">Años de tradición</div>
+        </div>
+        <div class="hero-float-card2">
+          <div class="num2">Villavicencio<br>Meta</div>
+          <div class="lbl2">Origen certificado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="container">
+    <div class="trust-inner">
+      <span class="trust-label">Lo que dicen nuestros clientes</span>
+      <div class="trust-sep"></div>
+      <div class="review-bubble">
+        <p class="review-text">"El verde más puro que he visto. Una joya con alma, imposible de encontrar en Europa."</p>
+        <p class="review-author">— Sophie C., París</p>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="review-bubble">
+        <p class="review-text">"Certificado GIA, packaging de lujo y una nota escrita a mano. Superó todas mis expectativas."</p>
+        <p class="review-author">— Marcos R., México</p>
+      </div>
+      <div class="trust-sep"></div>
+      <div style="text-align:center">
+        <div class="stars-row" style="justify-content:center;margin-bottom:5px">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--muted)">+1.200 joyas entregadas</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pill-divider"><div></div></div>
+
+<!-- ORIGEN -->
+<section id="origen" class="section">
+  <div class="container">
+    <div class="tag">El origen de todo</div>
+    <h2 class="section-title">Nacidas en las montañas<br>de <em>Villavicencio, Meta</em></h2>
+    <div class="origen-grid">
+      <div class="origen-visual">
+        <span class="origen-tag-muzo">Villavicencio — Meta</span>
+        <img class="origen-img-main" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&auto=format&fit=crop&q=85" alt="Montañas de Villavicencio">
+        <img class="origen-img-accent" src="https://images.unsplash.com/photo-1544963502-b2a9c3cfdd4d?w=400&auto=format&fit=crop&q=85" alt="Esmeralda colombiana">
+      </div>
+      <div class="origen-content">
+        <span class="rule"></span>
+        <blockquote class="origen-quote" data-es='"La esmeralda de Muzo no tiene rival en el mundo. Nace del corazón verde de nuestras montañas — y ahí comienza Palo Verde."' data-en='"The Villavicencio emerald has no rival in the world. It is born from the green heart of our mountains — and that is where Palo Verde begins."'>"La esmeralda de Villavicencio no tiene rival en el mundo. Nace del corazón verde de nuestras montañas — y ahí comienza Palo Verde."</blockquote>
+        <p class="section-sub" data-es="La región de Villavicencio, Meta, produce las esmeraldas más puras y codiciadas del planeta. La roca calcárea, el agua subterránea y millones de años de presión crean el verde más profundo que existe." data-en="The Villavicencio, Meta region produces the purest and most sought-after emeralds on the planet. Limestone rock, groundwater and millions of years of pressure create the deepest green that exists.">La región de Villavicencio, Meta, produce las esmeraldas más puras y codiciadas del planeta. La roca calcárea, el agua subterránea y millones de años de presión crean el verde más profundo que existe.</p>
+        <ul class="origen-bullets">
+          <li data-es="Trazabilidad completa desde la mina hasta tu mano" data-en="Full traceability from mine to your hand">Trazabilidad completa desde la mina hasta tu mano</li>
+          <li data-es="Extracción responsable con las comunidades locales" data-en="Responsible extraction with local communities">Extracción responsable con las comunidades locales</li>
+          <li data-es="Cada esmeralda tiene coordenadas y fecha de extracción" data-en="Each emerald has coordinates and extraction date">Cada esmeralda tiene coordenadas y fecha de extracción</li>
+          <li data-es="Sin intermediarios — directo del origen al artesano" data-en="No middlemen — direct from origin to artisan">Sin intermediarios — directo del origen al artesano</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pill-divider"><div></div></div>
+
+<!-- CATÁLOGO -->
+<section id="catalogo" class="section">
+  <div class="container">
+    <div class="catalogo-header">
+      <div>
+        <div class="tag">Colección 2026</div>
+        <h2 class="section-title">Piezas <em>más deseadas</em></h2>
+      </div>
+      <a class="v-all" href="#">Ver todo el catálogo →</a>
+    </div>
+    <div class="filters">
+      <button class="fp on" onclick="fp(this)" data-es="Todo" data-en="All">Todo</button>
+      <button class="fp" onclick="fp(this)" data-es="Esmeraldas" data-en="Emeralds">Esmeraldas</button>
+      <button class="fp" onclick="fp(this)" data-es="Anillos" data-en="Rings">Anillos</button>
+      <button class="fp" onclick="fp(this)" data-es="Collares" data-en="Necklaces">Collares</button>
+      <button class="fp" onclick="fp(this)" data-es="Pulseras" data-en="Bracelets">Pulseras</button>
+      <button class="fp" onclick="fp(this)" data-es="Aretes" data-en="Earrings">Aretes</button>
+    </div>
+    <div class="bento">
+      <div class="pc big">
+        <img class="pc-img" src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=900&auto=format&fit=crop&q=85" alt="Esmeralda Muzo">
+        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
+        <div class="pc-info">
+          <span class="pc-tag t-g">Más Deseada</span>
+          <div class="pc-name">Esmeralda Muzo<br>Hexagonal Bruta</div>
+          <div class="pc-mat">Oro 18k · 2.8 quilates · Certificado GIA</div>
+          <div class="pc-foot"><span class="pc-price">$2.850 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir al carrito</button></div>
+        </div>
+      </div>
+      <div class="pc tall">
+        <img class="pc-img" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&auto=format&fit=crop&q=85" alt="Anillo esmeralda">
+        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
+        <div class="pc-info">
+          <span class="pc-tag t-go">Exclusivo</span>
+          <div class="pc-name">Anillo Selva Imperial</div>
+          <div class="pc-mat">Oro blanco 18k · Esmeralda oval</div>
+          <div class="pc-foot"><span class="pc-price">$3.200 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+        </div>
+      </div>
+      <div class="pc">
+        <img class="pc-img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&auto=format&fit=crop&q=85" alt="Collar">
+        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
+        <div class="pc-info">
+          <span class="pc-tag t-gh">Nuevo</span>
+          <div class="pc-name">Collar Bosque Eterno</div>
+          <div class="pc-mat">Cadena oro · Colgante esmeralda</div>
+          <div class="pc-foot"><span class="pc-price">$2.100 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+        </div>
+      </div>
+      <div class="pc">
+        <img class="pc-img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&auto=format&fit=crop&q=85" alt="Pulsera">
+        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
+        <div class="pc-info">
+          <span class="pc-tag t-g">Tendencia</span>
+          <div class="pc-name">Pulsera Raíces Doradas</div>
+          <div class="pc-mat">Oro 18k · 3 esmeraldas baguette</div>
+          <div class="pc-foot"><span class="pc-price">$1.480 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+        </div>
+      </div>
+      <div class="pc">
+        <img class="pc-img" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&auto=format&fit=crop&q=85" alt="Aretes">
+        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
+        <div class="pc-info">
+          <span class="pc-tag t-go">Premium</span>
+          <div class="pc-name">Arete Gota Muzo</div>
+          <div class="pc-mat">Oro 18k · Esmeralda lágrima</div>
+          <div class="pc-foot"><span class="pc-price">$1.950 USD</span><button class="pc-btn" onclick="addCart(this)">Añadir</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Años de tradición</div></div>
+      <div class="stat"><div class="stat-n">1.200+</div><div class="stat-l">Joyas entregadas</div></div>
+      <div class="stat"><div class="stat-n">42</div><div class="stat-l">Países alcanzados</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Certificadas GIA</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="section">
+  <div class="container">
+    <div class="nosotros-grid">
+      <div class="photos-mosaic">
+        <div class="mosaic-tall"><img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=500&auto=format&fit=crop&q=85" alt="Orfebre"></div>
+        <div>
+          <div class="mosaic-sq" style="margin-bottom:10px"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&auto=format&fit=crop&q=80" alt="Montañas"></div>
+          <div class="mosaic-sq"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&auto=format&fit=crop&q=80" alt="Esmeralda"></div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="tag">Nuestra historia</div>
+        <h2 class="section-title">Del corazón de<br><em>Boyacá al mundo</em></h2>
+        <span class="rule"></span>
+        <p class="nosotros-body" data-es="Palo Verde toma su nombre de los árboles que custodian las montañas de Villavicencio — raíces profundas, verde eterno. Nuestra familia ha trabajado la tierra y la piedra en estas montañas por más de dos décadas." data-en="Palo Verde takes its name from the trees that guard the mountains of Villavicencio — deep roots, eternal green. Our family has worked the land and stone in these mountains for over two decades.">Palo Verde toma su nombre de los árboles que custodian las montañas de Villavicencio — raíces profundas, verde eterno. Nuestra familia ha trabajado la tierra y la piedra en estas montañas por más de dos décadas.</p>
+        <p class="nosotros-body" data-es="Trabajamos directamente con los mineros de confianza. Nuestros orfebres artesanales en Villavicencio, Meta combinan técnicas ancestrales con diseño contemporáneo." data-en="We work directly with trusted miners. Our artisan goldsmiths in Villavicencio, Meta combine ancestral techniques with contemporary design.">Trabajamos directamente con los mineros de confianza. Nuestros orfebres artesanales en Villavicencio, Meta combinan técnicas ancestrales con diseño contemporáneo.</p>
+        <p class="nosotros-body" style="font-style:italic;font-family:var(--serif);font-size:.98rem;color:var(--g-deep)">"Una esmeralda no es solo una piedra — es tiempo, tierra y luz condensados en un instante verde que dura para siempre."</p>
+        <p style="font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ink);margin-top:1.2rem">— Familia Restrepo, Fundadores</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pill-divider"><div></div></div>
+
+<!-- ════ CONOCE A WILLIAM ════ -->
+<section id="william" class="section william-section">
+  <div class="william-bg-decor">
+    <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+      <circle cx="650" cy="100" r="220" fill="rgba(27,77,53,0.05)"/>
+      <circle cx="80" cy="420" r="160" fill="rgba(160,120,64,0.05)"/>
+      <path d="M0,280 Q200,180 400,260 Q600,340 800,230" fill="none" stroke="rgba(27,77,53,0.08)" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="william-inner">
+
+      <!-- Foto circular -->
+      <div class="william-photo-col">
+        <div class="william-ring-outer">
+          <div class="william-ring-mid">
+            <div class="william-photo-wrap">
+              <img src="William.png" alt="William Felipe Gutiérrez — Fundador Palo Verde Esmeralda">
+            </div>
+          </div>
+        </div>
+        <div class="william-gem-badge">
+          <svg width="14" height="14" viewBox="0 0 22 22" fill="none"><polygon points="11,2 19,7 19,15 11,20 3,15 3,7" fill="rgba(27,77,53,0.15)" stroke="var(--g-deep)" stroke-width="1.2"/><circle cx="11" cy="11" r="3.5" fill="var(--g-soft)"/></svg>
+          <span data-es="Fundador & Gemólogo" data-en="Founder & Gemologist">Fundador & Gemólogo</span>
+        </div>
+      </div>
+
+      <!-- Contenido -->
+      <div class="william-content">
+        <div class="tag" data-es="Conoce al fundador" data-en="Meet the founder">Conoce al fundador</div>
+        <h2 class="william-name">William Felipe<br><em>Gutiérrez</em></h2>
+        <div class="william-title-line">
+          <span data-es="Fundador & Gemólogo · Palo Verde Esmeralda" data-en="Founder & Gemologist · Palo Verde Esmeralda">Fundador & Gemólogo · Palo Verde Esmeralda</span>
+        </div>
+        <div class="william-quote-wrap">
+          <div class="william-quote-mark">"</div>
+          <blockquote class="william-quote" data-es="Que más mis compitas, les habla William Gutiérrez de Palo Verde Esmeralda. Compas, como les parece que tenemos las esmeraldas más hermosas de Colombia directo de las minas de Muzo — y las llevamos a todo el mundo." data-en="What's up friends, William Gutiérrez from Palo Verde Esmeralda speaking. Guys, can you believe we have the most beautiful emeralds in Colombia direct from the mines — and we ship them worldwide.">
+            Que más mis compitas, les habla William Gutiérrez de Palo Verde Esmeralda. Compas, como les parece que tenemos las esmeraldas más hermosas de Colombia directo de las minas de Muzo — y las llevamos a todo el mundo.
+          </blockquote>
+        </div>
+        <p class="william-bio" data-es="William creció entre las montañas esmeraldíferas de Colombia. Desde niño aprendió a leer el color, la transparencia y el origen de cada piedra. Hoy lidera Palo Verde con la misma pasión: conectar al mundo con la esmeralda colombiana auténtica." data-en="William grew up among the emerald mountains of Colombia. From a young age he learned to read the color, transparency and origin of each stone. Today he leads Palo Verde with the same passion: connecting the world with authentic Colombian emeralds.">
+          William creció entre las montañas esmeraldíferas de Colombia. Desde niño aprendió a leer el color, la transparencia y el origen de cada piedra. Hoy lidera Palo Verde con la misma pasión: conectar al mundo con la esmeralda colombiana auténtica.
+        </p>
+        <div class="william-socials">
+          <a class="w-social-wa" href="https://wa.me/573183177682?text=Hola%20William%21%20Vi%20tu%20perfil%20en%20Palo%20Verde%20%F0%9F%92%9A" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-es="Escribir a William" data-en="Message William">Escribir a William</span>
+          </a>
+          <a class="w-social-tt" href="https://www.tiktok.com/@paloverde_esmeral" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.87a8.24 8.24 0 004.83 1.55V7c-.92 0-1.81-.28-2.5-.31z"/></svg>
+            <span>@paloverde_esmeral</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pill-divider"><div></div></div>
+
+<!-- CATEGORÍAS -->
+<section id="categorias" class="section">
+  <div class="container">
+    <div class="cats-header">
+      <div><div class="tag gold">Nuestras colecciones</div><h2 class="section-title">Joyas para <em>cada momento</em></h2></div>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card featured">
+        <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><polygon points="13,2 22,7 22,19 13,24 4,19 4,7" stroke="rgba(196,162,101,0.8)" stroke-width="1.2" fill="rgba(196,162,101,0.15)"/><circle cx="13" cy="13" r="4" fill="rgba(196,162,101,0.7)"/></svg></div>
+        <h3>Esmeraldas</h3><p>Nuestras piezas insignia. Esmeraldas de Muzo en su forma más pura.</p>
+        <div class="cat-count">38 piezas exclusivas →</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" stroke="rgba(27,77,53,0.6)" stroke-width="1.2" fill="rgba(27,77,53,0.08)"/><circle cx="13" cy="7" r="3" fill="rgba(27,77,53,0.5)"/></svg></div>
+        <h3>Anillos</h3><p>Desde solitarios clásicos hasta diseños exclusivos con esmeraldas.</p>
+        <div class="cat-count" style="color:var(--g-deep)">24 diseños →</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="11" r="7" stroke="rgba(27,77,53,0.5)" stroke-width="1.2" fill="rgba(27,77,53,0.07)"/><polygon points="13,18 10,23 16,23" fill="rgba(27,77,53,0.4)"/></svg></div>
+        <h3>Collares</h3><p>Cadenas de oro con colgantes de esmeralda. Elegancia atemporal.</p>
+        <div class="cat-count" style="color:var(--g-deep)">19 piezas →</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 13 Q13 6 22 13 Q13 20 4 13Z" stroke="rgba(27,77,53,0.5)" stroke-width="1.2" fill="rgba(27,77,53,0.07)"/><circle cx="13" cy="13" r="2.5" fill="rgba(27,77,53,0.5)"/></svg></div>
+        <h3>Pulseras</h3><p>Artesanales con esmeraldas y oro. Desde tenis elegantes a brazaletes únicos.</p>
+        <div class="cat-count" style="color:var(--g-deep)">15 piezas →</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="13" rx="5" ry="8" stroke="rgba(27,77,53,0.5)" stroke-width="1.2" fill="rgba(27,77,53,0.07)"/></svg></div>
+        <h3>Aretes</h3><p>Tipo gota, argollas y studs con esmeraldas colombianas.</p>
+        <div class="cat-count" style="color:var(--g-deep)">22 piezas →</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="6" y="8" width="14" height="10" rx="2" stroke="rgba(27,77,53,0.5)" stroke-width="1.2" fill="rgba(27,77,53,0.07)"/><polygon points="13,3 11,8 15,8" fill="rgba(160,120,64,0.6)"/></svg></div>
+        <h3>A medida</h3><p>Diseñamos tu joya desde cero. Pieza única garantizada.</p>
+        <div class="cat-count" style="color:var(--gold)">Consultar →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria" class="section">
+  <div class="container">
+    <div class="tag">Nuestra galería</div>
+    <h2 class="section-title">Cada pieza, <em>una historia</em></h2>
+    <div class="galeria-grid">
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&auto=format&fit=crop&q=80" alt="Joyería"><div class="gal-overlay"><span class="gal-label">Esmeraldas</span></div></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&auto=format&fit=crop&q=80" alt="Anillos"><div class="gal-overlay"><span class="gal-label">Anillos</span></div></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop&q=80" alt="Montañas"><div class="gal-overlay"><span class="gal-label">Origen · Muzo</span></div></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&auto=format&fit=crop&q=80" alt="Collares"><div class="gal-overlay"><span class="gal-label">Collares</span></div></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&auto=format&fit=crop&q=80" alt="Artesanía"><div class="gal-overlay"><span class="gal-label">Artesanía</span></div></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&auto=format&fit=crop&q=80" alt="Esmeralda"><div class="gal-overlay"><span class="gal-label">Esmeraldas brutas</span></div></div>
+    </div>
+  </div>
+</section>
+<div class="pill-divider"><div></div></div>
+
+<!-- DIFERENCIAL -->
+<section id="diferencial" class="section">
+  <div class="container">
+    <div class="tag">Por qué elegirnos</div>
+    <h2 class="section-title">El estándar <em>Palo Verde</em></h2>
+    <div class="dif-grid">
+      <div class="dif-img">
+        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&auto=format&fit=crop&q=85" alt="Joyería Palo Verde">
+        <div class="name-card">
+          <div class="owner-name">FAMILIA RESTREPO</div>
+          <div class="owner-role">Fundadores · Palo Verde</div>
+          <div class="owner-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Villavicencio, Meta — Colombia</div>
+        </div>
+      </div>
+      <div>
+        <p class="section-sub" style="max-width:100%;margin-bottom:2rem">Llevamos más de 25 años extrayendo, diseñando y creando joyas que conectan a las personas con la naturaleza más extraordinaria de Colombia.</p>
+        <div class="dif-stats">
+          <div class="stat-box"><div class="s-num">100%</div><div class="s-lbl">Esmeraldas auténticas</div></div>
+          <div class="stat-box"><div class="s-num">GIA</div><div class="s-lbl">Certificación internacional</div></div>
+          <div class="stat-box"><div class="s-num">42</div><div class="s-lbl">Países de envío</div></div>
+          <div class="stat-box"><div class="s-num">∞</div><div class="s-lbl">Garantía en engaste</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pill-divider"><div></div></div>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="tag">Preguntas frecuentes</div>
+    <h2 class="section-title">Lo que más nos <em>preguntan</em></h2>
+    <div class="faq-grid">
+      <details><summary>¿De dónde provienen las esmeraldas?</summary><div class="faq-body">Todas nuestras esmeraldas provienen de las minas de <strong>Villavicencio, Meta</strong>, reconocidas mundialmente por producir las esmeraldas de mayor calidad.</div></details>
+      <details><summary>¿Las esmeraldas tienen certificado?</summary><div class="faq-body">Sí. Todas las piezas mayores a 1 quilate incluyen <strong>certificado GIA o Gübelin</strong>, los laboratorios gemológicos de mayor reputación mundial.</div></details>
+      <details><summary>¿Hacen joyas a medida?</summary><div class="faq-body">¡Absolutamente! Diseñamos tu joya desde cero. El proceso toma entre <strong>3 y 6 semanas</strong>.</div></details>
+      <details><summary>¿Realizan envíos internacionales?</summary><div class="faq-body">Sí. Enviamos a <strong>42 países</strong> con seguro completo. Los tiempos van de 5 a 12 días hábiles.</div></details>
+      <details><summary>¿Cuál es la política de devoluciones?</summary><div class="faq-body">Ofrecemos <strong>30 días de devolución</strong> sin preguntas para joyas del catálogo estándar.</div></details>
+      <details><summary>¿Tienen garantía?</summary><div class="faq-body">Sí. Ofrecemos <strong>garantía de por vida en el engaste</strong> y 2 años en el metal.</div></details>
+      <details><summary>¿Cómo cuidar mi joya de esmeralda?</summary><div class="faq-body">Las esmeraldas deben evitar golpes y productos químicos. Te enviamos una guía completa con cada joya.</div></details>
+      <details><summary>¿Puedo ver las joyas antes de comprar?</summary><div class="faq-body">Tenemos showroom en <strong>Villavicencio, Meta</strong> con cita previa y realizamos videollamadas para mostrar las piezas.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container cta-inner">
+    <div class="tag gold" style="margin-bottom:1.2rem">Colección disponible ahora</div>
+    <h2 class="cta-title" data-es="¿Lista para llevar<br><span>tu esmeralda</span> a casa?" data-en="Ready to take<br><span>your emerald</span> home?">¿Lista para llevar<br><span>tu esmeralda</span> a casa?</h2>
+    <p class="cta-sub" data-es="Cada joya llega en estuche de cuero artesanal con certificado de autenticidad y una nota escrita a mano desde Boyacá, Colombia." data-en="Every jewel arrives in an artisan leather case with a certificate of authenticity and a handwritten note from Boyacá, Colombia.">Cada joya llega en estuche de cuero artesanal con certificado de autenticidad y una nota escrita a mano desde Boyacá, Colombia.</p>
+    <div class="cta-buttons">
+      <a class="btn-beige" href="#catalogo" data-es="Ver toda la colección" data-en="View full collection">Ver toda la colección</a>
+      <a class="btn-outline-w" href="/cdn-cgi/l/email-protection#aec7c0c8c1eedecfc2c1d8cbdccacb80cdc1" data-es="Solicitar joya a medida" data-en="Request custom jewel">Solicitar joya a medida</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="container">
+    <div class="nl-inner">
+      <div class="nl-left"><div class="nl-kicker">Comunidad exclusiva</div><div class="nl-title">Acceso antes que nadie</div></div>
+      <div class="nl-form"><input class="nl-in" type="email" placeholder="tu@correo.com"><button class="nl-sub">Unirme</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <img src="Paloverde.jpeg" alt="Palo Verde Esmeralda" style="width:76px;height:76px;border-radius:50%;object-fit:cover;margin-bottom:1rem;border:2px solid rgba(160,120,64,.3)">
+        <span class="f-logo">PALO VERDE</span>
+        <p class="f-tag-txt">Alta joyería de esmeraldas colombianas certificadas. Villavicencio, Meta · Colombia.</p>
+        <div class="f-cert"><div class="f-dot"></div>Certificado GIA · Gübelin</div>
+        <div class="f-soc">
+          <a class="soc" href="https://wa.me/573183177682" target="_blank" title="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a class="soc" href="https://www.tiktok.com/@paloverde_esmeral" target="_blank" title="TikTok">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.87a8.24 8.24 0 004.83 1.55V7c-.92 0-1.81-.28-2.5-.31z"/></svg>
+          </a>
+          <a class="soc" href="#" title="Instagram">ig</a>
+          <a class="soc" href="#" title="Facebook">fb</a>
+        </div>
+      </div>
+      <div class="f-col"><h4>Tienda</h4><ul><li><a href="#">Esmeraldas</a></li><li><a href="#">Anillos</a></li><li><a href="#">Collares</a></li><li><a href="#">Pulseras</a></li><li><a href="#">Aretes</a></li><li><a href="#">A medida</a></li></ul></div>
+      <div class="f-col"><h4>Nosotros</h4><ul><li><a href="#">Historia</a></li><li><a href="#">Minas de Muzo</a></li><li><a href="#">Certificaciones</a></li><li><a href="#">Artesanía</a></li><li><a href="#">Sostenibilidad</a></li></ul></div>
+      <div class="f-col"><h4>Atención</h4><ul><li><a href="#">Envíos</a></li><li><a href="#">Devoluciones</a></li><li><a href="#">Cuidado de joyas</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">Showroom Villavicencio, Meta</a></li></ul></div>
+    </div>
+    <div class="f-bot">
+      <p class="f-copy">© 2026 Palo Verde Joyería · Alta Joyería de Esmeraldas · Villavicencio, Meta, Colombia</p>
+      <div class="f-leg"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════
+     SCROLLYTELLING ENGINE
+══════════════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══════════════════════════════════════════════════
+   VIDEO INTRO ENGINE
+   Video 5s se reproduce solo.
+   Panel 1 (centro):  seg 1.0 → 2.8
+   Panel 2 (derecha): seg 3.2 → fin
+   Al terminar: nav + botón repetir
+══════════════════════════════════════════════════ */
+const vid       = document.getElementById('sf-video');
+const panel1    = document.getElementById('sf-panel-1');
+const panel2    = document.getElementById('sf-panel-2');
+const bar       = document.getElementById('sf-progress');
+const mainNav   = document.getElementById('main-nav');
+const replayBtn = document.getElementById('replay-btn');
+let timers = [];
+
+function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+function startTimers(){
+  clearTimers();
+  panel1.classList.remove('visible');
+  panel2.classList.remove('visible');
+  replayBtn.classList.remove('show');
+  replayBtn.classList.add('hidden');
+  timers.push(setTimeout(()=> panel1.classList.add('visible'),    1000));
+  timers.push(setTimeout(()=> panel1.classList.remove('visible'), 2800));
+  timers.push(setTimeout(()=> panel2.classList.add('visible'),    3200));
+  timers.push(setTimeout(onEnd, 4900));
+}
+
+function onEnd(){
+  panel2.classList.add('visible');
+  mainNav.classList.remove('hidden');
+  replayBtn.classList.remove('hidden');
+  replayBtn.classList.add('show');
+}
+
+/* Barra de progreso */
+vid.addEventListener('timeupdate', ()=>{
+  const t = vid.duration ? vid.currentTime / vid.duration : 0;
+  bar.style.width = (t * 100) + '%';
+});
+
+/* Arrancar */
+function tryPlay(){
+  vid.play().then(startTimers).catch(()=>{});
+}
+vid.addEventListener('canplay', tryPlay, { once:true });
+vid.addEventListener('ended', onEnd);
+if(vid.readyState >= 3) tryPlay();
+
+/* Repetir */
+function replayVideo(){
+  replayBtn.classList.remove('show');
+  panel1.classList.remove('visible');
+  panel2.classList.remove('visible');
+  bar.style.width = '0%';
+  vid.currentTime = 0;
+  tryPlay();
+}
+
+/* ══════════════════════════════════════════════════
+   TRADUCTOR ES ↔ EN
+══════════════════════════════════════════════════ */
+let currentLang = 'es';
+
+function toggleLang(){
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  document.getElementById('lang-label').textContent = currentLang === 'es' ? 'EN' : 'ES';
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const txt = el.getAttribute('data-' + currentLang);
+    if(txt !== null) el.innerHTML = txt;
+  });
+  /* Carrito */
+  const cb = document.getElementById('cart-btn');
+  const n  = cb.textContent.match(/\d+/)?.[0] || '0';
+  cb.textContent = currentLang === 'es' ? `Carrito (${n})` : `Cart (${n})`;
+}
+
+/* ══════════════════════════════════════
+   CARRITO + WISHLIST + FILTROS
+══════════════════════════════════════ */
+let cartCount = 0;
+function addCart(b){
+  cartCount++;
+  const cb = document.getElementById('cart-btn');
+  cb.textContent = currentLang === 'es' ? `Carrito (${cartCount})` : `Cart (${cartCount})`;
+  const o = b.textContent;
+  b.textContent = currentLang === 'es' ? '✓ Añadido' : '✓ Added';
+  b.style.background='var(--white)'; b.style.color='var(--g-deep)';
+  setTimeout(()=>{ b.textContent=o; b.style.background=''; b.style.color=''; }, 2200);
+}
+function wish(b){ b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '♥' : '♡'; }
+function fp(b){ document.querySelectorAll('.fp').forEach(p=>p.classList.remove('on')); b.classList.add('on'); }
+
+/* FADE IN cards */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+},{ threshold:0.1 });
+document.querySelectorAll('.cat-card,.stat-box,.review-bubble,.gal-item,details,.pc').forEach(el=>{
+  el.style.opacity='0'; el.style.transform='translateY(22px)';
+  el.style.transition='opacity .45s ease, transform .45s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
