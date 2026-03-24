@@ -727,6 +727,8 @@ footer{background:var(--ink);padding:56px 0 28px}
 }
 .cart-badge.show{opacity:1}
 .nav-cart-wrap{position:relative;display:inline-block}
+.btn-coleccion-nav{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--g-deep);font-family:var(--body);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 18px;border:1.5px solid var(--g-pale);transition:border-color .2s,background .2s;white-space:nowrap;text-decoration:none}
+.btn-coleccion-nav:hover{border-color:var(--g-deep);background:var(--g-xs)}
 
 /* ── TOAST ── */
 #pv-toast{
@@ -777,10 +779,16 @@ footer{background:var(--ink);padding:56px 0 28px}
       <li><a href="#faq" data-es="Preguntas" data-en="FAQ">Preguntas</a></li>
       <li><a href="#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
     </ul>
-    <div class="nav-cart-wrap">
-      <button class="nav-cta" id="cart-btn" onclick="abrirCarrito()">
-        Carrito <span id="cart-count-badge" class="cart-badge">0</span>
-      </button>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="catalogo.html" class="btn-coleccion-nav" data-es="Ver colección" data-en="View collection">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Ver colección
+      </a>
+      <div class="nav-cart-wrap">
+        <button class="nav-cta" id="cart-btn" onclick="abrirCarrito()">
+          Carrito <span id="cart-count-badge" class="cart-badge">0</span>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -1075,7 +1083,7 @@ footer{background:var(--ink);padding:56px 0 28px}
       </div>
       <div class="origen-content">
         <span class="rule"></span>
-        <blockquote class="origen-quote" data-es='"La esmeralda de Muzo no tiene rival en el mundo. Nace del corazón verde de nuestras montañas — y ahí comienza Palo Verde."' data-en='"The Villavicencio emerald has no rival in the world. It is born from the green heart of our mountains — and that is where Palo Verde begins."'>"La esmeralda de Villavicencio no tiene rival en el mundo. Nace del corazón verde de nuestras montañas — y ahí comienza Palo Verde."</blockquote>
+        <blockquote class="origen-quote" data-es='"La esmeralda de Muzo, Coscuez y Chivor no tiene rival en el mundo. Nace del corazón verde de nuestras montañas — y ahí comienza Palo Verde."' data-en='"The Villavicencio emerald has no rival in the world. It is born from the green heart of our mountains — and that is where Palo Verde begins."'>"La esmeralda de Villavicencio no tiene rival en el mundo. Nace del corazón verde de nuestras montañas — y ahí comienza Palo Verde."</blockquote>
         <p class="section-sub" data-es="La región de Villavicencio, Meta, produce las esmeraldas más puras y codiciadas del planeta. La roca calcárea, el agua subterránea y millones de años de presión crean el verde más profundo que existe." data-en="The Villavicencio, Meta region produces the purest and most sought-after emeralds on the planet. Limestone rock, groundwater and millions of years of pressure create the deepest green that exists.">La región de Villavicencio, Meta, produce las esmeraldas más puras y codiciadas del planeta. La roca calcárea, el agua subterránea y millones de años de presión crean el verde más profundo que existe.</p>
         <ul class="origen-bullets">
           <li data-es="Trazabilidad completa desde la mina hasta tu mano" data-en="Full traceability from mine to your hand">Trazabilidad completa desde la mina hasta tu mano</li>
@@ -1109,13 +1117,13 @@ footer{background:var(--ink);padding:56px 0 28px}
     </div>
     <div class="bento">
       <div class="pc big">
-        <img class="pc-img" src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=900&auto=format&fit=crop&q=85" alt="Esmeralda Muzo">
+        <img class="pc-img" src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=900&auto=format&fit=crop&q=85" alt="Esmeralda Muzo, Coscuez y Chivor">
         <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
         <div class="pc-info">
           <span class="pc-tag t-g">Más Deseada</span>
-          <div class="pc-name">Esmeralda Muzo<br>Hexagonal Bruta</div>
+          <div class="pc-name">Esmeralda Muzo, Coscuez y Chivor<br>Hexagonal Bruta</div>
           <div class="pc-mat">Oro 18k · 2.8 quilates · Certificado GIA</div>
-          <div class="pc-foot"><span class="pc-price">$2.850 USD</span><button class="pc-btn" onclick="pvAddToCart(1,'Esmeralda Muzo Hexagonal Bruta',2850,this)">Añadir al carrito</button></div>
+          <div class="pc-foot"><span class="pc-price">$2.850 USD</span><button class="pc-btn" onclick="pvAddToCart(1,'Esmeralda Muzo, Coscuez y Chivor Hexagonal Bruta',2850,this)">Añadir al carrito</button></div>
         </div>
       </div>
       <div class="pc tall">
@@ -1187,7 +1195,7 @@ footer{background:var(--ink);padding:56px 0 28px}
       </div>
       <div class="fade-up">
         <div class="tag">Nuestra historia</div>
-        <h2 class="section-title">Del corazón de<br><em>Boyacá al mundo</em></h2>
+        <h2 class="section-title">Del corazón de<br><em>Villavicencio, Meta al mundo</em></h2>
         <span class="rule"></span>
         <p class="nosotros-body" data-es="Palo Verde toma su nombre de los árboles que custodian las montañas de Villavicencio — raíces profundas, verde eterno. Nuestra familia ha trabajado la tierra y la piedra en estas montañas por más de dos décadas." data-en="Palo Verde takes its name from the trees that guard the mountains of Villavicencio — deep roots, eternal green. Our family has worked the land and stone in these mountains for over two decades.">Palo Verde toma su nombre de los árboles que custodian las montañas de Villavicencio — raíces profundas, verde eterno. Nuestra familia ha trabajado la tierra y la piedra en estas montañas por más de dos décadas.</p>
         <p class="nosotros-body" data-es="Trabajamos directamente con los mineros de confianza. Nuestros orfebres artesanales en Villavicencio, Meta combinan técnicas ancestrales con diseño contemporáneo." data-en="We work directly with trusted miners. Our artisan goldsmiths in Villavicencio, Meta combine ancestral techniques with contemporary design.">Trabajamos directamente con los mineros de confianza. Nuestros orfebres artesanales en Villavicencio, Meta combinan técnicas ancestrales con diseño contemporáneo.</p>
@@ -1235,8 +1243,8 @@ footer{background:var(--ink);padding:56px 0 28px}
         </div>
         <div class="william-quote-wrap">
           <div class="william-quote-mark">"</div>
-          <blockquote class="william-quote" data-es="Que más mis compitas, les habla William Gutiérrez de Palo Verde Esmeralda. Compas, como les parece que tenemos las esmeraldas más hermosas de Colombia directo de las minas de Muzo — y las llevamos a todo el mundo." data-en="What's up friends, William Gutiérrez from Palo Verde Esmeralda speaking. Guys, can you believe we have the most beautiful emeralds in Colombia direct from the mines — and we ship them worldwide.">
-            Que más mis compitas, les habla William Gutiérrez de Palo Verde Esmeralda. Compas, como les parece que tenemos las esmeraldas más hermosas de Colombia directo de las minas de Muzo — y las llevamos a todo el mundo.
+          <blockquote class="william-quote" data-es="Que más mis compitas, les habla William Gutiérrez de Palo Verde Esmeralda. Compas, como les parece que tenemos las esmeraldas más hermosas de Colombia directo de las minas de Muzo, Coscuez y Chivor — y las llevamos a todo el mundo." data-en="What's up friends, William Gutiérrez from Palo Verde Esmeralda speaking. Guys, can you believe we have the most beautiful emeralds in Colombia direct from the mines — and we ship them worldwide.">
+            Que más mis compitas, les habla William Gutiérrez de Palo Verde Esmeralda. Compas, como les parece que tenemos las esmeraldas más hermosas de Colombia directo de las minas de Muzo, Coscuez y Chivor — y las llevamos a todo el mundo.
           </blockquote>
         </div>
         <p class="william-bio" data-es="William creció entre las montañas esmeraldíferas de Colombia. Desde niño aprendió a leer el color, la transparencia y el origen de cada piedra. Hoy lidera Palo Verde con la misma pasión: conectar al mundo con la esmeralda colombiana auténtica." data-en="William grew up among the emerald mountains of Colombia. From a young age he learned to read the color, transparency and origin of each stone. Today he leads Palo Verde with the same passion: connecting the world with authentic Colombian emeralds.">
@@ -1267,7 +1275,7 @@ footer{background:var(--ink);padding:56px 0 28px}
     <div class="cats-grid">
       <div class="cat-card featured">
         <div class="cat-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><polygon points="13,2 22,7 22,19 13,24 4,19 4,7" stroke="rgba(196,162,101,0.8)" stroke-width="1.2" fill="rgba(196,162,101,0.15)"/><circle cx="13" cy="13" r="4" fill="rgba(196,162,101,0.7)"/></svg></div>
-        <h3>Esmeraldas</h3><p>Nuestras piezas insignia. Esmeraldas de Muzo en su forma más pura.</p>
+        <h3>Esmeraldas</h3><p>Nuestras piezas insignia. Esmeraldas de Muzo, Coscuez y Chivor en su forma más pura.</p>
         <div class="cat-count">38 piezas exclusivas →</div>
       </div>
       <div class="cat-card">
@@ -1307,7 +1315,7 @@ footer{background:var(--ink);padding:56px 0 28px}
     <div class="galeria-grid">
       <div class="gal-item"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&auto=format&fit=crop&q=80" alt="Joyería"><div class="gal-overlay"><span class="gal-label">Esmeraldas</span></div></div>
       <div class="gal-item"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&auto=format&fit=crop&q=80" alt="Anillos"><div class="gal-overlay"><span class="gal-label">Anillos</span></div></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop&q=80" alt="Montañas"><div class="gal-overlay"><span class="gal-label">Origen · Muzo</span></div></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop&q=80" alt="Montañas"><div class="gal-overlay"><span class="gal-label">Origen · Muzo, Coscuez y Chivor</span></div></div>
       <div class="gal-item"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&auto=format&fit=crop&q=80" alt="Collares"><div class="gal-overlay"><span class="gal-label">Collares</span></div></div>
       <div class="gal-item"><img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&auto=format&fit=crop&q=80" alt="Artesanía"><div class="gal-overlay"><span class="gal-label">Artesanía</span></div></div>
       <div class="gal-item"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&auto=format&fit=crop&q=80" alt="Esmeralda"><div class="gal-overlay"><span class="gal-label">Esmeraldas brutas</span></div></div>
@@ -1367,7 +1375,7 @@ footer{background:var(--ink);padding:56px 0 28px}
   <div class="container cta-inner">
     <div class="tag gold" style="margin-bottom:1.2rem">Colección disponible ahora</div>
     <h2 class="cta-title" data-es="¿Lista para llevar<br><span>tu esmeralda</span> a casa?" data-en="Ready to take<br><span>your emerald</span> home?">¿Lista para llevar<br><span>tu esmeralda</span> a casa?</h2>
-    <p class="cta-sub" data-es="Cada joya llega en estuche de cuero artesanal con certificado de autenticidad y una nota escrita a mano desde Boyacá, Colombia." data-en="Every jewel arrives in an artisan leather case with a certificate of authenticity and a handwritten note from Boyacá, Colombia.">Cada joya llega en estuche de cuero artesanal con certificado de autenticidad y una nota escrita a mano desde Boyacá, Colombia.</p>
+    <p class="cta-sub" data-es="Cada joya llega en estuche de cuero artesanal con certificado de autenticidad y una nota escrita a mano desde Villavicencio, Meta." data-en="Every jewel arrives in an artisan leather case with a certificate of authenticity and a handwritten note from Villavicencio, Meta.">Cada joya llega en estuche de cuero artesanal con certificado de autenticidad y una nota escrita a mano desde Villavicencio, Meta.</p>
     <div class="cta-buttons">
       <a class="btn-beige" href="#catalogo" data-es="Ver toda la colección" data-en="View full collection">Ver toda la colección</a>
       <a class="btn-outline-w" href="/cdn-cgi/l/email-protection#aec7c0c8c1eedecfc2c1d8cbdccacb80cdc1" data-es="Solicitar joya a medida" data-en="Request custom jewel">Solicitar joya a medida</a>
@@ -1406,7 +1414,7 @@ footer{background:var(--ink);padding:56px 0 28px}
         </div>
       </div>
       <div class="f-col"><h4>Tienda</h4><ul><li><a href="#">Esmeraldas</a></li><li><a href="#">Anillos</a></li><li><a href="#">Collares</a></li><li><a href="#">Pulseras</a></li><li><a href="#">Aretes</a></li><li><a href="#">A medida</a></li></ul></div>
-      <div class="f-col"><h4>Nosotros</h4><ul><li><a href="#">Historia</a></li><li><a href="#">Minas de Muzo</a></li><li><a href="#">Certificaciones</a></li><li><a href="#">Artesanía</a></li><li><a href="#">Sostenibilidad</a></li></ul></div>
+      <div class="f-col"><h4>Nosotros</h4><ul><li><a href="#">Historia</a></li><li><a href="#">Minas de Muzo, Coscuez y Chivor</a></li><li><a href="#">Certificaciones</a></li><li><a href="#">Artesanía</a></li><li><a href="#">Sostenibilidad</a></li></ul></div>
       <div class="f-col"><h4>Atención</h4><ul><li><a href="#">Envíos</a></li><li><a href="#">Devoluciones</a></li><li><a href="#">Cuidado de joyas</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">Showroom Villavicencio, Meta</a></li></ul></div>
     </div>
     <div class="f-bot">
