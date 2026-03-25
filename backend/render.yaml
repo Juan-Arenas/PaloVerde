@@ -26,6 +26,8 @@ services:
         value: https://TU-SITIO.netlify.app
       - key: BACKEND_URL
         sync: false
+      - key: ADMIN_PASSWORD
+        value: 1234
 
 databases:
   - name: paloverde-db

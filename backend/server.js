@@ -31,6 +31,7 @@ app.use('/api/auth',      require('./routes/auth'));
 app.use('/api/productos', require('./routes/productos'));
 app.use('/api/carrito',   require('./routes/carrito'));
 app.use('/api/pagos',     require('./routes/pagos'));
+app.use('/api/admin',     require('./routes/admin'));
 
 // INICIAR
 async function init() {
@@ -52,6 +53,7 @@ async function init() {
         nombre VARCHAR(200) NOT NULL,
         descripcion TEXT,
         precio_usd DECIMAL(10,2) NOT NULL,
+        precio_original_usd DECIMAL(10,2),
         imagen_url VARCHAR(500),
         material VARCHAR(200),
         quilates DECIMAL(5,2),
@@ -92,6 +94,8 @@ async function init() {
         cantidad INT
       );
     `);
+    /* Migración: agregar columna si no existe */
+    await db.query('ALTER TABLE productos ADD COLUMN IF NOT EXISTS precio_original_usd DECIMAL(10,2)').catch(() => {});
     console.log('✅ Tablas listas');
 
     const count = await db.query('SELECT COUNT(*) FROM productos');
