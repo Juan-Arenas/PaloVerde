@@ -19,12 +19,26 @@ const pool = new Pool({
   }
 });
 
-// Test connection
-pool.connect((err, client, release) => {
+// Función para inicializar la base de datos automáticamente
+const initDB = async () => {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const schema = fs.readFileSync(path.join(__dirname, 'schema.sql'), 'utf8');
+    await pool.query(schema);
+    console.log('Base de datos inicializada (Tablas creadas/verificadas)');
+  } catch (err) {
+    console.error('Error inicializando la base de datos:', err);
+  }
+};
+
+// Test connection y ejecutar initDB
+pool.connect(async (err, client, release) => {
   if (err) {
     return console.error('Error connecting to database:', err.stack);
   }
   console.log('Connected to PostgreSQL successfully');
+  await initDB();
   release();
 });
 
