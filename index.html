@@ -535,395 +535,77 @@ footer{background:var(--ink);padding:56px 0 28px}
 #intro-mobile-card .imc-badge{font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
 #intro-mobile-card .imc-badge::before{content:'';width:5px;height:5px;background:var(--g-soft);border-radius:50%;display:block}
 
-/* ══════════════════════════════════════════════════════
-   SISTEMA DE CARRITO / AUTH / PAGO
-══════════════════════════════════════════════════════ */
+/* ── PRODUCT CARDS ── */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px;padding:40px 0}
+.pv-card{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;height:100%}
+.pv-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(27,77,53,0.12)}
+.pv-card-img{position:relative;aspect-ratio:1;overflow:hidden;background:var(--beige2)}
+.pv-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pv-card:hover .pv-card-img img{transform:scale(1.08)}
+.pv-card-cat{position:absolute;top:16px;left:16px;background:var(--g-deep);color:var(--white);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;border-radius:50px;font-weight:500;z-index:2}
+.pv-card-body{padding:24px;flex:1;display:flex;flex-direction:column;gap:12px}
+.pv-card-mat{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.pv-card-mat::before{content:'';width:5px;height:5px;background:var(--g-soft);border-radius:50%}
+.pv-card-name{font-family:var(--serif);font-size:1.4rem;color:var(--ink);line-height:1.2}
+.pv-card-desc{font-size:.85rem;color:var(--muted);line-height:1.6;font-weight:300;white-space:pre-line}
+.pv-card-footer{padding:20px 24px 24px;border-top:1px solid var(--beige3);display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(245,240,232,0.3)}
+.pv-price-main{font-family:var(--title);font-size:1.1rem;color:var(--g-deep);letter-spacing:0.02em}
+.pv-card-btn{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:12px 20px;font-family:var(--body);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;transition:background .2s;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.pv-card-btn:hover{background:var(--g-mid)}
 
-/* URL del backend — cambiar cuando despliegues en Railway */
-/* Se define en JS: window.API = '...' */
+/* ── MODAL GALERÍA ── */
+#pv-gallery-modal{position:fixed;inset:0;z-index:9999;background:rgba(27,77,53,.98);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+#pv-gallery-modal.open{display:flex}
+.pg-content{background:var(--beige);width:min(900px,100%);max-height:90vh;border-radius:var(--radius);display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4)}
+.pg-close{position:absolute;top:16px;right:16px;z-index:10;width:40px;height:40px;background:var(--white);border:1px solid var(--beige3);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--g-deep);transition:transform .2s}
+.pg-close:hover{transform:rotate(90deg)}
+.pg-body{padding:32px;overflow-y:auto;flex:1}
+.pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.pg-img-box{aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px solid var(--beige3);background:var(--white)}
+.pg-img-box img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.pg-header{padding:32px 32px 0;text-align:center}
+.pg-title{font-family:var(--serif);font-size:1.8rem;color:var(--g-deep);font-style:italic}
+.pg-desc{padding:0 32px 32px;font-size:.92rem;line-height:1.7;color:var(--muted);white-space:pre-line}
+.pg-footer{padding:32px;text-align:center;border-top:1px solid var(--beige3);background:var(--white)}
+.pg-wa-btn{background:#25D366;color:#fff;padding:16px 40px;border-radius:50px;font-family:var(--body);font-weight:600;letter-spacing:.05em;text-decoration:none;display:inline-flex;align-items:center;gap:12px;transition:transform .2s,box-shadow .2s}
+.pg-wa-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(37,211,102,.4)}
 
-/* ── OVERLAY FONDO MODALES ── */
-.pv-backdrop{
-  position:fixed;inset:0;z-index:4000;
-  background:rgba(20,30,22,.55);backdrop-filter:blur(4px);
-  opacity:0;pointer-events:none;transition:opacity .3s;
-}
-.pv-backdrop.open{opacity:1;pointer-events:auto}
+/* ── CARRITO DRAWER ── */
+#cart-drawer{position:fixed;top:0;right:-420px;width:min(420px,100%);height:100vh;background:var(--white);z-index:10000;box-shadow:-10px 0 40px rgba(0,0,0,0.15);transition:right .4s cubic-bezier(0.16,1,0.3,1);display:flex;flex-direction:column}
+#cart-drawer.open{right:0}
+#cart-overlay{position:fixed;inset:0;background:rgba(27,77,53,0.4);backdrop-filter:blur(4px);z-index:9999;display:none}
+#cart-overlay.open{display:block}
+.cart-header{padding:24px;border-bottom:1px solid var(--beige3);display:flex;justify-content:space-between;align-items:center}
+.cart-title{font-family:var(--title);font-size:1.2rem;letter-spacing:.1em;color:var(--g-deep)}
+.cart-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted)}
+.cart-body{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:20px}
+.cart-item{display:flex;gap:16px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--beige3)}
+.cart-item-img{width:70px;height:70px;border-radius:8px;object-fit:cover;border:1px solid var(--beige3)}
+.cart-item-info{flex:1}
+.cart-item-name{font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+.cart-item-meta{font-size:.75rem;color:var(--muted);margin-bottom:4px}
+.cart-item-price{font-weight:600;color:var(--g-deep);font-size:.9rem}
+.cart-item-remove{background:none;border:none;color:#ff4d4d;font-size:.8rem;cursor:pointer;padding:4px 0}
+.cart-footer{padding:24px;background:var(--beige);border-top:1px solid var(--beige3)}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:20px;font-family:var(--title);font-size:1.1rem;color:var(--ink)}
+.cart-pay-btn{width:100%;background:var(--g-deep);color:var(--white);padding:16px;border:none;border-radius:50px;font-family:var(--body);font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.cart-pay-btn:hover{background:var(--g-mid)}
 
-/* ── MODAL BASE ── */
-.pv-modal{
-  position:fixed;z-index:4001;
-  background:var(--white);border-radius:var(--radius);
-  box-shadow:0 32px 80px rgba(0,0,0,.22);
-  opacity:0;pointer-events:none;
-  transition:opacity .3s,transform .3s;
-}
-.pv-modal.open{opacity:1;pointer-events:auto}
+/* ── CONFIGURACIÓN PRODUCTO ── */
+.p-config{margin-top:20px;display:flex;flex-direction:column;gap:16px;background:var(--white);padding:20px;border-radius:12px;border:1px solid var(--beige3)}
+.p-config-row{display:flex;flex-direction:column;gap:8px}
+.p-config-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.p-config-select, .p-config-input{padding:10px;border:1px solid var(--beige3);border-radius:6px;font-family:var(--body);outline:none}
+.p-config-select:focus, .p-config-input:focus{border-color:var(--g-soft)}
+.cart-badge{position:absolute;top:-5px;right:-10px;background:var(--gold);color:var(--white);font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold}
 
-/* ── MODAL AUTH — centrado ── */
-#modal-auth{
-  top:50%;left:50%;
-  transform:translate(-50%,-44%);
-  width:min(440px,94vw);padding:2.8rem 2.4rem;
-}
-#modal-auth.open{transform:translate(-50%,-50%)}
-
-.auth-logo{text-align:center;margin-bottom:1.8rem}
-.auth-logo img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto .7rem;border:2px solid var(--beige3)}
-.auth-logo span{font-family:var(--title);font-size:.9rem;color:var(--g-deep);letter-spacing:.22em;display:block}
-.auth-tabs{display:flex;border-bottom:1px solid var(--beige3);margin-bottom:1.8rem}
-.auth-tab{flex:1;padding:.7rem;text-align:center;font-family:var(--body);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
-.auth-tab.active{color:var(--g-deep);border-bottom-color:var(--g-deep)}
-.auth-form{display:none;flex-direction:column;gap:1rem}
-.auth-form.active{display:flex}
-.pv-input{
-  width:100%;padding:.85rem 1rem;
-  border:1px solid var(--beige3);border-radius:8px;
-  font-family:var(--body);font-size:.88rem;color:var(--ink);
-  background:var(--beige);outline:none;
-  transition:border-color .2s;
-}
-.pv-input:focus{border-color:var(--g-mid)}
-.pv-input::placeholder{color:var(--muted);opacity:.6}
-.auth-submit{
-  background:var(--g-deep);color:var(--white);border:none;
-  padding:1rem;border-radius:8px;font-family:var(--body);
-  font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  cursor:pointer;transition:background .2s;margin-top:.4rem;
-}
-.auth-submit:hover{background:var(--g-mid)}
-.auth-submit:disabled{opacity:.6;cursor:not-allowed}
-.auth-error{font-size:.78rem;color:#c0392b;text-align:center;min-height:1rem}
-.auth-close{
-  position:absolute;top:.9rem;right:1rem;
-  background:none;border:none;cursor:pointer;
-  font-size:1.3rem;color:var(--muted);line-height:1;
-  padding:.3rem;
-}
-.auth-close:hover{color:var(--ink)}
-
-/* ── CARRITO LATERAL ── */
-#panel-carrito{
-  top:0;right:0;bottom:0;
-  width:min(480px,100vw);
-  transform:translateX(110%);
-  border-radius:0;
-  display:flex;flex-direction:column;
-}
-#panel-carrito.open{transform:translateX(0)}
-
-.cart-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.6rem 1.8rem;border-bottom:1px solid var(--beige3);
-  flex-shrink:0;
-}
-.cart-head h3{font-family:var(--title);font-size:1rem;letter-spacing:.18em;color:var(--ink)}
-.cart-close{background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--muted)}
-.cart-close:hover{color:var(--ink)}
-
-.cart-items{flex:1;overflow-y:auto;padding:1.4rem 1.8rem;display:flex;flex-direction:column;gap:1rem}
-
-.cart-item{
-  display:grid;grid-template-columns:72px 1fr auto;
-  gap:1rem;align-items:center;
-  background:var(--beige);border:1px solid var(--beige3);
-  border-radius:10px;padding:.9rem;
-}
-.cart-item-img{width:72px;height:72px;object-fit:cover;border-radius:8px}
-.cart-item-name{font-family:var(--serif);font-size:.95rem;color:var(--ink);margin-bottom:.2rem}
-.cart-item-mat{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-.cart-item-price{font-family:var(--title);font-size:.95rem;color:var(--g-deep);margin-top:.4rem}
-.cart-item-del{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;padding:.3rem;transition:color .2s}
-.cart-item-del:hover{color:#c0392b}
-
-.cart-empty{
-  flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:1rem;color:var(--muted);
-  font-family:var(--serif);font-size:1.05rem;font-style:italic;
-  padding:2rem;text-align:center;
-}
-.cart-empty svg{opacity:.3}
-
-.cart-footer{
-  padding:1.4rem 1.8rem;border-top:1px solid var(--beige3);
-  flex-shrink:0;background:var(--white);
-}
-.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
-.cart-total-lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.cart-total-val{font-family:var(--title);font-size:1.5rem;color:var(--ink)}
-.cart-checkout-btn{
-  width:100%;background:var(--g-deep);color:var(--white);
-  border:none;padding:1rem;border-radius:8px;
-  font-family:var(--body);font-size:.8rem;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
-  transition:background .2s;
-}
-.cart-checkout-btn:hover{background:var(--g-mid)}
-.cart-checkout-btn:disabled{opacity:.6;cursor:not-allowed}
-
-/* ── MODAL CHECKOUT ── */
-#modal-checkout{
-  top:50%;left:50%;
-  transform:translate(-50%,-44%);
-  width:min(560px,96vw);
-  max-height:92vh;overflow-y:auto;
-  padding:2.4rem;
-}
-#modal-checkout.open{transform:translate(-50%,-50%)}
-
-.checkout-title{font-family:var(--title);font-size:1.1rem;letter-spacing:.14em;color:var(--ink);margin-bottom:1.6rem;display:flex;align-items:center;gap:.8rem}
-.checkout-title svg{opacity:.5}
-
-.checkout-items{background:var(--beige);border-radius:10px;padding:1.2rem;margin-bottom:1.6rem}
-.checkout-item-row{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);padding:.35rem 0;border-bottom:1px solid var(--beige3)}
-.checkout-item-row:last-child{border-bottom:none}
-.checkout-item-row strong{color:var(--ink)}
-
-.moneda-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;margin-top:1.2rem;display:block}
-.moneda-select{
-  width:100%;padding:.8rem 1rem;
-  border:1px solid var(--beige3);border-radius:8px;
-  font-family:var(--body);font-size:.88rem;color:var(--ink);
-  background:var(--beige);outline:none;cursor:pointer;
-  appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7568' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 1rem center;
-}
-
-.total-convertido{
-  background:var(--g-xs);border:1px solid rgba(27,77,53,.15);
-  border-radius:10px;padding:1.2rem 1.4rem;margin:1.2rem 0;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.total-convertido .lbl{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.total-convertido .val{font-family:var(--title);font-size:1.6rem;color:var(--g-deep)}
-.total-convertido .usd{font-size:.75rem;color:var(--muted);margin-top:.2rem}
-
-.pagar-btn{
-  width:100%;background:var(--g-deep);color:var(--white);
-  border:none;padding:1.1rem;border-radius:8px;
-  font-family:var(--body);font-size:.82rem;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
-  transition:background .2s,transform .15s;margin-top:.8rem;
-  display:flex;align-items:center;justify-content:center;gap:.8rem;
-}
-.pagar-btn:hover{background:var(--g-mid);transform:translateY(-1px)}
-.pagar-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-
-.mp-logo-note{
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  font-size:.68rem;color:var(--muted);margin-top:.8rem;
-  opacity:.7;
-}
-
-/* ── BADGE CONTADOR CARRITO ── */
-.cart-badge{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:#c0392b;color:#fff;
-  border-radius:50%;width:18px;height:18px;
-  font-size:.6rem;font-weight:700;
-  position:absolute;top:-6px;right:-6px;
-  opacity:0;transition:opacity .2s;pointer-events:none;
-}
-.cart-badge.show{opacity:1}
-.nav-cart-wrap{position:relative;display:inline-block}
-.btn-coleccion-nav{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--g-deep);font-family:var(--body);font-weight:500;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 18px;border:1.5px solid var(--g-pale);transition:border-color .2s,background .2s;white-space:nowrap;text-decoration:none}
-.btn-coleccion-nav:hover{border-color:var(--g-deep);background:var(--g-xs)}
-
-/* ── TOAST ── */
-#pv-toast{
-  position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
-  z-index:5000;background:var(--ink);color:var(--white);
-  padding:.7rem 1.4rem;border-radius:50px;
-  font-family:var(--body);font-size:.78rem;letter-spacing:.06em;
-  opacity:0;pointer-events:none;transition:opacity .3s;
-  white-space:nowrap;
-}
-#pv-toast.show{opacity:1}
-
-/* ── SPINNER ── */
-.pv-spin{
-  width:18px;height:18px;border:2px solid rgba(255,255,255,.3);
-  border-top-color:#fff;border-radius:50%;
-  animation:spin .7s linear infinite;display:inline-block;
-}
-/* ── CATÁLOGO OVERLAY ── */
-#cat-overlay{position:fixed;inset:0;z-index:2000;background:var(--beige);transform:translateX(100%);transition:transform .38s cubic-bezier(.22,1,.36,1);overflow-y:auto}
-#cat-overlay.open{transform:none}
-.cat-ov-nav{position:sticky;top:0;z-index:10;background:rgba(245,240,232,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--beige3);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.cat-ov-back{display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;font-family:var(--body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:color .2s}
-.cat-ov-back:hover{color:var(--g-deep)}
-.cat-ov-brand{font-family:var(--title);font-size:.95rem;letter-spacing:.28em;color:var(--g-deep)}
-.cat-ov-cart-btn{display:flex;align-items:center;gap:7px;background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:9px 18px;font-family:var(--body);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;transition:background .2s;position:relative}
-.cat-ov-cart-btn:hover{background:var(--g-mid)}
-.cat-ov-body{max-width:1260px;margin:0 auto;padding:32px 32px 80px;width:100%}
-.cat-hero-strip{background:var(--g-deep);padding:48px 32px 40px;margin-bottom:0;position:relative;overflow:hidden}
-.cat-hero-strip::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=1400&q=30') center/cover;opacity:.07}
-.cat-hero-kicker{font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-l);margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem;position:relative}
-.cat-hero-kicker::before{content:'';width:20px;height:1px;background:var(--gold-l)}
-.cat-hero-h1{font-family:var(--title);font-size:clamp(1.8rem,3.5vw,3rem);color:var(--white);letter-spacing:.1em;position:relative}
-.cat-hero-sub{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(253,252,250,.55);margin-top:.4rem;position:relative}
-.cat-filters-bar{background:var(--white);border-bottom:1px solid var(--beige3);padding:14px 32px;display:flex;align-items:center;gap:10px;overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;z-index:9}
-.cat-filters-bar::-webkit-scrollbar{display:none}
-.cat-filter-lbl{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);flex-shrink:0;margin-right:4px}
-.cat-fp{background:transparent;border:1px solid var(--beige3);color:var(--muted);padding:.36rem 1.1rem;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .16s;font-family:var(--body);border-radius:50px;white-space:nowrap;flex-shrink:0}
-.cat-fp:hover{border-color:var(--g-deep);color:var(--g-deep)}
-.cat-fp.on{background:var(--g-deep);color:var(--white);border-color:var(--g-deep)}
-.cat-count{margin-left:auto;font-size:.7rem;color:var(--muted);flex-shrink:0}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;padding:32px}
-.pv-card{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s}
-.pv-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(27,77,53,.13);border-color:var(--g-pale)}
-.pv-card-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--beige2)}
-.pv-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.pv-card:hover .pv-card-img img{transform:scale(1.06)}
-.pv-card-cat{position:absolute;top:12px;left:12px;background:rgba(27,77,53,.88);color:var(--white);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 9px;border-radius:50px;font-weight:500}
-.pv-card-cat.desc{background:rgba(180,40,40,.88)}
-.pv-card-body{padding:18px 18px 12px;flex:1;display:flex;flex-direction:column;gap:.3rem}
-.pv-card-mat{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.4rem}
-.pv-card-mat::before{content:'';width:4px;height:4px;background:var(--g-soft);border-radius:50%;flex-shrink:0}
-.pv-card-name{font-family:var(--serif);font-size:1.2rem;color:var(--ink);line-height:1.25}
-.pv-card-desc{font-size:.78rem;color:var(--muted);line-height:1.6;font-weight:300;flex:1}
-.pv-card-footer{padding:14px 18px 18px;border-top:1px solid var(--beige3);display:flex;align-items:center;justify-content:space-between;gap:10px}
-.pv-price{display:flex;flex-direction:column;gap:1px}
-.pv-price-main{font-family:var(--title);font-size:1.25rem;color:var(--g-deep)}
-.pv-price-old{font-size:.73rem;color:var(--muted);text-decoration:line-through}
-.pv-price-cop{font-size:.66rem;color:var(--muted)}
-.pv-card-add{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.58rem 1.1rem;font-family:var(--body);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:background .2s,transform .15s;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:5px}
-.pv-card-add:hover{background:var(--g-mid);transform:translateY(-1px)}
-.pv-card-add:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.pv-skel{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);overflow:hidden}
-.pv-skel-img{aspect-ratio:4/3;background:linear-gradient(90deg,var(--beige2) 25%,var(--beige3) 50%,var(--beige2) 75%);background-size:200%;animation:pvSk 1.4s infinite}
-.pv-skel-body{padding:18px}
-.pv-skel-line{height:12px;border-radius:4px;margin-bottom:10px;background:linear-gradient(90deg,var(--beige2) 25%,var(--beige3) 50%,var(--beige2) 75%);background-size:200%;animation:pvSk 1.4s infinite}
-.pv-skel-line.lg{height:18px;width:65%}.pv-skel-line.sm{width:40%}
-@keyframes pvSk{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-/* ── CARRITO TEMU ── */
-#pv-cart{position:fixed;top:0;right:0;bottom:0;z-index:3500;width:min(460px,100vw);background:var(--white);box-shadow:-8px 0 40px rgba(0,0,0,.15);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column}
-#pv-cart.open{transform:none}
-.pvc-head{padding:18px 24px;border-bottom:1px solid var(--beige3);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px}
-.pvc-head h3{font-family:var(--serif);font-size:1.15rem;font-style:italic}
-.pvc-close{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1.1rem;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
-.pvc-close:hover{background:var(--beige2)}
-.pvc-items{flex:1;overflow-y:auto;padding:0}
-.pvc-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;height:100%;color:var(--muted);padding:40px;text-align:center}
-.pvc-empty svg{opacity:.2}
-.pvc-empty p{font-family:var(--serif);font-style:italic;font-size:.95rem}
-.pvc-item{display:grid;grid-template-columns:80px 1fr;gap:14px;padding:16px 24px;border-bottom:1px solid var(--beige3);align-items:start}
-.pvc-item-img{width:80px;height:80px;object-fit:cover;border-radius:8px;background:var(--beige2)}
-.pvc-item-name{font-family:var(--serif);font-size:.92rem;color:var(--ink);line-height:1.3;margin-bottom:2px}
-.pvc-item-mat{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.pvc-item-price{font-family:var(--title);font-size:.95rem;color:var(--g-deep)}
-.pvc-item-actions{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
-.pvc-qty{display:flex;align-items:center;border:1px solid var(--beige3);border-radius:4px;overflow:hidden}
-.pvc-qty-btn{background:var(--beige2);border:none;cursor:pointer;width:26px;height:26px;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .15s}
-.pvc-qty-btn:hover{background:var(--beige3)}
-.pvc-qty-val{width:30px;text-align:center;font-size:.8rem;font-weight:500}
-.pvc-del{background:none;border:none;cursor:pointer;color:var(--muted);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;padding:2px 4px}
-.pvc-del:hover{color:#c0392b}
-.pvc-footer{flex-shrink:0;padding:18px 24px 24px;border-top:2px solid var(--beige3);background:var(--white)}
-.pvc-monedas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.pvc-moneda-btn{background:transparent;border:1px solid var(--beige3);padding:3px 10px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:50px;font-family:var(--body);color:var(--muted);transition:all .15s}
-.pvc-moneda-btn.on{background:var(--g-deep);color:var(--white);border-color:var(--g-deep)}
-.pvc-totales{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
-.pvc-row{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
-.pvc-row.total{font-size:.95rem;color:var(--ink);font-weight:500;padding-top:10px;border-top:1px solid var(--beige3);margin-top:4px}
-.pvc-row.total .v{font-family:var(--title);font-size:1.15rem;color:var(--g-deep)}
-.pvc-checkout-btn{width:100%;background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:1rem;font-family:var(--body);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:background .2s;border-radius:2px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
-.pvc-checkout-btn:hover{background:var(--g-mid)}
-.pvc-checkout-btn:disabled{opacity:.6;cursor:not-allowed}
-.pvc-wa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25D366;color:#fff;border:none;cursor:pointer;padding:.8rem;border-radius:2px;font-family:var(--body);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:opacity .2s;text-decoration:none}
-.pvc-wa:hover{opacity:.88}
-
-/* ── BACKDROP GLOBAL ── */
-#pv-backdrop2{position:fixed;inset:0;z-index:3400;background:rgba(20,30,22,.5);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s}
-#pv-backdrop2.open{opacity:1;pointer-events:auto}
-
-/* ── ADMIN LOGIN ── */
-#admin-login-wrap{position:fixed;inset:0;z-index:6000;background:rgba(20,30,22,.75);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
-#admin-login-wrap.open{opacity:1;pointer-events:auto}
-.adm-login-card{background:var(--white);border-radius:var(--radius);padding:40px 36px;width:min(360px,92vw);box-shadow:0 32px 80px rgba(0,0,0,.3)}
-.adm-login-logo{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.adm-login-logo img{width:40px;height:40px;border-radius:50%;object-fit:cover}
-.adm-login-logo span{font-family:var(--title);font-size:.9rem;letter-spacing:.28em;color:var(--g-deep)}
-.adm-login-sub{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--muted);margin-bottom:22px}
-.adm-login-err{font-size:.76rem;color:#c0392b;min-height:16px;margin-bottom:6px}
-.adm-input{padding:.82rem 1rem;background:var(--beige);border:1px solid var(--beige3);color:var(--ink);font-family:var(--body);font-size:.85rem;outline:none;border-radius:6px;transition:border-color .2s;width:100%;margin-bottom:12px}
-.adm-input:focus{border-color:var(--g-soft)}
-.adm-submit{width:100%;background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.9rem;font-family:var(--body);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:background .2s;border-radius:4px}
-.adm-submit:hover{background:var(--g-mid)}
-.adm-close-login{display:block;text-align:center;margin-top:14px;font-size:.72rem;color:var(--muted);cursor:pointer;transition:color .2s}
-.adm-close-login:hover{color:var(--ink)}
-
-/* ── ADMIN PANEL ── */
-#admin-panel{position:fixed;inset:0;z-index:5000;background:var(--beige);transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1);overflow-y:auto;display:flex;flex-direction:column}
-#admin-panel.open{transform:none}
-.adm-nav{background:var(--g-deep);padding:15px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.adm-nav-brand{display:flex;align-items:center;gap:10px}
-.adm-nav-brand img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(196,162,101,.5)}
-.adm-nav-brand span{font-family:var(--title);font-size:.85rem;letter-spacing:.24em;color:var(--white)}
-.adm-nav-right{display:flex;align-items:center;gap:10px}
-.adm-nav-btn{background:rgba(253,252,250,.15);border:1px solid rgba(253,252,250,.2);color:var(--white);padding:6px 14px;font-family:var(--body);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:background .2s}
-.adm-nav-btn:hover{background:rgba(253,252,250,.28)}
-.adm-body{max-width:1100px;margin:0 auto;padding:28px 28px 60px;width:100%}
-.adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
-.adm-stat{background:var(--white);border:1px solid var(--beige3);border-radius:var(--radius);padding:18px;text-align:center}
-.adm-stat .n{font-family:var(--title);font-size:1.9rem;color:var(--g-deep);line-height:1}
-.adm-stat .l{font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:4px}
-.adm-tabs{display:flex;border-bottom:2px solid var(--beige3);margin-bottom:24px;gap:0}
-.adm-tab{padding:11px 22px;font-family:var(--body);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .18s}
-.adm-tab.on{color:var(--g-deep);border-bottom-color:var(--g-deep);font-weight:500}
-.adm-sec{display:none}
-.adm-sec.on{display:block}
-.adm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:14px;flex-wrap:wrap}
-.adm-top h2{font-family:var(--serif);font-size:1.3rem;font-style:italic}
-.adm-add-btn{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.65rem 1.4rem;font-family:var(--body);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border-radius:4px;transition:background .2s;display:flex;align-items:center;gap:6px}
-.adm-add-btn:hover{background:var(--g-mid)}
-.adm-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--beige3)}
-.adm-table th{background:var(--beige2);padding:11px 14px;text-align:left;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;border-bottom:1px solid var(--beige3)}
-.adm-table td{padding:12px 14px;border-bottom:1px solid var(--beige3);font-size:.83rem;color:var(--ink);vertical-align:middle}
-.adm-table tr:last-child td{border-bottom:none}
-.adm-table tr:hover td{background:var(--beige)}
-.adm-prod-thumb{width:46px;height:46px;object-fit:cover;border-radius:6px;background:var(--beige2)}
-.adm-price-col{display:flex;flex-direction:column;gap:1px}
-.adm-price-new{font-weight:500;color:var(--g-deep)}
-.adm-price-old{font-size:.72rem;color:var(--muted);text-decoration:line-through}
-.adm-badge{display:inline-block;padding:2px 8px;border-radius:50px;font-size:.6rem;font-weight:500}
-.adm-badge.si{background:#e1f5ee;color:#0f6e56}
-.adm-badge.no{background:#fde8e8;color:#c0392b}
-.adm-acts{display:flex;gap:5px;flex-wrap:wrap}
-.adm-act{background:transparent;border:1px solid var(--beige3);color:var(--muted);padding:4px 10px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .18s;font-family:var(--body)}
-.adm-act:hover{border-color:var(--g-deep);color:var(--g-deep)}
-.adm-act.del:hover{border-color:#c0392b;color:#c0392b}
-
-/* MODAL PRODUCTO ADMIN */
-#adm-prod-modal{position:fixed;inset:0;z-index:7000;background:rgba(20,30,22,.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
-#adm-prod-modal.open{opacity:1;pointer-events:auto}
-.adm-modal-card{background:var(--white);border-radius:var(--radius);box-shadow:0 32px 80px rgba(0,0,0,.25);width:min(580px,100%);max-height:88vh;overflow-y:auto;padding:30px}
-.adm-modal-title{font-family:var(--serif);font-size:1.3rem;font-style:italic;margin-bottom:22px;color:var(--ink)}
-.adm-form{display:flex;flex-direction:column;gap:13px}
-.adm-form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.adm-fg{display:flex;flex-direction:column;gap:5px}
-.adm-fg label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.adm-fi{padding:.78rem .9rem;background:var(--beige);border:1px solid var(--beige3);color:var(--ink);font-family:var(--body);font-size:.84rem;outline:none;border-radius:6px;transition:border-color .2s;width:100%}
-.adm-fi:focus{border-color:var(--g-soft)}
-.adm-fi-hint{font-size:.7rem;color:var(--muted)}
-.adm-form-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
-.adm-btn-cancel{background:transparent;border:1px solid var(--beige3);color:var(--muted);padding:.72rem 1.3rem;font-family:var(--body);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .18s}
-.adm-btn-cancel:hover{border-color:var(--ink);color:var(--ink)}
-.adm-btn-save{background:var(--g-deep);color:var(--white);border:none;cursor:pointer;padding:.72rem 1.8rem;font-family:var(--body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border-radius:4px;transition:background .2s}
-.adm-btn-save:hover{background:var(--g-mid)}
-
-@media(max-width:900px){.adm-stats{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){
-  .cat-grid{grid-template-columns:1fr 1fr;gap:12px;padding:16px}
-  .cat-filters-bar{padding:12px 16px}
-  .cat-ov-nav{padding:12px 16px}
-  .adm-body{padding:16px}
-  .adm-form-row{grid-template-columns:1fr}
-  .adm-stats{grid-template-columns:1fr 1fr}
-}
-@media(max-width:400px){.cat-grid{grid-template-columns:1fr}}
+/* ── QUICK CONFIG ON CARDS ── */
+.card-q-config{padding:0 24px 16px;display:flex;gap:8px;flex-wrap:wrap}
+.q-row{display:flex;flex-direction:column;gap:4px;flex:1;min-width:70px}
+.q-label{font-size:10px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.q-select, .q-input{width:100%;padding:8px;border:1px solid var(--beige3);border-radius:4px;font-size:11px;font-family:var(--body);background:var(--white);outline:none;transition:border .2s}
+.q-select:focus, .q-input:focus{border-color:var(--g-soft)}
+.pv-card-btn.full{width:100%;justify-content:center;margin-top:8px}
 </style>
 </head>
 <body>
@@ -956,128 +638,17 @@ footer{background:var(--ink);padding:56px 0 28px}
       <li><a href="#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:10px">
-      <a href="#" class="btn-coleccion-nav" onclick="abrirCatalogo();return false" data-es="Ver colección" data-en="View collection">
+      <a href="#catalogo" class="btn-coleccion-nav" data-es="Ver colección" data-en="View collection">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         Ver colección
       </a>
-      <div class="nav-cart-wrap">
-        <button class="nav-cta" id="cart-btn" 
-          Carrito <span id="cart-count-badge" class="cart-badge">0</span>
-        </button>
-      </div>
+      <button class="nav-cta" style="position:relative" onclick="toggleCart()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-badge-val" class="cart-badge">0</span>
+      </button>
     </div>
   </div>
 </nav>
-
-<!-- ════════════════════════════════════════════════
-     MODALES DEL SISTEMA DE CARRITO
-════════════════════════════════════════════════ -->
-
-<!-- BACKDROP -->
-<div class="pv-backdrop" id="pv-backdrop" onclick="cerrarTodo()"></div>
-
-<!-- MODAL AUTH: Registro / Login -->
-<div class="pv-modal" id="modal-auth">
-  <button class="auth-close" onclick="cerrarAuth()">✕</button>
-  <div class="auth-logo">
-    <img src="Paloverde.jpeg" alt="Palo Verde">
-    <span>PALO VERDE</span>
-  </div>
-  <div class="auth-tabs">
-    <div class="auth-tab active" onclick="authTab('login')">Iniciar sesión</div>
-    <div class="auth-tab" onclick="authTab('registro')">Registrarse</div>
-  </div>
-
-  <!-- LOGIN -->
-  <form class="auth-form active" id="form-login" onsubmit="hacerLogin(event)">
-    <input class="pv-input" type="email" id="login-correo" placeholder="tu@correo.com" required autocomplete="email">
-    <input class="pv-input" type="password" id="login-pass" placeholder="Contraseña" required autocomplete="current-password">
-    <div class="auth-error" id="login-error"></div>
-    <button class="auth-submit" type="submit" id="btn-login">Iniciar sesión</button>
-  </form>
-
-  <!-- REGISTRO -->
-  <form class="auth-form" id="form-registro" onsubmit="hacerRegistro(event)">
-    <input class="pv-input" type="text" id="reg-nombre" placeholder="Tu nombre (opcional)" autocomplete="name">
-    <input class="pv-input" type="email" id="reg-correo" placeholder="tu@correo.com" required autocomplete="email">
-    <input class="pv-input" type="password" id="reg-pass" placeholder="Contraseña (mín. 6 caracteres)" required autocomplete="new-password" minlength="6">
-    <div class="auth-error" id="reg-error"></div>
-    <button class="auth-submit" type="submit" id="btn-registro">Crear cuenta</button>
-  </form>
-</div>
-
-<!-- PANEL CARRITO (lateral derecho) -->
-<div class="pv-modal" id="panel-carrito">
-  <div class="cart-head">
-    <h3>Mi carrito</h3>
-    <button class="cart-close" onclick="cerrarCarrito()">✕</button>
-  </div>
-  <div class="cart-items" id="cart-items-list">
-    <div class="cart-empty">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span>Tu carrito está vacío</span>
-    </div>
-  </div>
-  <div class="cart-footer" id="cart-footer" style="display:none">
-    <div class="cart-total-row">
-      <span class="cart-total-lbl">Total</span>
-      <span class="cart-total-val" id="cart-total-val">$0 USD</span>
-    </div>
-    <button class="cart-checkout-btn" onclick="abrirCheckout()">
-      Proceder al pago →
-    </button>
-  </div>
-</div>
-
-<!-- MODAL CHECKOUT -->
-<div class="pv-modal" id="modal-checkout">
-  <button class="auth-close" onclick="cerrarCheckout()">✕</button>
-  <div class="checkout-title">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-    Resumen de pago
-  </div>
-
-  <div class="checkout-items" id="checkout-items-list"></div>
-
-  <span class="moneda-label">Selecciona tu moneda de pago</span>
-  <select class="moneda-select" id="moneda-select" onchange="actualizarConversion()">
-    <option value="USD">🇺🇸 USD — Dólar estadounidense</option>
-    <option value="COP" selected>🇨🇴 COP — Peso colombiano</option>
-    <option value="EUR">🇪🇺 EUR — Euro</option>
-    <option value="BRL">🇧🇷 BRL — Real brasileño</option>
-    <option value="MXN">🇲🇽 MXN — Peso mexicano</option>
-    <option value="PEN">🇵🇪 PEN — Sol peruano</option>
-    <option value="CLP">🇨🇱 CLP — Peso chileno</option>
-    <option value="ARS">🇦🇷 ARS — Peso argentino</option>
-    <option value="PAB">🇵🇦 PAB — Balboa panameño</option>
-    <option value="CRC">🇨🇷 CRC — Colón costarricense</option>
-    <option value="GTQ">🇬🇹 GTQ — Quetzal guatemalteco</option>
-    <option value="HNL">🇭🇳 HNL — Lempira hondureño</option>
-    <option value="BOB">🇧🇴 BOB — Boliviano</option>
-    <option value="DOP">🇩🇴 DOP — Peso dominicano</option>
-  </select>
-
-  <div class="total-convertido">
-    <div>
-      <div class="lbl">Total a pagar</div>
-      <div class="usd" id="co-usd">$0.00 USD</div>
-    </div>
-    <div class="val" id="co-total">$0</div>
-  </div>
-
-  <button class="pagar-btn" id="btn-pagar" onclick="procesarPago()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-    Pagar con tarjeta
-  </button>
-  <div class="mp-logo-note">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Pago seguro vía Mercado Pago
-  </div>
-</div>
-
-<!-- TOAST -->
-<div id="pv-toast"></div>
-
 
 <!-- ════════════════════════════════════════
      INTRO DE VIDEO — 100vh, se reproduce solo
@@ -1284,64 +855,118 @@ footer{background:var(--ink);padding:56px 0 28px}
       <a class="v-all" href="#">Ver todo el catálogo →</a>
     </div>
     <div class="filters">
-      <button class="fp on" onclick="fp(this)" data-es="Todo" data-en="All">Todo</button>
-      <button class="fp" onclick="fp(this)" data-es="Esmeraldas" data-en="Emeralds">Esmeraldas</button>
-      <button class="fp" onclick="fp(this)" data-es="Anillos" data-en="Rings">Anillos</button>
-      <button class="fp" onclick="fp(this)" data-es="Collares" data-en="Necklaces">Collares</button>
-      <button class="fp" onclick="fp(this)" data-es="Pulseras" data-en="Bracelets">Pulseras</button>
-      <button class="fp" onclick="fp(this)" data-es="Aretes" data-en="Earrings">Aretes</button>
+      <button class="fp on" onclick="fp(this)" data-cat="all" data-es="Todo" data-en="All">Todo</button>
+      <button class="fp" onclick="fp(this)" data-cat="anillos" data-es="Anillos" data-en="Rings">Anillos</button>
+      <button class="fp" onclick="fp(this)" data-cat="manillas" data-es="Manillas" data-en="Bracelets">Manillas</button>
+      <button class="fp" onclick="fp(this)" data-cat="pulseras" data-es="Pulseras" data-en="Pulseras">Pulseras</button>
+      <button class="fp" onclick="fp(this)" data-cat="topos" data-es="Topos" data-en="Studs">Topos</button>
+      <button class="fp" onclick="fp(this)" data-cat="aretes" data-es="Aretes" data-en="Earrings">Aretes</button>
     </div>
-    <div class="bento">
-      <div class="pc big">
-        <img class="pc-img" src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=900&auto=format&fit=crop&q=85" alt="Esmeralda Muzo, Coscuez y Chivor">
-        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
-        <div class="pc-info">
-          <span class="pc-tag t-g">Más Deseada</span>
-          <div class="pc-name">Esmeralda Muzo, Coscuez y Chivor<br>Hexagonal Bruta</div>
-          <div class="pc-mat">Oro 18k · 2.8 quilates · Certificado GIA</div>
-          <div class="pc-foot"><span class="pc-price">$2.850 USD</span><button class="pc-btn" onclick="pvAddToCart(1,'Esmeralda Muzo, Coscuez y Chivor Hexagonal Bruta',2850,this)">Añadir al carrito</button></div>
+    <div class="cat-grid" id="main-cat-grid" style="padding:0">
+      
+      <!-- MANILLA TEJIDA -->
+      <div class="pv-card" data-cat="manillas" id="prod-manilla">
+        <div class="pv-card-img" onclick="abrirGaleria('Tejida1.jpeg,Tejida2.jpeg', 'Manilla Tejida', 'Configura tu manilla abajo...', 'wa-link-here')">
+          <img src="Tejida1.jpeg" alt="Manilla tejida">
+          <span class="pv-card-cat">Colección Tejida</span>
+        </div>
+        <div class="pv-card-body">
+          <span class="pv-card-mat">Oro 18 Quilates</span>
+          <h3 class="pv-card-name">Manilla Tejida</h3>
+        </div>
+        
+        <div class="card-q-config">
+          <div class="q-row">
+            <span class="q-label">Balín</span>
+            <select class="q-select sel-calibre" onchange="updateCardPrice(this, 'manilla')">
+              <option value="3">#3</option>
+              <option value="4">#4</option>
+              <option value="5">#5</option>
+              <option value="6">#6</option>
+              <option value="7">#7</option>
+              <option value="8">#8</option>
+            </select>
+          </div>
+          <div class="q-row">
+            <span class="q-label">Cant. (Mín. 2)</span>
+            <input type="number" class="q-input sel-qty" value="2" min="2" onchange="updateCardPrice(this, 'manilla')">
+          </div>
+        </div>
+
+        <div class="pv-card-footer" style="flex-direction:column; align-items:flex-start; gap:12px">
+          <div class="pv-price-main" title="Precio por 2 unidades">$76.000</div>
+          <div style="display:flex; gap:8px; width:100%">
+            <button onclick="addManillaDirect(this)" class="pv-card-btn" style="flex:1; justify-content:center">Añadir</button>
+            <button onclick="abrirGaleria('Tejida1.jpeg,Tejida2.jpeg', 'Manilla Tejida', '<strong>Precios por balín (Unidades mínimas 2):</strong>\n• Balín #3: $38.000\n• Balín #4: $75.000\n• Balín #5: $90.000\n• Balín #6: $145.000\n• Balín #7: $198.000\n• Balín #8: $250.000\n\n<strong>Descripción:</strong>\nLa manilla tejida con balines de oro es una pieza sofisticada que combina la elegancia del oro con la versatilidad del tejido artesanal.', 'https://wa.me/573183177682')" class="pv-card-btn" style="background:transparent; border:1px solid var(--beige3); color:var(--muted); padding:10px">
+              Consultar
+            </button>
+          </div>
         </div>
       </div>
-      <div class="pc tall">
-        <img class="pc-img" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&auto=format&fit=crop&q=85" alt="Anillo esmeralda">
-        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
-        <div class="pc-info">
-          <span class="pc-tag t-go">Exclusivo</span>
-          <div class="pc-name">Anillo Selva Imperial</div>
-          <div class="pc-mat">Oro blanco 18k · Esmeralda oval</div>
-          <div class="pc-foot"><span class="pc-price">$3.200 USD</span><button class="pc-btn" onclick="pvAddToCart(2,'Anillo Selva Imperial',3200,this)">Añadir</button></div>
+
+      <!-- PULSERA TENIS -->
+      <div class="pv-card" data-cat="pulseras" id="prod-pulsera">
+        <div class="pv-card-img" onclick="abrirGaleria('Pulsera1.jpeg,Pulsera2.jpeg,Pulsera3.jpeg,Pulsera4.jpeg', 'Pulsera Tenis', '', 'wa-link-here')">
+          <img src="Pulsera1.jpeg" alt="Pulsera Tenis">
+          <span class="pv-card-cat">Elegancia</span>
+        </div>
+        <div class="pv-card-body">
+          <span class="pv-card-mat">Plata Italiana 925</span>
+          <h3 class="pv-card-name">Pulsera Tipo Tenis</h3>
+        </div>
+        <div class="card-q-config">
+          <div class="q-row">
+            <span class="q-label">Cantidad</span>
+            <input type="number" class="q-input sel-qty" value="1" min="1">
+          </div>
+        </div>
+        <div class="pv-card-footer" style="flex-direction:column; align-items:flex-start; gap:12px">
+          <div class="pv-price-main">$560.000</div>
+          <div style="display:flex; gap:8px; width:100%">
+            <button onclick="addPulseraDirect(this)" class="pv-card-btn" style="flex:1; justify-content:center">Añadir</button>
+            <button onclick="abrirGaleria('Pulsera1.jpeg,Pulsera2.jpeg,Pulsera3.jpeg,Pulsera4.jpeg', 'Pulsera Tipo Tenis', 'Pulsera tipo tenis elaborada en plata italiana 925, una pieza que encarna elegancia, precisión y lujo en cada detalle. Su diseño está compuesto por una línea continua de circones blancos de la más alta calidad, cuidadosamente engastados para ofrecer un brillo intenso y uniforme.', 'https://wa.me/573183177682')" class="pv-card-btn" style="background:transparent; border:1px solid var(--beige3); color:var(--muted); padding:10px">
+              Consultar
+            </button>
+          </div>
         </div>
       </div>
-      <div class="pc">
-        <img class="pc-img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&auto=format&fit=crop&q=85" alt="Collar">
-        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
-        <div class="pc-info">
-          <span class="pc-tag t-gh">Nuevo</span>
-          <div class="pc-name">Collar Bosque Eterno</div>
-          <div class="pc-mat">Cadena oro · Colgante esmeralda</div>
-          <div class="pc-foot"><span class="pc-price">$2.100 USD</span><button class="pc-btn" onclick="pvAddToCart(3,'Collar Bosque Eterno',2100,this)">Añadir</button></div>
+
+      <!-- TOPOS -->
+      <div class="pv-card" data-cat="topos" id="prod-topos">
+        <div class="pv-card-img" onclick="abrirGaleria('Topos1.jpeg,Topos2.jpeg', 'Topos Oro y Esmeralda', '', 'wa-link-here')">
+          <img src="Topos1.jpeg" alt="Topos">
+          <span class="pv-card-cat">Genuinas</span>
+        </div>
+        <div class="pv-card-body">
+          <span class="pv-card-mat">Oro & Esmeralda</span>
+          <h3 class="pv-card-name">Topos Esmeralda</h3>
+        </div>
+        <div class="card-q-config">
+          <div class="q-row">
+            <span class="q-label">Medida</span>
+            <select class="q-select sel-medida" onchange="updateCardPrice(this, 'topos')">
+              <option value="600000">2 mm</option>
+              <option value="650000">2.5 mm</option>
+              <option value="720000">3 mm</option>
+              <option value="840000">3.5 mm</option>
+            </select>
+          </div>
+          <div class="q-row">
+            <span class="q-label">Cant.</span>
+            <input type="number" class="q-input sel-qty" value="1" min="1">
+          </div>
+        </div>
+        <div class="pv-card-footer" style="flex-direction:column; align-items:flex-start; gap:12px">
+          <div class="pv-price-main">$600.000</div>
+          <div style="display:flex; gap:8px; width:100%">
+            <button onclick="addToposDirect(this)" class="pv-card-btn" style="flex:1; justify-content:center">Añadir</button>
+            <button onclick="abrirGaleria('Topos1.jpeg,Topos2.jpeg', 'Topos Esmeralda', 'Topos de oro y esmeralda de la más alta calidad.\n\n<strong>Medidas:</strong>\n• 2 mm: $600.000\n• 2.5 mm: $650.000\n• 3 mm: $720.000\n• 3.5 mm: $840.000', 'https://wa.me/573183177682')" class="pv-card-btn" style="background:transparent; border:1px solid var(--beige3); color:var(--muted); padding:10px">
+              Consultar
+            </button>
+          </div>
         </div>
       </div>
-      <div class="pc">
-        <img class="pc-img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&auto=format&fit=crop&q=85" alt="Pulsera">
-        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
-        <div class="pc-info">
-          <span class="pc-tag t-g">Tendencia</span>
-          <div class="pc-name">Pulsera Raíces Doradas</div>
-          <div class="pc-mat">Oro 18k · 3 esmeraldas baguette</div>
-          <div class="pc-foot"><span class="pc-price">$1.480 USD</span><button class="pc-btn" onclick="pvAddToCart(4,'Pulsera Raíces Doradas',1480,this)">Añadir</button></div>
-        </div>
-      </div>
-      <div class="pc">
-        <img class="pc-img" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&auto=format&fit=crop&q=85" alt="Aretes">
-        <div class="pc-over"></div><button class="pc-wish" onclick="wish(this)">♡</button>
-        <div class="pc-info">
-          <span class="pc-tag t-go">Premium</span>
-          <div class="pc-name">Arete Gota Muzo</div>
-          <div class="pc-mat">Oro 18k · Esmeralda lágrima</div>
-          <div class="pc-foot"><span class="pc-price">$1.950 USD</span><button class="pc-btn" onclick="pvAddToCart(5,'Arete Gota Muzo',1950,this)">Añadir</button></div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1600,17 +1225,7 @@ footer{background:var(--ink);padding:56px 0 28px}
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════════════════
-     SCROLLYTELLING ENGINE
-══════════════════════════════════════════════════ -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ══════════════════════════════════════════════════
-   VIDEO INTRO ENGINE
-   Video 5s se reproduce solo.
-   Panel 1 (centro):  seg 1.0 → 2.8
-   Panel 2 (derecha): seg 3.2 → fin
-   Al terminar: nav + botón repetir
-══════════════════════════════════════════════════ */
 const vid       = document.getElementById('sf-video');
 const panel1    = document.getElementById('sf-panel-1');
 const panel2    = document.getElementById('sf-panel-2');
@@ -1640,13 +1255,11 @@ function onEnd(){
   replayBtn.classList.add('show');
 }
 
-/* Barra de progreso */
 vid.addEventListener('timeupdate', ()=>{
   const t = vid.duration ? vid.currentTime / vid.duration : 0;
   bar.style.width = (t * 100) + '%';
 });
 
-/* Arrancar */
 function tryPlay(){
   vid.play().then(startTimers).catch(()=>{});
 }
@@ -1654,7 +1267,6 @@ vid.addEventListener('canplay', tryPlay, { once:true });
 vid.addEventListener('ended', onEnd);
 if(vid.readyState >= 3) tryPlay();
 
-/* Repetir */
 function replayVideo(){
   replayBtn.classList.remove('show');
   panel1.classList.remove('visible');
@@ -1664,11 +1276,7 @@ function replayVideo(){
   tryPlay();
 }
 
-/* ══════════════════════════════════════════════════
-   TRADUCTOR ES ↔ EN
-══════════════════════════════════════════════════ */
 let currentLang = 'es';
-
 function toggleLang(){
   currentLang = currentLang === 'es' ? 'en' : 'es';
   document.getElementById('lang-label').textContent = currentLang === 'es' ? 'EN' : 'ES';
@@ -1676,29 +1284,10 @@ function toggleLang(){
     const txt = el.getAttribute('data-' + currentLang);
     if(txt !== null) el.innerHTML = txt;
   });
-  /* Carrito */
-  const cb = document.getElementById('cart-btn');
-  const n  = cb.textContent.match(/\d+/)?.[0] || '0';
-  cb.textContent = currentLang === 'es' ? `Carrito (${n})` : `Cart (${n})`;
 }
 
-/* ══════════════════════════════════════
-   CARRITO + WISHLIST + FILTROS
-══════════════════════════════════════ */
-let cartCount = 0;
-function addCart(b){
-  cartCount++;
-  const cb = document.getElementById('cart-btn');
-  cb.textContent = currentLang === 'es' ? `Carrito (${cartCount})` : `Cart (${cartCount})`;
-  const o = b.textContent;
-  b.textContent = currentLang === 'es' ? '✓ Añadido' : '✓ Added';
-  b.style.background='var(--white)'; b.style.color='var(--g-deep)';
-  setTimeout(()=>{ b.textContent=o; b.style.background=''; b.style.color=''; }, 2200);
-}
 function wish(b){ b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '♥' : '♡'; }
-function fp(b){ document.querySelectorAll('.fp').forEach(p=>p.classList.remove('on')); b.classList.add('on'); }
 
-/* FADE IN cards */
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
 },{ threshold:0.1 });
@@ -1708,1141 +1297,206 @@ document.querySelectorAll('.cat-card,.stat-box,.review-bubble,.gal-item,details,
   obs.observe(el);
 });
 
-/* ══════════════════════════════════════════════════════════
-   SISTEMA DE CARRITO — PALO VERDE ESMERALDA
-   ─────────────────────────────────────────────────────────
-   ⚠️  CONFIGURACIÓN: Cambia esta URL cuando despliegues
-       tu backend en Railway.
-══════════════════════════════════════════════════════════ */
-const API = window.PV_API || 'https://paloverde-backend2.onrender.com'
-
-/* ── ESTADO LOCAL ── */
-let pvUser      = JSON.parse(localStorage.getItem('pv_user') || 'null');
-let pvToken     = localStorage.getItem('pv_token') || null;
-let pvCarrito   = [];        /* cache local del carrito */
-let pvPedidoId  = null;      /* pedido en proceso */
-let pvPendingId = null;      /* producto que esperaba auth */
-let pvPendingNm = null;
-let pvPendingPr = null;
-
-/* ── HELPERS ── */
-function pvFetch(path, opts = {}) {
-  const headers = { 'Content-Type': 'application/json', ...(opts.headers||{}) };
-  if (pvToken) headers['Authorization'] = 'Bearer ' + pvToken;
-  return fetch(API + path, { ...opts, headers });
-}
-
-function toast(msg, ms = 2800) {
-  const t = document.getElementById('pv-toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), ms);
-}
-
-function backdrop(open) {
-  document.getElementById('pv-backdrop').classList.toggle('open', open);
-}
-
-function cerrarTodo() {
-  ['modal-auth','panel-carrito','modal-checkout'].forEach(id => {
-    document.getElementById(id)?.classList.remove('open');
-  });
-  backdrop(false);
-}
-
-/* ── ACTUALIZAR BADGE DEL NAV ── */
-function actualizarBadge() {
-  const total = pvCarrito.reduce((s, i) => s + i.cantidad, 0);
-  const badge = document.getElementById('cart-count-badge');
-  if (badge) {
-    badge.textContent = total;
-    badge.classList.toggle('show', total > 0);
-  }
-}
-
-/* ── CARGAR CARRITO DESDE API ── */
-async function cargarCarrito() {
-  if (!pvToken) { pvCarrito = []; actualizarBadge(); return; }
-  try {
-    const r = await pvFetch('/api/carrito');
-    if (r.ok) {
-      const d = await r.json();
-      pvCarrito = d.items || [];
-      actualizarBadge();
+function fp(btn){
+  document.querySelectorAll('.fp').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const cat = btn.getAttribute('data-cat');
+  document.querySelectorAll('.pv-card').forEach(card => {
+    if(cat === 'all' || card.getAttribute('data-cat') === cat){
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
     }
-  } catch { /* sin conexión */ }
+  });
 }
 
-/* ── RENDERIZAR PANEL CARRITO ── */
-function renderCarrito() {
-  const list   = document.getElementById('cart-items-list');
-  const footer = document.getElementById('cart-footer');
-  const totEl  = document.getElementById('cart-total-val');
+let pvCart = JSON.parse(localStorage.getItem('pv_cart') || '[]');
 
-  if (!pvCarrito.length) {
-    list.innerHTML = `<div class="cart-empty">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span>Tu carrito está vacío</span>
-    </div>`;
-    footer.style.display = 'none';
+function toggleCart(open = null) {
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  const shouldOpen = open === null ? !drawer.classList.contains('open') : open;
+  drawer.classList.toggle('open', shouldOpen);
+  overlay.classList.toggle('open', shouldOpen);
+}
+
+function updateCartBadge() {
+  const total = pvCart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cart-badge-val').textContent = total;
+}
+
+function renderCart() {
+  const body = document.querySelector('.cart-body');
+  const totalVal = document.getElementById('cart-total-val');
+  if (pvCart.length === 0) {
+    body.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted)">Tu carrito está vacío</div>';
+    totalVal.textContent = '$0';
     return;
   }
-
-  const total = pvCarrito.reduce((s, i) => s + parseFloat(i.precio_usd) * i.cantidad, 0);
-  list.innerHTML = pvCarrito.map(item => `
-    <div class="cart-item" id="ci-${item.id}">
-      <img class="cart-item-img"
-        src="${item.imagen_url || 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=60'}"
-        alt="${item.nombre}"
-        onerror="this.src='https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=60'">
-      <div>
-        <div class="cart-item-name">${item.nombre}</div>
-        <div class="cart-item-mat">${item.material || ''}</div>
-        <div class="cart-item-price">$${parseFloat(item.precio_usd).toFixed(2)} USD × ${item.cantidad}</div>
+  let total = 0;
+  body.innerHTML = pvCart.map((item, idx) => {
+    total += item.price * item.qty;
+    return `
+      <div class="cart-item">
+        <img src="${item.img}" class="cart-item-img">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-meta">${item.meta || ''}</div>
+          <div class="cart-item-price">$${item.price.toLocaleString()} x ${item.qty}</div>
+          <button class="cart-item-remove" onclick="removeFromCart(${idx})">Eliminar</button>
+        </div>
       </div>
-      <button class="cart-item-del" onclick="eliminarDelCarrito(${item.id})" title="Eliminar">✕</button>
-    </div>
-  `).join('');
-
-  totEl.textContent = '$' + total.toFixed(2) + ' USD';
-  footer.style.display = '';
-  actualizarBadge();
+    `;
+  }).join('');
+  totalVal.textContent = '$' + total.toLocaleString();
 }
 
-/* ── AÑADIR AL CARRITO ── */
-async function pvAddToCart(productoId, nombre, precio, btn) {
-  /* Si no está logueado → guardar intención y abrir auth */
-  if (!pvToken) {
-    pvPendingId = productoId;
-    pvPendingNm = nombre;
-    pvPendingPr = precio;
-    toast('Inicia sesión para añadir al carrito');
-    abrirAuth();
-    return;
-  }
-
-  const orig = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="pv-spin"></span>'; }
-
-  try {
-    const r = await pvFetch('/api/carrito', {
-      method: 'POST',
-      body: JSON.stringify({ producto_id: productoId, cantidad: 1 })
-    });
-    const d = await r.json();
-    if (r.ok) {
-      toast('✓ ' + nombre + ' añadido al carrito');
-      await cargarCarrito();
-      if (btn) { btn.textContent = '✓ Añadido'; btn.style.background='var(--white)'; btn.style.color='var(--g-deep)'; }
-      setTimeout(() => { if(btn){btn.textContent=orig;btn.style.background='';btn.style.color='';btn.disabled=false;} }, 2200);
-    } else {
-      toast('Error: ' + (d.error || 'No se pudo añadir'));
-      if (btn) { btn.textContent = orig; btn.disabled = false; }
-    }
-  } catch (err) {
-    console.error('pvAddToCart error:', err);
-    // Intentar modo offline: guardar en localStorage y notificar
-    const offline = JSON.parse(localStorage.getItem('pv_cart_offline') || '[]');
-    const exists = offline.find(x => x.id === productoId);
-    if (!exists) offline.push({ id: productoId, nombre, precio_usd: precio, cantidad: 1 });
-    localStorage.setItem('pv_cart_offline', JSON.stringify(offline));
-    toast('⚠️ Servidor iniciando (30s)… Producto guardado localmente. Intenta de nuevo en un momento.');
-    if (btn) { btn.textContent = orig; btn.disabled = false; }
-  }
+function addToCart(product) {
+  pvCart.push(product);
+  localStorage.setItem('pv_cart', JSON.stringify(pvCart));
+  updateCartBadge();
+  renderCart();
+  toggleCart(true);
 }
 
-/* ── ELIMINAR DEL CARRITO ── */
-async function eliminarDelCarrito(itemId) {
-  try {
-    const r = await pvFetch('/api/carrito/' + itemId, { method: 'DELETE' });
-    if (r.ok) {
-      pvCarrito = pvCarrito.filter(i => i.id !== itemId);
-      renderCarrito();
-      toast('Producto eliminado del carrito');
-    }
-  } catch { toast('Error al eliminar'); }
+function removeFromCart(idx) {
+  pvCart.splice(idx, 1);
+  localStorage.setItem('pv_cart', JSON.stringify(pvCart));
+  updateCartBadge();
+  renderCart();
 }
 
-/* ── ABRIR / CERRAR CARRITO ── */
-function abrirCarrito() {
-  if (!pvToken) { abrirAuth(); return; }
-  cargarCarrito().then(() => {
-    renderCarrito();
-    cerrarTodo();
-    document.getElementById('panel-carrito').classList.add('open');
-    backdrop(true);
-  });
-}
-function cerrarCarrito() {
-  document.getElementById('panel-carrito').classList.remove('open');
-  backdrop(false);
+const PRECIOS_BALINES = { "3": 38000, "4": 75000, "5": 90000, "6": 145000, "7": 198000, "8": 250000 };
+
+function abrirGaleria(imgs, nombre, desc, waLink){
+  const modal = document.getElementById('pv-gallery-modal');
+  const grid = modal.querySelector('.pg-grid');
+  modal.querySelector('.pg-title').textContent = nombre;
+  modal.querySelector('.pg-desc').innerHTML = desc;
+  grid.innerHTML = imgs.split(',').map(src => `<div class="pg-img-box"><img src="${src.trim()}"></div>`).join('');
+  modal.classList.add('open');
 }
 
-/* ── MODAL AUTH ── */
-function abrirAuth() {
-  cerrarTodo();
-  document.getElementById('modal-auth').classList.add('open');
-  backdrop(true);
-}
-function cerrarAuth() {
-  document.getElementById('modal-auth').classList.remove('open');
-  backdrop(false);
-}
-function authTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach((t,i) =>
-    t.classList.toggle('active', (i===0 && tab==='login') || (i===1 && tab==='registro'))
-  );
-  document.getElementById('form-login').classList.toggle('active', tab==='login');
-  document.getElementById('form-registro').classList.toggle('active', tab==='registro');
-  document.getElementById('login-error').textContent = '';
-  document.getElementById('reg-error').textContent = '';
-}
+function cerrarGaleria(){ document.getElementById('pv-gallery-modal').classList.remove('open'); }
 
-/* ── LOGIN ── */
-async function hacerLogin(e) {
-  e.preventDefault();
-  const btn = document.getElementById('btn-login');
-  const errEl = document.getElementById('login-error');
-  errEl.textContent = '';
-  btn.disabled = true; btn.innerHTML = '<span class="pv-spin"></span> Entrando...';
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+  renderCart();
+});
 
-  try {
-    const r = await fetch(API + '/api/auth/login', {
-      method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        correo:   document.getElementById('login-correo').value.trim(),
-        password: document.getElementById('login-pass').value
-      })
-    });
-    const d = await r.json();
-    if (r.ok) {
-      onAuthSuccess(d);
-    } else {
-      errEl.textContent = d.error || 'Error al iniciar sesión';
-      btn.disabled = false; btn.textContent = 'Iniciar sesión';
-    }
-  } catch {
-    errEl.textContent = 'Sin conexión con el servidor';
-    btn.disabled = false; btn.textContent = 'Iniciar sesión';
+function updateCardPrice(el, type) {
+  const card = el.closest('.pv-card');
+  const priceEl = card.querySelector('.pv-price-main');
+  if (type === 'manilla') {
+    const calibre = card.querySelector('.sel-calibre').value;
+    const qty = parseInt(card.querySelector('.sel-qty').value) || 0;
+    const total = PRECIOS_BALINES[calibre] * qty;
+    priceEl.textContent = '$' + total.toLocaleString();
+  } else if (type === 'topos') {
+    const price = parseInt(card.querySelector('.sel-medida').value);
+    priceEl.textContent = '$' + price.toLocaleString();
   }
 }
 
-/* ── REGISTRO ── */
-async function hacerRegistro(e) {
-  e.preventDefault();
-  const btn = document.getElementById('btn-registro');
-  const errEl = document.getElementById('reg-error');
-  errEl.textContent = '';
-  btn.disabled = true; btn.innerHTML = '<span class="pv-spin"></span> Creando cuenta...';
-
-  try {
-    const r = await fetch(API + '/api/auth/register', {
-      method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        nombre:   document.getElementById('reg-nombre').value.trim(),
-        correo:   document.getElementById('reg-correo').value.trim(),
-        password: document.getElementById('reg-pass').value
-      })
-    });
-    const d = await r.json();
-    if (r.ok) {
-      onAuthSuccess(d);
-    } else {
-      errEl.textContent = d.error || 'Error al registrarse';
-      btn.disabled = false; btn.textContent = 'Crear cuenta';
-    }
-  } catch {
-    errEl.textContent = 'Sin conexión con el servidor';
-    btn.disabled = false; btn.textContent = 'Crear cuenta';
-  }
+function addManillaDirect(btn) {
+  const card = btn.closest('.pv-card');
+  const calibre = card.querySelector('.sel-calibre').value;
+  const count = parseInt(card.querySelector('.sel-qty').value);
+  const finalPrice = PRECIOS_BALINES[calibre] * count;
+  addToCart({ name: 'Manilla Tejida', price: finalPrice, qty: 1, meta: `Calibre #${calibre}, ${count} balines`, img: 'Tejida1.jpeg' });
 }
 
-/* ── DESPUÉS DE LOGIN / REGISTRO EXITOSO ── */
-async function onAuthSuccess(data) {
-  pvToken = data.token;
-  pvUser  = data.user;
-  localStorage.setItem('pv_token', pvToken);
-  localStorage.setItem('pv_user', JSON.stringify(pvUser));
-
-  cerrarAuth();
-  toast('¡Bienvenido' + (pvUser.nombre ? ', ' + pvUser.nombre : '') + '!');
-
-  await cargarCarrito();
-
-  /* Si había un producto pendiente, añadirlo automáticamente */
-  if (pvPendingId !== null) {
-    const id = pvPendingId; const nm = pvPendingNm; const pr = pvPendingPr;
-    pvPendingId = pvPendingNm = pvPendingPr = null;
-    await pvAddToCart(id, nm, pr, null);
-    abrirCarrito();
-  }
+function addPulseraDirect(btn) {
+  const card = btn.closest('.pv-card');
+  const qty = parseInt(card.querySelector('.sel-qty').value);
+  addToCart({ name: 'Pulsera Tipo Tenis', price: 560000, qty: qty, img: 'Pulsera1.jpeg' });
 }
 
-/* ── CHECKOUT ── */
-function abrirCheckout() {
-  if (!pvCarrito.length) return;
-  cerrarCarrito();
-
-  /* Renderizar items en el checkout */
-  const list = document.getElementById('checkout-items-list');
-  const total = pvCarrito.reduce((s,i)=>s+parseFloat(i.precio_usd)*i.cantidad,0);
-  list.innerHTML = pvCarrito.map(i => `
-    <div class="checkout-item-row">
-      <span>${i.nombre} <small style="opacity:.6">×${i.cantidad}</small></span>
-      <strong>$${(parseFloat(i.precio_usd)*i.cantidad).toFixed(2)}</strong>
-    </div>
-  `).join('') + `
-    <div class="checkout-item-row" style="margin-top:.5rem;font-weight:600">
-      <span style="color:var(--ink)">Total USD</span>
-      <strong style="color:var(--g-deep)">$${total.toFixed(2)}</strong>
-    </div>`;
-
-  document.getElementById('co-usd').textContent = '$' + total.toFixed(2) + ' USD';
-  actualizarConversion();
-
-  document.getElementById('modal-checkout').classList.add('open');
-  backdrop(true);
+function addToposDirect(btn) {
+  const card = btn.closest('.pv-card');
+  const price = parseInt(card.querySelector('.sel-medida').value);
+  const text = card.querySelector('.sel-medida').options[card.querySelector('.sel-medida').selectedIndex].text;
+  const qty = parseInt(card.querySelector('.sel-qty').value);
+  addToCart({ name: 'Topos Esmeralda', price: price, qty: qty, meta: `Medida: ${text}`, img: 'Topos1.jpeg' });
 }
-
-function cerrarCheckout() {
-  document.getElementById('modal-checkout').classList.remove('open');
-  backdrop(false);
-}
-
-/* ── CONVERSIÓN DE MONEDA (tasas locales, sin API externa) ── */
-const PV_TASAS = {
-  USD:1, COP:4150, EUR:0.92, BRL:5.05, MXN:17.15,
-  PEN:3.73, CLP:945, ARS:870, PAB:1, CRC:520,
-  GTQ:7.79, HNL:24.75, BOB:6.91, DOP:59.5
-};
-const PV_SIMBOLOS = {
-  USD:'$',COP:'$',EUR:'€',BRL:'R$',MXN:'$',PEN:'S/',
-  CLP:'$',ARS:'$',PAB:'B/.',CRC:'₡',GTQ:'Q',HNL:'L',BOB:'Bs.',DOP:'RD$'
-};
-
-function actualizarConversion() {
-  const moneda = document.getElementById('moneda-select').value;
-  const totalUSD = pvCarrito.reduce((s,i)=>s+parseFloat(i.precio_usd)*i.cantidad, 0);
-  const tasa = PV_TASAS[moneda] || 1;
-  const convertido = (totalUSD * tasa).toFixed(moneda==='CLP'||moneda==='COP'||moneda==='ARS'?0:2);
-  const simbolo = PV_SIMBOLOS[moneda] || moneda;
-  document.getElementById('co-total').textContent =
-    simbolo + ' ' + parseFloat(convertido).toLocaleString('es-CO');
-  document.getElementById('co-usd').textContent = '$' + totalUSD.toFixed(2) + ' USD';
-}
-
-/* ── PROCESAR PAGO ── */
-async function procesarPago() {
-  const btn = document.getElementById('btn-pagar');
-  const moneda = document.getElementById('moneda-select').value;
-
-  btn.disabled = true;
-  btn.innerHTML = '<span class="pv-spin"></span> Procesando...';
-
-  try {
-    /* Crear pedido en el backend */
-    const r = await pvFetch('/api/pagos/crear', {
-      method: 'POST',
-      body: JSON.stringify({ moneda })
-    });
-    const d = await r.json();
-
-    if (!r.ok) {
-      toast('Error: ' + (d.error || 'No se pudo crear el pedido'));
-      btn.disabled = false;
-      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar con tarjeta';
-      return;
-    }
-
-    pvPedidoId = d.pedidoId;
-
-    /* Abrir link de pago en nueva pestaña */
-    const linkPago = d.mpLink;
-    window.open(linkPago, '_blank');
-
-    /* Si es link fijo (sin API de MP), mostrar botón de confirmar */
-    if (true) {
-      btn.disabled = false;
-      btn.innerHTML = '✓ Ya pagué — Confirmar';
-      btn.onclick = confirmarPagoManual;
-      toast('Completa el pago y luego haz clic en "Ya pagué"', 6000);
-    } else {
-      /* Con API de MP, el webhook redirige automáticamente */
-      btn.innerHTML = 'Esperando confirmación...';
-      toast('Redirigiendo al pago...', 4000);
-    }
-
-  } catch {
-    toast('Sin conexión con el servidor');
-    btn.disabled = false;
-    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar con tarjeta';
-  }
-}
-
-/* ── CONFIRMAR PAGO MANUAL (link fijo) ── */
-async function confirmarPagoManual() {
-  if (!pvPedidoId) return;
-  const btn = document.getElementById('btn-pagar');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="pv-spin"></span> Confirmando...';
-
-  try {
-    const r = await pvFetch('/api/pagos/confirmar/' + pvPedidoId, {
-      method: 'POST',
-      body: JSON.stringify({})
-    });
-    const d = await r.json();
-
-    if (r.ok && d.whatsappUrl) {
-      cerrarTodo();
-      pvCarrito = [];
-      actualizarBadge();
-      toast('¡Pago confirmado! Redirigiendo a WhatsApp...', 3000);
-      /* Pequeño delay para que el usuario vea el toast y luego redirige */
-      setTimeout(() => { window.location.href = d.whatsappUrl; }, 1800);
-    } else {
-      toast('Error al confirmar: ' + (d.error || 'Intenta de nuevo'));
-      btn.disabled = false;
-      btn.innerHTML = '✓ Ya pagué — Confirmar';
-    }
-  } catch {
-    toast('Sin conexión');
-    btn.disabled = false;
-    btn.innerHTML = '✓ Ya pagué — Confirmar';
-  }
-}
-
-/* ── DETECTAR RETORNO DE MERCADOPAGO ── */
-(function detectarRetornoMP() {
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get('pago') || params.get('status');
-  if (!status) return;
-
-  /* Limpiar URL */
-  window.history.replaceState({}, '', window.location.pathname);
-
-  if (status === 'approved') {
-    toast('¡Pago aprobado! Redirigiendo a WhatsApp...', 3000);
-    /* El webhook del backend ya habrá manejado esto,
-       pero si llega aquí confirmar manualmente */
-    if (pvPedidoId) {
-      setTimeout(confirmarPagoManual, 800);
-    }
-  } else if (status === 'fallido' || status === 'failure') {
-    toast('El pago no fue aprobado. Puedes intentarlo de nuevo.', 4000);
-  } else if (status === 'pendiente' || status === 'pending') {
-    toast('Tu pago está pendiente de confirmación.', 4000);
-  }
-})();
-
-/* ── INICIALIZACIÓN ── */
-(function init() {
-  // Despertar el servidor en Render (plan gratuito duerme tras 15min)
-  fetch(API + '/health').catch(() => {});
-  if (pvToken) cargarCarrito();
-})();
 </script>
-<!-- ═══════════════════════════════════════════
-     CATÁLOGO OVERLAY
-═══════════════════════════════════════════ -->
-<div id="cat-overlay">
-  <div class="cat-hero-strip">
-    <div class="cat-hero-kicker">Villavicencio · Meta · Colombia</div>
-    <h1 class="cat-hero-h1">COLECCIÓN</h1>
-    <p class="cat-hero-sub">Esmeraldas certificadas &amp; joyería artesanal</p>
+
+<div id="pv-gallery-modal">
+  <div class="pg-content">
+    <button class="pg-close" onclick="cerrarGaleria()">✕</button>
+    <div class="pg-header">
+      <h2 class="pg-title"></h2>
+    </div>
+    <div class="pg-body">
+      <div class="pg-desc"></div>
+      
+      <!-- CONFIGURADOR -->
+      <div id="product-config-area" class="p-config"></div>
+      
+      <div class="pg-grid"></div>
+    </div>
+    <div class="pg-footer">
+      <button id="btn-add-to-cart" class="pg-wa-btn" style="background:var(--g-deep); width:100%">
+        Añadir al Carrito
+      </button>
+      <div style="margin-top: 15px; font-size: 0.8rem; color: var(--muted)">O si prefieres:</div>
+      <a href="#" id="wa-direct-link" class="pg-wa-btn" style="background:transparent; color:var(--g-deep); border:1px solid var(--g-deep); margin-top:10px" target="_blank">
+        Escribir a WhatsApp
+      </a>
+    </div>
   </div>
-  <nav class="cat-ov-nav">
-    <button class="cat-ov-back" onclick="cerrarCatalogo()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-      Volver
+</div>
+
+<!-- OVERLAY Y DRAWER DEL CARRITO -->
+<div id="cart-overlay" onclick="toggleCart(false)"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">Tu Selección</div>
+    <button class="cart-close" onclick="toggleCart(false)">✕</button>
+  </div>
+  <div class="cart-body">
+    <!-- Items dinámicos -->
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total Estimado:</span>
+      <span id="cart-total-val">$0</span>
+    </div>
+    <button class="cart-pay-btn" onclick="procesarPago()">
+      Proceder al Pago
     </button>
-    <span class="cat-ov-brand">PALO VERDE</span>
-    <button class="cat-ov-cart-btn" onclick="abrirCarritoPV()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      Carrito <span id="cat-badge" style="background:var(--gold);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;opacity:0;transition:opacity .2s">0</span>
-    </button>
-  </nav>
-  <div class="cat-filters-bar">
-    <span class="cat-filter-lbl">Filtrar:</span>
-    <button class="cat-fp on" data-cat="all" onclick="catFiltrar(this)">Todo</button>
-    <button class="cat-fp" data-cat="esmeraldas" onclick="catFiltrar(this)">Esmeraldas</button>
-    <button class="cat-fp" data-cat="anillos" onclick="catFiltrar(this)">Anillos</button>
-    <button class="cat-fp" data-cat="collares" onclick="catFiltrar(this)">Collares</button>
-    <button class="cat-fp" data-cat="pulseras" onclick="catFiltrar(this)">Pulseras</button>
-    <button class="cat-fp" data-cat="aretes" onclick="catFiltrar(this)">Aretes</button>
-    <span class="cat-count" id="cat-count"></span>
-  </div>
-  <div class="cat-grid" id="cat-grid">
-    <!-- skeletons -->
-    <div class="pv-skel"><div class="pv-skel-img"></div><div class="pv-skel-body"><div class="pv-skel-line lg"></div><div class="pv-skel-line"></div><div class="pv-skel-line sm"></div></div></div>
-    <div class="pv-skel"><div class="pv-skel-img"></div><div class="pv-skel-body"><div class="pv-skel-line lg"></div><div class="pv-skel-line"></div><div class="pv-skel-line sm"></div></div></div>
-    <div class="pv-skel"><div class="pv-skel-img"></div><div class="pv-skel-body"><div class="pv-skel-line lg"></div><div class="pv-skel-line"></div><div class="pv-skel-line sm"></div></div></div>
-    <div class="pv-skel"><div class="pv-skel-img"></div><div class="pv-skel-body"><div class="pv-skel-line lg"></div><div class="pv-skel-line"></div><div class="pv-skel-line sm"></div></div></div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     CARRITO ESTILO TEMU
-═══════════════════════════════════════════ -->
-<div id="pv-backdrop2" onclick="cerrarCarritoPV()"></div>
-<div id="pv-cart">
-  <div class="pvc-head">
-    <h3>Mi carrito</h3>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span style="font-size:.72rem;color:var(--muted)" id="pvc-count-lbl"></span>
-      <button class="pvc-close" onclick="cerrarCarritoPV()">✕</button>
-    </div>
-  </div>
-  <div class="pvc-items" id="pvc-items">
-    <div class="pvc-empty">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <p>Tu carrito está vacío</p>
-    </div>
-  </div>
-  <div class="pvc-footer" id="pvc-footer" style="display:none">
-    <div class="pvc-monedas" id="pvc-monedas">
-      <button class="pvc-moneda-btn on" data-moneda="USD" data-tasa="1" onclick="pvcMoneda(this)">USD</button>
-      <button class="pvc-moneda-btn" data-moneda="COP" data-tasa="4100" onclick="pvcMoneda(this)">COP</button>
-      <button class="pvc-moneda-btn" data-moneda="EUR" data-tasa="0.92" onclick="pvcMoneda(this)">EUR</button>
-      <button class="pvc-moneda-btn" data-moneda="MXN" data-tasa="17.5" onclick="pvcMoneda(this)">MXN</button>
-      <button class="pvc-moneda-btn" data-moneda="BRL" data-tasa="5.1" onclick="pvcMoneda(this)">BRL</button>
-    </div>
-    <div class="pvc-totales">
-      <div class="pvc-row"><span>Subtotal</span><span id="pvc-sub" class="v">$0 USD</span></div>
-      <div class="pvc-row"><span>Envío</span><span style="color:var(--g-deep);font-weight:500">A coordinar</span></div>
-      <div class="pvc-row total"><span>Total</span><span id="pvc-total" class="v">$0 USD</span></div>
-    </div>
-    <button class="pvc-checkout-btn" onclick="pvcCheckout()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      Pagar ahora
-    </button>
-    <a class="pvc-wa" id="pvc-wa-link" href="#" target="_blank" rel="noopener">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Consultar por WhatsApp
-    </a>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     ADMIN LOGIN
-═══════════════════════════════════════════ -->
-<div id="admin-login-wrap">
-  <div class="adm-login-card">
-    <div class="adm-login-logo">
-      <img src="Paloverde.jpeg" alt="Palo Verde">
-      <span>PALO VERDE</span>
-    </div>
-    <p class="adm-login-sub">Panel de administración</p>
-    <div class="adm-login-err" id="adm-login-err"></div>
-    <input class="adm-input" type="password" id="adm-pass-input" placeholder="Contraseña de administrador" autocomplete="current-password">
-    <button class="adm-submit" onclick="admLogin()">Entrar</button>
-    <span class="adm-close-login" onclick="cerrarAdminLogin()">Cancelar</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     PANEL ADMIN
-═══════════════════════════════════════════ -->
-<div id="admin-panel">
-  <nav class="adm-nav">
-    <div class="adm-nav-brand">
-      <img src="Paloverde.jpeg" alt="Palo Verde">
-      <span>ADMIN — PALO VERDE</span>
-    </div>
-    <div class="adm-nav-right">
-      <button class="adm-nav-btn" onclick="admCargarTodo()">↻ Actualizar</button>
-      <button class="adm-nav-btn" onclick="cerrarAdmin()">✕ Salir</button>
-    </div>
-  </nav>
-  <div class="adm-body">
-    <div class="adm-stats" id="adm-stats">
-      <div class="adm-stat"><div class="n" id="adm-s-prod">—</div><div class="l">Productos</div></div>
-      <div class="adm-stat"><div class="n" id="adm-s-pedidos">—</div><div class="l">Pedidos pagados</div></div>
-      <div class="adm-stat"><div class="n" id="adm-s-ventas">—</div><div class="l">Ventas USD</div></div>
-      <div class="adm-stat"><div class="n" id="adm-s-users">—</div><div class="l">Usuarios</div></div>
-    </div>
-    <div class="adm-tabs">
-      <div class="adm-tab on" onclick="admTab(this,'adm-prod-sec')">Productos</div>
-      <div class="adm-tab" onclick="admTab(this,'adm-pedidos-sec')">Pedidos</div>
-    </div>
-    <!-- PRODUCTOS -->
-    <div class="adm-sec on" id="adm-prod-sec">
-      <div class="adm-top">
-        <h2>Gestión de productos</h2>
-        <button class="adm-add-btn" onclick="admAbrirModal()">+ Nuevo producto</button>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="adm-table" id="adm-prod-table">
-          <thead><tr><th></th><th>Nombre</th><th>Precio</th><th>Categoría</th><th>Disponible</th><th>Acciones</th></tr></thead>
-          <tbody id="adm-prod-tbody"><tr><td colspan="6" style="text-align:center;padding:32px;color:var(--muted)">Cargando...</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-    <!-- PEDIDOS -->
-    <div class="adm-sec" id="adm-pedidos-sec">
-      <div class="adm-top"><h2>Pedidos recientes</h2></div>
-      <div style="overflow-x:auto">
-        <table class="adm-table">
-          <thead><tr><th>#</th><th>Usuario</th><th>Total USD</th><th>Moneda</th><th>Estado</th><th>Fecha</th></tr></thead>
-          <tbody id="adm-ped-tbody"><tr><td colspan="6" style="text-align:center;padding:32px;color:var(--muted)">Cargando...</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL PRODUCTO ADMIN -->
-<div id="adm-prod-modal">
-  <div class="adm-modal-card" onclick="event.stopPropagation()">
-    <h3 class="adm-modal-title" id="adm-modal-title">Nuevo producto</h3>
-    <input type="hidden" id="adm-prod-id">
-    <div class="adm-form">
-      <div class="adm-form-row">
-        <div class="adm-fg">
-          <label>Nombre *</label>
-          <input class="adm-fi" type="text" id="adm-nombre" placeholder="Ej: Anillo Selva Imperial">
-        </div>
-        <div class="adm-fg">
-          <label>Categoría</label>
-          <select class="adm-fi" id="adm-categoria">
-            <option value="esmeraldas">Esmeraldas</option>
-            <option value="anillos">Anillos</option>
-            <option value="collares">Collares</option>
-            <option value="pulseras">Pulseras</option>
-            <option value="aretes">Aretes</option>
-            <option value="general">General</option>
-          </select>
-        </div>
-      </div>
-      <div class="adm-form-row">
-        <div class="adm-fg">
-          <label>Precio USD *</label>
-          <input class="adm-fi" type="number" id="adm-precio" placeholder="Ej: 2850" min="0" step="0.01">
-        </div>
-        <div class="adm-fg">
-          <label>Precio original USD <span style="font-size:.65rem;color:var(--muted)">(si tiene descuento)</span></label>
-          <input class="adm-fi" type="number" id="adm-precio-orig" placeholder="Dejar vacío si no aplica" min="0" step="0.01">
-          <span class="adm-fi-hint">Se mostrará tachado como precio anterior</span>
-        </div>
-      </div>
-      <div class="adm-form-row">
-        <div class="adm-fg">
-          <label>Material</label>
-          <input class="adm-fi" type="text" id="adm-material" placeholder="Ej: Oro 18k">
-        </div>
-        <div class="adm-fg">
-          <label>Quilates</label>
-          <input class="adm-fi" type="number" id="adm-quilates" placeholder="Ej: 2.8" min="0" step="0.01">
-        </div>
-      </div>
-      <div class="adm-fg">
-        <label>URL de imagen</label>
-        <input class="adm-fi" type="url" id="adm-imagen" placeholder="https://...">
-      </div>
-      <div class="adm-fg">
-        <label>Descripción</label>
-        <textarea class="adm-fi" id="adm-descripcion" rows="3" placeholder="Descripción del producto..."></textarea>
-      </div>
-      <div class="adm-fg">
-        <label>Disponible</label>
-        <select class="adm-fi" id="adm-disponible">
-          <option value="true">Sí — visible en el catálogo</option>
-          <option value="false">No — oculto</option>
-        </select>
-      </div>
-      <div class="adm-form-btns">
-        <button class="adm-btn-cancel" onclick="admCerrarModal()">Cancelar</button>
-        <button class="adm-btn-save" onclick="admGuardarProducto()">Guardar producto</button>
-      </div>
-    </div>
   </div>
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   CATÁLOGO, CARRITO TEMU Y ADMIN — PALO VERDE
-══════════════════════════════════════════════════════ */
-const PV_API = 'https://paloverde-backend2.onrender.com';
-const PV_WA  = '573183177682';
-const TASAS  = {USD:1,COP:4100,EUR:0.92,MXN:17.5,BRL:5.1,ARS:900,PEN:3.8,CLP:950};
-let pvMonedaActual = 'USD';
-let pvTasaActual   = 1;
-let pvProductos    = [];
-let pvCarritoData  = [];
-let pvLogoClicks   = 0, pvLogoTimer = null;
-let pvAdmToken     = localStorage.getItem('pv_adm_token') || null;
-let admEditId      = null;
-
-/* ── Logo click 5 veces → admin ── */
-function pvLogoClick() {
-  pvLogoClicks++;
-  clearTimeout(pvLogoTimer);
-  pvLogoTimer = setTimeout(() => { pvLogoClicks = 0; }, 2000);
-  if (pvLogoClicks >= 5) {
-    pvLogoClicks = 0;
-    abrirAdminLogin();
-  }
-}
-
-/* ── Formatear precio ── */
-function pvFmt(usd) {
-  const val = usd * pvTasaActual;
-  const sym = {USD:'$',COP:'$',EUR:'€',MXN:'$',BRL:'R$'}[pvMonedaActual] || '$';
-  const decimals = pvMonedaActual === 'COP' || pvMonedaActual === 'CLP' || pvMonedaActual === 'ARS' ? 0 : 2;
-  return sym + new Intl.NumberFormat('es-CO',{maximumFractionDigits:decimals}).format(val) + ' ' + pvMonedaActual;
-}
-
-/* ══ CATÁLOGO OVERLAY ══ */
-function abrirCatalogo() {
-  document.getElementById('cat-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (!pvProductos.length) catCargar();
-}
-function cerrarCatalogo() {
-  document.getElementById('cat-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-async function catCargar() {
+async function procesarPago() {
+  if (pvCart.length === 0) return alert('El carrito está vacío');
+  
+  const total = pvCart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  
   try {
-    const r = await fetch(PV_API + '/api/productos');
-    const d = await r.json();
-    pvProductos = d.productos || [];
-    catRender(pvProductos);
-  } catch {
-    document.getElementById('cat-grid').innerHTML = '<p style="padding:40px;text-align:center;color:var(--muted);font-family:var(--serif);font-style:italic">No se pudo cargar la colección. Intenta más tarde.</p>';
-  }
-}
-
-function catRender(prods) {
-  const grid = document.getElementById('cat-grid');
-  const count = document.getElementById('cat-count');
-  count.textContent = prods.length + ' pieza' + (prods.length !== 1 ? 's' : '');
-  if (!prods.length) {
-    grid.innerHTML = '<p style="padding:40px;text-align:center;color:var(--muted);font-family:var(--serif);font-style:italic;grid-column:1/-1">No hay piezas en esta categoría.</p>';
-    return;
-  }
-  const catLabels = {esmeraldas:'Esmeralda',anillos:'Anillo',collares:'Collar',pulseras:'Pulsera',aretes:'Aretes'};
-  grid.innerHTML = prods.map(p => {
-    const hasDesc = p.precio_original_usd && parseFloat(p.precio_original_usd) > parseFloat(p.precio_usd);
-    const tagCls  = hasDesc ? 'pv-card-cat desc' : 'pv-card-cat';
-    const tagTxt  = hasDesc ? '🔥 Oferta' : (catLabels[p.categoria] || 'Joya');
-    return `
-    <div class="pv-card">
-      <div class="pv-card-img">
-        <img src="${p.imagen_url||''}" alt="${p.nombre}" loading="lazy"
-          onerror="this.src='https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=70'">
-        <span class="${tagCls}">${tagTxt}</span>
-      </div>
-      <div class="pv-card-body">
-        <span class="pv-card-mat">${p.material||'Joyería artesanal'}</span>
-        <div class="pv-card-name">${p.nombre}</div>
-        <div class="pv-card-desc">${p.descripcion||''}</div>
-      </div>
-      <div class="pv-card-footer">
-        <div class="pv-price">
-          ${hasDesc ? `<div class="pv-price-old">${pvFmt(p.precio_original_usd)}</div>` : ''}
-          <div class="pv-price-main">${pvFmt(p.precio_usd)}</div>
-          ${pvMonedaActual!=='USD'?`<div class="pv-price-cop">$${parseFloat(p.precio_usd).toLocaleString('en-US')} USD</div>`:''}
-        </div>
-        <button class="pv-card-add" id="pvadd-${p.id}"
-          onclick="pvAddToCart(${p.id},'${p.nombre.replace(/'/g,"\\'")}',${p.precio_usd},this)">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Añadir
-        </button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function catFiltrar(btn) {
-  document.querySelectorAll('.cat-fp').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  const cat = btn.dataset.cat;
-  catRender(cat === 'all' ? pvProductos : pvProductos.filter(p => p.categoria === cat));
-}
-
-/* ══ CARRITO TEMU ══ */
-function abrirCarritoPV() {
-  const existingToken = localStorage.getItem('pv_token');
-  if (!existingToken) {
-    /* Usar el auth ya existente en el index */
-    abrirAuth();
-    return;
-  }
-  pvCarritoCargar().then(() => {
-    document.getElementById('pv-cart').classList.add('open');
-    document.getElementById('pv-backdrop2').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-}
-function cerrarCarritoPV() {
-  document.getElementById('pv-cart').classList.remove('open');
-  document.getElementById('pv-backdrop2').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-async function pvCarritoCargar() {
-  const token = localStorage.getItem('pv_token');
-  if (!token) return;
-  try {
-    const r = await fetch(PV_API + '/api/carrito', {
-      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }
-    });
-    if (r.ok) {
-      const d = await r.json();
-      pvCarritoData = d.items || [];
-      pvRenderCarrito();
-      pvActualizarBadges();
-    }
-  } catch {}
-}
-
-function pvRenderCarrito() {
-  const items = document.getElementById('pvc-items');
-  const footer = document.getElementById('pvc-footer');
-  const countLbl = document.getElementById('pvc-count-lbl');
-  if (!pvCarritoData.length) {
-    items.innerHTML = `<div class="pvc-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:56px;height:56px"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Tu carrito está vacío</p></div>`;
-    footer.style.display = 'none';
-    countLbl.textContent = '';
-    return;
-  }
-  const totalUSD = pvCarritoData.reduce((s, i) => s + parseFloat(i.precio_usd) * i.cantidad, 0);
-  countLbl.textContent = pvCarritoData.length + ' artículo' + (pvCarritoData.length > 1 ? 's' : '');
-  items.innerHTML = pvCarritoData.map(item => `
-    <div class="pvc-item" id="pvc-item-${item.id}">
-      <img class="pvc-item-img" src="${item.imagen_url||''}" alt="${item.nombre}"
-        onerror="this.src='https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=60'">
-      <div>
-        <div class="pvc-item-name">${item.nombre}</div>
-        <div class="pvc-item-mat">${item.material||''}</div>
-        <div class="pvc-item-price">${pvFmt(item.precio_usd)}</div>
-        <div class="pvc-item-actions">
-          <div class="pvc-qty">
-            <button class="pvc-qty-btn" onclick="pvQty(${item.id},${item.cantidad},-1)">−</button>
-            <span class="pvc-qty-val">${item.cantidad}</span>
-            <button class="pvc-qty-btn" onclick="pvQty(${item.id},${item.cantidad},1)">+</button>
-          </div>
-          <button class="pvc-del" onclick="pvEliminar(${item.id})">Eliminar</button>
-        </div>
-      </div>
-    </div>`).join('');
-  document.getElementById('pvc-sub').textContent   = pvFmt(totalUSD);
-  document.getElementById('pvc-total').textContent = pvFmt(totalUSD);
-  footer.style.display = '';
-  /* Link WhatsApp */
-  const resumen = pvCarritoData.map(i => `• ${i.nombre} x${i.cantidad} — $${parseFloat(i.precio_usd).toFixed(2)} USD`).join('\n');
-  const waMsg = encodeURIComponent(`Hola William 🌿\nMe interesa comprar:\n${resumen}\nTotal: $${totalUSD.toFixed(2)} USD`);
-  document.getElementById('pvc-wa-link').href = `https://wa.me/${PV_WA}?text=${waMsg}`;
-}
-
-function pvActualizarBadges() {
-  const total = pvCarritoData.reduce((s, i) => s + i.cantidad, 0);
-  /* Badge catálogo */
-  const catBadge = document.getElementById('cat-badge');
-  if (catBadge) { catBadge.textContent = total; catBadge.style.opacity = total > 0 ? '1' : '0'; }
-  /* Badge nav original */
-  const navBadge = document.getElementById('cart-count-badge');
-  if (navBadge) { navBadge.textContent = total; navBadge.classList.toggle('show', total > 0); }
-}
-
-function pvcMoneda(btn) {
-  document.querySelectorAll('.pvc-moneda-btn').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  pvMonedaActual = btn.dataset.moneda;
-  pvTasaActual   = parseFloat(btn.dataset.tasa);
-  pvRenderCarrito();
-  if (pvProductos.length) catRender(pvProductos);
-}
-
-async function pvQty(itemId, cantActual, delta) {
-  const nueva = cantActual + delta;
-  if (nueva < 1) { pvEliminar(itemId); return; }
-  const token = localStorage.getItem('pv_token');
-  try {
-    await fetch(PV_API + '/api/carrito/' + itemId, {
-      method: 'PUT',
-      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cantidad: nueva })
-    });
-    await pvCarritoCargar();
-  } catch {}
-}
-
-async function pvEliminar(itemId) {
-  const token = localStorage.getItem('pv_token');
-  try {
-    await fetch(PV_API + '/api/carrito/' + itemId, {
-      method: 'DELETE',
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    pvCarritoData = pvCarritoData.filter(i => i.id !== itemId);
-    pvRenderCarrito();
-    pvActualizarBadges();
-  } catch {}
-}
-
-async function pvcCheckout() {
-  const token = localStorage.getItem('pv_token');
-  if (!token) { abrirAuth(); return; }
-  const btn = document.querySelector('.pvc-checkout-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="pv-spin"></span> Procesando...';
-  try {
-    const r = await fetch(PV_API + '/api/pagos/crear', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ moneda: pvMonedaActual, tasa: pvTasaActual })
-    });
-    const d = await r.json();
-    if (r.ok) {
-      window.open(d.mpLink, '_blank');
-      btn.innerHTML = '✓ Ya pagué — Confirmar';
-      btn.disabled = false;
-      btn.onclick = async () => {
-        btn.disabled = true;
-        btn.innerHTML = '<span class="pv-spin"></span> Confirmando...';
-        const r2 = await fetch(PV_API + '/api/pagos/confirmar/' + d.pedidoId, {
-          method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
-          body: JSON.stringify({})
-        });
-        const d2 = await r2.json();
-        cerrarCarritoPV();
-        pvCarritoData = [];
-        pvActualizarBadges();
-        if (d2.whatsappUrl) setTimeout(() => { window.location.href = d2.whatsappUrl; }, 1200);
-      };
-    } else {
-      btn.disabled = false;
-      btn.innerHTML = 'Pagar ahora';
-      toast('Error: ' + (d.error || 'No se pudo crear el pedido'));
-    }
-  } catch {
-    btn.disabled = false;
-    btn.innerHTML = 'Pagar ahora';
-    toast('Sin conexión con el servidor');
-  }
-}
-
-/* ══ ADMIN ══ */
-function abrirAdminLogin() {
-  document.getElementById('admin-login-wrap').classList.add('open');
-  setTimeout(() => document.getElementById('adm-pass-input').focus(), 100);
-}
-function cerrarAdminLogin() {
-  document.getElementById('admin-login-wrap').classList.remove('open');
-  document.getElementById('adm-login-err').textContent = '';
-  document.getElementById('adm-pass-input').value = '';
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && document.getElementById('admin-login-wrap').classList.contains('open')) admLogin();
-});
-
-async function admLogin() {
-  const pass = document.getElementById('adm-pass-input').value;
-  const errEl = document.getElementById('adm-login-err');
-  errEl.textContent = '';
-  try {
-    const r = await fetch(PV_API + '/api/admin/login', {
+    const response = await fetch('/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: pass })
+      body: JSON.stringify({ items: pvCart, total: total })
     });
-    const d = await r.json();
-    if (r.ok) {
-      pvAdmToken = d.token;
-      localStorage.setItem('pv_adm_token', d.token);
-      cerrarAdminLogin();
-      abrirAdmin();
+    
+    const result = await response.json();
+    if (result.success) {
+      alert('¡Pedido realizado con éxito! ID de pedido: ' + result.orderId);
+      pvCart = [];
+      localStorage.removeItem('pv_cart');
+      updateCartBadge();
+      renderCart();
+      toggleCart(false);
     } else {
-      errEl.textContent = d.error || 'Contraseña incorrecta';
+      alert('Hubo un error al procesar tu pedido.');
     }
-  } catch {
-    errEl.textContent = 'Sin conexión con el servidor';
+  } catch (err) {
+    console.error('Error:', err);
+    alert('No se pudo conectar con el servidor.');
   }
 }
-
-function abrirAdmin() {
-  document.getElementById('admin-panel').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  admCargarTodo();
-}
-function cerrarAdmin() {
-  document.getElementById('admin-panel').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function admTab(btn, secId) {
-  document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.adm-sec').forEach(s => s.classList.remove('on'));
-  btn.classList.add('on');
-  document.getElementById(secId).classList.add('on');
-}
-
-async function admCargarTodo() {
-  await Promise.all([admCargarStats(), admCargarProductos(), admCargarPedidos()]);
-}
-
-async function admCargarStats() {
-  try {
-    const r = await fetch(PV_API + '/api/admin/stats', {
-      headers: { 'Authorization': 'Bearer ' + pvAdmToken }
-    });
-    const d = await r.json();
-    if (r.ok) {
-      document.getElementById('adm-s-prod').textContent    = d.productos;
-      document.getElementById('adm-s-pedidos').textContent = d.pedidos;
-      document.getElementById('adm-s-ventas').textContent  = '$' + d.ventas_usd.toFixed(0);
-      document.getElementById('adm-s-users').textContent   = d.usuarios;
-    }
-  } catch {}
-}
-
-async function admCargarProductos() {
-  try {
-    const r = await fetch(PV_API + '/api/admin/productos', {
-      headers: { 'Authorization': 'Bearer ' + pvAdmToken }
-    });
-    const d = await r.json();
-    const tbody = document.getElementById('adm-prod-tbody');
-    if (!r.ok || !d.productos.length) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted)">Sin productos</td></tr>';
-      return;
-    }
-    tbody.innerHTML = d.productos.map(p => `
-      <tr>
-        <td><img class="adm-prod-thumb" src="${p.imagen_url||''}" alt="${p.nombre}"
-          onerror="this.src='https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=100&q=60'"></td>
-        <td><strong>${p.nombre}</strong><br><span style="font-size:.75rem;color:var(--muted)">${p.categoria||''}</span></td>
-        <td><div class="adm-price-col">
-          <span class="adm-price-new">$${parseFloat(p.precio_usd).toFixed(2)}</span>
-          ${p.precio_original_usd ? `<span class="adm-price-old">$${parseFloat(p.precio_original_usd).toFixed(2)}</span>` : ''}
-        </div></td>
-        <td>${p.categoria||'—'}</td>
-        <td><span class="adm-badge ${p.disponible?'si':'no'}">${p.disponible?'Sí':'No'}</span></td>
-        <td><div class="adm-acts">
-          <button class="adm-act" onclick="admAbrirModal(${p.id})">Editar</button>
-          <button class="adm-act del" onclick="admEliminar(${p.id},'${p.nombre.replace(/'/g,"\\'")}')">Eliminar</button>
-        </div></td>
-      </tr>`).join('');
-  } catch {}
-}
-
-async function admCargarPedidos() {
-  try {
-    const r = await fetch(PV_API + '/api/admin/pedidos', {
-      headers: { 'Authorization': 'Bearer ' + pvAdmToken }
-    });
-    const d = await r.json();
-    const tbody = document.getElementById('adm-ped-tbody');
-    if (!r.ok || !d.pedidos.length) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted)">Sin pedidos aún</td></tr>';
-      return;
-    }
-    tbody.innerHTML = d.pedidos.map(p => `
-      <tr>
-        <td>#${p.id}</td>
-        <td>${p.correo||'—'}</td>
-        <td><strong>$${parseFloat(p.monto_usd).toFixed(2)}</strong></td>
-        <td>${p.moneda_pago}</td>
-        <td><span class="adm-badge ${p.estado==='pagado'?'si':'no'}">${p.estado}</span></td>
-        <td style="font-size:.78rem;color:var(--muted)">${new Date(p.creado_en).toLocaleDateString('es-CO')}</td>
-      </tr>`).join('');
-  } catch {}
-}
-
-function admAbrirModal(id = null) {
-  admEditId = id;
-  document.getElementById('adm-prod-modal').classList.add('open');
-  document.getElementById('adm-modal-title').textContent = id ? 'Editar producto' : 'Nuevo producto';
-  if (!id) {
-    ['adm-prod-id','adm-nombre','adm-precio','adm-precio-orig','adm-material','adm-quilates','adm-imagen','adm-descripcion']
-      .forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
-    document.getElementById('adm-categoria').value = 'esmeraldas';
-    document.getElementById('adm-disponible').value = 'true';
-    return;
-  }
-  /* Cargar datos del producto */
-  fetch(PV_API + '/api/admin/productos', { headers: { 'Authorization': 'Bearer ' + pvAdmToken } })
-    .then(r => r.json()).then(d => {
-      const p = (d.productos || []).find(x => x.id === id);
-      if (!p) return;
-      document.getElementById('adm-prod-id').value     = p.id;
-      document.getElementById('adm-nombre').value      = p.nombre || '';
-      document.getElementById('adm-precio').value      = p.precio_usd || '';
-      document.getElementById('adm-precio-orig').value = p.precio_original_usd || '';
-      document.getElementById('adm-material').value    = p.material || '';
-      document.getElementById('adm-quilates').value    = p.quilates || '';
-      document.getElementById('adm-imagen').value      = p.imagen_url || '';
-      document.getElementById('adm-descripcion').value = p.descripcion || '';
-      document.getElementById('adm-categoria').value   = p.categoria || 'general';
-      document.getElementById('adm-disponible').value  = p.disponible ? 'true' : 'false';
-    });
-}
-
-function admCerrarModal() {
-  document.getElementById('adm-prod-modal').classList.remove('open');
-}
-
-async function admGuardarProducto() {
-  const id     = document.getElementById('adm-prod-id').value;
-  const nombre = document.getElementById('adm-nombre').value.trim();
-  const precio = document.getElementById('adm-precio').value;
-  if (!nombre || !precio) { alert('Nombre y precio son obligatorios'); return; }
-  const body = {
-    nombre,
-    precio_usd:          parseFloat(precio),
-    precio_original_usd: document.getElementById('adm-precio-orig').value ? parseFloat(document.getElementById('adm-precio-orig').value) : null,
-    material:    document.getElementById('adm-material').value,
-    quilates:    document.getElementById('adm-quilates').value ? parseFloat(document.getElementById('adm-quilates').value) : null,
-    imagen_url:  document.getElementById('adm-imagen').value,
-    descripcion: document.getElementById('adm-descripcion').value,
-    categoria:   document.getElementById('adm-categoria').value,
-    disponible:  document.getElementById('adm-disponible').value === 'true'
-  };
-  const url    = id ? `${PV_API}/api/admin/productos/${id}` : `${PV_API}/api/admin/productos`;
-  const method = id ? 'PUT' : 'POST';
-  try {
-    const r = await fetch(url, {
-      method, headers: { 'Authorization': 'Bearer ' + pvAdmToken, 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    const d = await r.json();
-    if (r.ok) {
-      admCerrarModal();
-      admCargarProductos();
-      admCargarStats();
-      pvProductos = []; /* forzar recarga del catálogo */
-      toast('✓ Producto ' + (id ? 'actualizado' : 'creado'));
-    } else {
-      alert('Error: ' + (d.error || 'No se pudo guardar'));
-    }
-  } catch { alert('Sin conexión con el servidor'); }
-}
-
-async function admEliminar(id, nombre) {
-  if (!confirm(`¿Eliminar "${nombre}"? Esta acción no se puede deshacer.`)) return;
-  try {
-    const r = await fetch(`${PV_API}/api/admin/productos/${id}`, {
-      method: 'DELETE',
-      headers: { 'Authorization': 'Bearer ' + pvAdmToken }
-    });
-    if (r.ok) { admCargarProductos(); admCargarStats(); pvProductos = []; toast('Producto eliminado'); }
-    else { const d = await r.json(); alert('Error: ' + d.error); }
-  } catch { alert('Sin conexión'); }
-}
-
-/* ── Click en logo (5 veces) ── */
-document.addEventListener('DOMContentLoaded', () => {
-  const logoWraps = document.querySelectorAll('.nav-logo-wrap, .sf-logo');
-  logoWraps.forEach(el => el.addEventListener('click', pvLogoClick));
-  /* Despertar servidor Render */
-  fetch(PV_API + '/health').catch(() => {});
-  /* Cargar carrito si hay sesión */
-  if (localStorage.getItem('pv_token')) pvCarritoCargar();
-});
 </script>
 </body>
 </html>
